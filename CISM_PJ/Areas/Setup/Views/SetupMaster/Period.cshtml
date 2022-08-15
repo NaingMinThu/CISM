@@ -1,0 +1,197 @@
+﻿@model IEnumerable<CISM_PJ.Areas.Setup.Models.PeriodSetupModel>
+@using CISM_PJ.Models;
+@{
+    ViewBag.Title = "Period";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+
+    List<MenuAuthorizationModel> all_aut = ViewBag.ProgramPermission;
+    PermissionTypeCodeModel perType = new PermissionTypeCodeModel();
+    bool create = all_aut.Any(x => x.perms_type_code.ToLower() == perType.create && x.isGrant == true);
+    bool edit = all_aut.Any(x => x.perms_type_code.ToLower() == perType.edit && x.isGrant == true);
+    bool delete = all_aut.Any(x => x.perms_type_code.ToLower() == perType.delete && x.isGrant == true);
+    bool viewdetail = all_aut.Any(x => x.perms_type_code.ToLower() == perType.viewdetail && x.isGrant == true);
+    bool viewlist = all_aut.Any(x => x.perms_type_code.ToLower() == perType.viewlist && x.isGrant == true);
+}
+<div class="card">
+    <div class="card-header">
+        <h5 class="mb-0">Period List</h5>
+    </div>
+    <input type="hidden" id="hid_isAut_Create" value="@create.ToString()" />
+    <input type="hidden" id="hid_isAut_Edit" value="@edit.ToString()" />
+    <input type="hidden" id="hid_isAut_Delete" value="@delete.ToString()" />
+    <input type="hidden" id="hid_isAut_ViewDetail" value="@viewdetail.ToString()" />
+    <input type="hidden" id="hid_menuID" value="@ViewBag.menuID.ToString()" />
+
+    <div class="card-body">
+        @if (create)
+        {
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#dialogEntry"><i class="fa fa-plus"></i>&nbsp;New</button>
+            </div>
+        }
+        <hr />
+        @if (viewlist)
+        {
+            <div class="table-responsive">
+                <table id="myTable" class="table table-bordered table-sm w-100">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Time Range</th>
+                            <th>Description</th>
+                            <th class="w-15"></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.period_name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.time_period)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.description)
+                                </td>
+                                <td>
+                                    <div class="btn-group btn-group-sm">
+                                        @if (edit || viewdetail)
+                                        {
+                                            <a class="btn btn-primary btn-sm" data-id="@item.period_id" id="btnEdit" name="btnEditLink" data-toggle="modal" data-target="#dialogEntry"><span class="fa fa-edit"></span>&nbsp;Edit</a>
+                                        }
+                                        @if (delete)
+                                        {
+                                            <a class="btn btn-danger btn-sm" data-id="@item.period_id" id="btnDelete" name="btnDeleteLink" data-toggle="modal" data-target="#dialogDelete"><span class="fa fa-trash"></span>&nbsp;Delete</a>
+                                        }
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="modal fade" id="dialogDelete" tabindex="-3" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog w-30 mt-5" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5 class="text-black">Are you sure you want to delete this?</h5>
+                <input type="hidden" class="form-control" id="txtID" name="txtID" />
+            </div>
+            <div class="modal-footer">
+                <input type="button" id="btnDeletePopup" class="btn btn-primary" value="Confirm" />
+                <input type="button" class="btn btn-secondary" data-dismiss="modal" value="Cancel" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="dialogEntry" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false" aria-hidden="true">
+    <div class="modal-dialog w-50" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Period</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="myform">
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <input type="hidden" class="form-control" id="state" />
+                        <input type="hidden" class="form-control" id="period_id" />
+                        <label for="pm_name" class="col-form-label col-md-3 px-5">Name<span style="color:red;">*</span></label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control w-50" id="period_name" name="period_name" maxlength="10" autocomplete="off" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+
+                        <label for="pm_name" class="col-form-label col-md-3 px-5">Start Time<span style="color:red;">*</span></label>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control w-50" id="from_time" name="from_time" maxlength="10" autocomplete="off" required>
+                        </div>
+
+                        <label for="pm_name" class="col-form-label col-md-3 px-5">End Time<span style="color:red;">*</span></label>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control w-50" id="to_time" name="to_time" maxlength="10" autocomplete="off" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="description" class="col-form-label col-md-3 px-5">Description</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="description" name="description" maxlength="100" autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    @*<input type="submit" id="btnEntry" class="btn btn-primary" value="Save" />
+                    <button type="button" class="btn btn-dropbox" data-dismiss="modal" id="btnCancel">Cancel</button>*@
+                    <button type="submit" class="btn btn-primary" id="btnEntry">
+                        <i class="fa fa-save"></i> Save
+                    </button>
+
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnCancel">
+                        <i class="fa fa-sign-out"></i>Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+@section Scripts {
+    <style>
+        div#ui-datepicker-div {
+            position: absolute !important;
+        }
+
+        .ui-timepicker-container {
+            z-index: 1051 !important;
+        }
+    </style>
+
+    <link rel="stylesheet" href="~/Content/themes/base/jquery-ui.css" />
+    <link rel="stylesheet" href="~/Content/jquery.timepicker.css" />
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.validate-additional-methods.min.js"></script>
+    <script src="~/Scripts/jqueryui/jquery-ui.js"></script>
+    <script src="~/Scripts/jquery.timepicker.js"></script>
+    <script src="~/Scripts/moment.js"></script>
+    <script src="~/JavaScriptFiles/Period.js"></script>
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#myTable').DataTable({
+            paging: true,
+            searching: true,
+            ordering: true,
+            order: [[0, 'asc']],
+            columns: [
+                null,
+                null,
+                { orderable: false },
+            ],
+        });
+
+    });
+
+</script>
+

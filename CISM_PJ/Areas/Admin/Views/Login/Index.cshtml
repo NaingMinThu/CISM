@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewBag.Title = "Log in";
+    Layout = "~/Areas/Admin/Views/Shared/_LoginLayout.cshtml";
+}
+
+<style>
+    /* Start by setting display:none to make this hidden.
+    Then we position it in relation to the viewport window
+    with position:fixed. Width, height, top and left speak
+    for themselves. Background we set to 80% white with
+    our animation centered, and no-repeating */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: rgba( 255, 255, 255, .8 ) url('/img/FhHRx.gif') 50% 50% no-repeat;
+    }
+
+    /* When the body has the loading class, we turn
+    the scrollbar off with overflow:hidden */
+    body.loading .modal {
+        overflow: hidden;
+    }
+
+    /* Anytime the body has the loading class, our
+    modal element will be visible */
+    body.loading .modal {
+        display: block;
+    }
+</style>
+
+<div>
+    <form id="myform">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card-group">
+                    <div class="card  p-3">
+                        <div>
+                            <center>
+                                <img src="~/img/cismlogo.png" width="90">   <br />
+                                @*<span style="font-size: 2.2em; color: #1b8eb7; font-weight: 600;">
+                                    CISM : School Management System
+                                </span>*@
+                            </center>                                               
+                            
+
+                        </div>
+                        
+
+                        <div class="card-body">
+                            <h1 style="color:#27a7d5">Log in</h1>
+                            <p class="text-muted">Sign In to your account</p>                   
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="icon-user"></i></span>
+                                </div>
+                                <input type="text" class="form-control" id="user_name" name="user_name" placeholder="User Name" maxlength="15" />
+                            </div>
+                            <div class="input-group mb-4">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="icon-lock"></i></span>
+                                </div>
+                                <input type="password" class="form-control" id="user_pwd" name="user_pwd" placeholder="Password" maxlength="40" />
+                            </div>
+                            <div class="input-group">
+                                <div class="checkbox col-6">
+                                    @*@Html.CheckBoxFor(m => m.RememberMe)
+                                        @Html.LabelFor(m => m.RememberMe)*@
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <button type="submit" class="btn btn-primary px-4">Login</button>
+                                    @*<button type="button" class="btn btn-danger px-4">Cancel</button>*@
+                                </div>
+                                <div class="col-6 text-right">
+                                    @*<a href="@Url.Action("ForgotPassword","Account")" id="btnCreate" name="btnCreateLink" class="class=" btn btn-link px-0"" value="New">Forgot password?</a>*@
+                                    @*<button type="button" class="btn btn-link px-0">Forgot password?</button>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal"><!-- Place at bottom of page --></div>
+@section Scripts {
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/toastr.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.validate-additional-methods.min.js"></script>
+
+    <script src="~/JavaScriptFiles/Login.js"></script>
+}

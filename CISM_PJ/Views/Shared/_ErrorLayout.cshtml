@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <base href="./">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="ECS">
+
+    <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
+    <title>Error</title>
+  
+    @Styles.Render("~/Content/coreui-all-icons")
+    @Styles.Render("~/Content/css")
+</head>
+<body class="app flex-row align-items-center">
+    <div class="container">
+       
+        @RenderBody()
+    </div>
+ 
+    <!-- CoreUI and necessary plugins-->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/popper")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @Scripts.Render("~/bundles/pace")
+    @Scripts.Render("~/bundles/toastr")
+    @Scripts.Render("~/bundles/holder")
+    @Scripts.Render("~/bundles/perfect-scrollbar")
+    @Scripts.Render("~/bundles/coreui-js")
+ 
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+

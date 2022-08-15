@@ -1,0 +1,14 @@
+﻿
+<form id="logoutForm" method="post" action="/Admin/Login/Logout">
+    <label class="col-form-label px-3">@Session["UserName"]</label><a class="label mr-3" href="javascript:document.getElementById('logoutForm').submit()" onclick="clickAndDisable(this);"><i class="fa fa-lock"></i> Logout</a>
+</form>
+
+<script>
+
+   function clickAndDisable(link) {
+     // disable subsequent clicks
+     link.onclick = function(event) {
+        event.preventDefault();
+     }
+   }
+</script>

@@ -1,0 +1,276 @@
+﻿
+<div class="modal fade" id="dialogSkill" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false" aria-hidden="true">
+    <div class="modal-dialog w-75 h-100" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Skills</h5>
+                <button type="button" id="btnClose" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+                <div class="modal-body">
+                    <input type="hidden" id="serial_no_Skill" />
+                    <input type="hidden" id="personal_skill_id" />
+
+                    <div class="col-sm-12 row mb-1 p-0">
+                        <div class="col-sm-4 row mx-0">
+                            <label class="col-form-label col-sm-4 px-0">Reg No</label>
+                            <div class="col-sm-6 pr-0">
+                                <input type="text" class="form-control" id="skill_reg_no" name="skill_reg_no" maxlength="50" readonly />
+                                <em id="skill_reg_no_error" class="error error_msg"></em>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 row mb-1 p-0">
+                        <div class="col-sm-4 row mx-0">
+                            <label class="col-form-label col-sm-4 px-0">Language<span style="color:red;">*</span></label>
+                            <div class="col-sm-6 pr-0">
+                                <input type="text" class="form-control" id="skill_language" name="skill_language" maxlength="50" />
+                                <em id="skill_language_error" class="error error_msg"></em>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 row mx-0">
+                            <label class="col-form-label col-sm-4 px-3">Skill<span style="color:red;">*</span></label>
+                            <div class="col-sm-6 pr-0">
+                                <select id="skill_id" name="skill_id" class="custom-select"></select>
+                                <em id="skill_id_error" class="error error_msg"></em>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row mb-0">
+                        <div class="offset-sm-4 col-sm-3">
+                            <button type="button" class="btn btn-primary" id="btnSkillAdd">
+                                <i class="fa fa-plus"></i> <lable id="lblPrvAction"> Add</lable>
+                            </button>
+                            <button type="button" class="btn btn-danger" id="btnClearSkill">
+                                <i class="fa fa-close"></i> Clear
+                            </button>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="form-group row">
+                        <div class="col-sm table-responsive pre-scrollable px-1">
+                            <table id="PersonalSkillTable" class="table table-bordered table-sm" style="table-layout:fixed">
+                                <thead>
+                                    <tr>
+                                        <th style="width:5%">S/No</th>
+                                        <th style="width:20%">Reg No</th>
+                                        <th style="width:35%">Langauge</th>
+                                        <th style="width:25%">Skill</th>
+                                        <th style="width:15%"></th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                                <tfoot>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-danger" data-dismiss="modal" value="Close" />
+                </div>
+        </div>
+    </div>
+</div>
+
+<link href="~/Components/Treed/style.css" rel="stylesheet" />
+<style>
+    .noselect {
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+    }
+
+    #mceu_121 {
+        display: none;
+    }
+
+    #mceu_123 {
+        display: none;
+    }
+
+    #mceu_152 {
+        display: none;
+    }
+
+    #mceu_154 {
+        display: none;
+    }
+    .error_msg {
+        width: 100%;
+        margin-top: 0.25rem;
+        font-size: 80%;
+        color: #f86c6b
+    }
+</style>
+
+<script src="~/Scripts/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+    var serial_no_Skill = 0;
+    $('#btnClearSkill').click(function (e) {
+        clear_Skill();
+    });
+
+    $('#btnSkillAdd').click(function (e) {
+        if ($("#skill_reg_no").val() != "" && $("#skill_reg_no").val() != null &&
+            $("#skill_language").val() != "" && $("#skill_language").val() != null &&
+            $("#skill_id").val() != "" && $("#skill_id").val() != null) {
+            console.log("True");
+            //var exitData = Skill.filter(x => x.language == $('#skill_language').val() && x.serial_no_Skill != $('#serial_no_Skill').val());
+            //console.log(exitData);
+            //if (exitData.length == 0) {
+                if ($("#serial_no_Skill").val() != "" && $("#serial_no_Skill").val() != null) {
+                    $.each(Skill, function (i, obj) {
+                        if (obj.serial_no_Skill == $("#serial_no_Skill").val()) {
+                            obj = BindPersonalSkill(obj);
+                            return false;
+                        }
+                    });
+                }
+                else {
+                    let a = BindPersonalSkill({});
+                    Skill.push(a);
+                }
+                console.log(Skill);
+                $("#PersonalSkillTable tbody").empty();
+                showPersonalSkill();
+                clear_Skill();
+            //}
+            //else {
+            //    toastr.error("This language is already existed!", "Error."),
+            //        setTimeout(function () { }, 1e4);
+            //}
+        }
+        else {
+            console.log("False");
+            if ($("#skill_reg_no").val() == "" || $("#skill_reg_no").val() == null) {
+                $("#skill_reg_no_error").text("Reg No is required!");
+            }
+            else {
+                $("#skill_reg_no_error").text("");
+            }
+
+            if ($("#skill_language").val() == "" || $("#skill_language").val() == null) {
+                $("#skill_language_error").text("Language is required!");
+            }
+            else {
+                $("#skill_language_error").text("");
+            }
+
+            if ($("#skill_id").val() == "" || $("#skill_id").val() == null) {
+                $("#skill_id_error").text("Skill is required!");
+            }
+            else {
+                $("#skill_id_error").text("");
+            }
+        }
+    });
+
+    function BindPersonalSkill(obj) {
+        obj.reg_no = $("#skill_reg_no").val();
+        obj.personal_skill_id = $("#personal_skill_id").val();
+        obj.language = $("#skill_language").val();
+        obj.skill_id = $("#skill_id").val();
+        obj.skil_name = $('#skill_id option:selected').text();
+        return obj;
+    }
+
+    function showPersonalSkill() {
+        serial_no_Skill = 0;
+        console.log("showTeamMemberTable");
+        if (Skill.length === 0) return;
+        $("#PersonalSkillTable tbody").empty();
+        $.each(Skill, function (i, obj) {
+            serial_no_Skill += 1;
+            obj.serial_no_Skill = serial_no_Skill;
+            //obj.skill_language = sskill_language;
+            //obj.sskill_id = sskill_id;
+            $("#PersonalSkillTable tbody").append(create_Rowstring_PersonalSkill(obj));
+        });
+    }
+
+    function create_Rowstring_PersonalSkill(row) {
+        var tblrow = "<tr>";
+
+        tblrow += create_Colstring_PersonalSkill(row.serial_no_Skill, false);
+        tblrow += create_Colstring_PersonalSkill(row.reg_no, false);
+        tblrow += create_Colstring_PersonalSkill(row.language, false);
+        tblrow += create_Colstring_PersonalSkill(row.skil_name, false);
+
+        var td4 = "<td>" +
+            "<button type='button'" +
+            "onclick=editing_Skill('" + row.serial_no_Skill + "'); " +
+            'style="color: white; " class="btn btn-primary btn-sm"><span class="fa fa-edit"></span>&nbsp;Edit' +
+            "</button>";
+
+        var td5 =
+            "<button type='button'" +
+            "onclick=deleting_Skill('" + row.serial_no_Skill + "','" + row.personal_skill_id + "'); " +
+            'style="color: white; " class="btn btn-danger btn-sm"><span class="fa fa-edit"></span>&nbsp;Delete' +
+            "</button>"
+        "</td></tr > ";
+
+        tblrow += td4 + td5 + "</tr>";
+        return tblrow;
+    }
+
+    function create_Colstring_PersonalSkill(data, isalignright) {
+        var tblcol = "<td" + (isalignright ? " class='text-right'>" : ">") + data + "</td>";
+        return tblcol;
+    }
+
+    function reserialize_Previous() {
+        var count = 0;
+        var activecount = $.grep(Skill, function (obj) { return obj.state != 'Deleted'; }).length;
+        $.each(Skill, function (index, obj) {
+            if (obj.state != "Deleted") {
+                count += 1;
+                obj.serial_no_Skill = count;
+            }
+            else {
+                activecount += 1;
+                obj.serial_no_Skill = activecount;
+            }
+        });
+    }
+
+    function deleting_Skill(serial,prv_shool_id) {
+        Skill = $.grep(Skill, function (obj) { return obj.serial_no_Skill != serial; });
+        console.log(Skill);
+        $("#PersonalSkillTable tbody").empty();
+        showPersonalSkill();
+    }
+
+    function editing_Skill(serial) {
+        $.each(Skill, function (i, obj) {
+            if (obj.serial_no_Skill == serial) {
+                $("#serial_no_Skill").val(serial);
+                $("#personal_skill_id").val(obj.personal_skill_id);
+                $("#skill_language").val(obj.language);
+                $("#skill_id").val(obj.skill_id);
+                $("#lblPrvAction").text("Update");
+                return false;
+            }
+        });
+    }
+
+    function clear_Skill() {
+        $("#serial_no_Skill").val("");
+        $("#personal_skill_id").val("");
+        $("#skill_id").val("");
+        $("#skill_language").val("");
+        $("#lblPrvAction").text("Add");
+
+        $("#skill_reg_no_error").text("");
+        $("#skill_language_error").text("");
+        $("#skill_id_error").text("");
+    }
+</script>

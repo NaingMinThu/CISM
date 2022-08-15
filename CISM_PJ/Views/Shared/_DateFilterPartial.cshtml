@@ -1,0 +1,20 @@
+﻿
+<div class="form-inline">
+    From Date: <input type="text" class="form-control" id="txtFromDate" />
+    To Date: <input type="text" class="form-control" id="txtToDate" />
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery-1.12.4.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#txtFromDate").datepicker({ dateFormat: 'dd/mm/yy' });
+            $("#txtToDate").datepicker({ dateFormat: 'dd/mm/yy' });
+        })
+    </script>
+}

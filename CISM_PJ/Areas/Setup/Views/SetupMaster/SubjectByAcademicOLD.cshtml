@@ -1,0 +1,117 @@
+﻿
+@{
+    ViewBag.Title = "SubjectByAcademic";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+
+    // List<MenuAuthorizationModel> all_aut = ViewBag.ProgramPermission;
+    // PermissionTypeCodeModel perType = new PermissionTypeCodeModel();
+    bool create = true; // all_aut.Any(x => x.perms_type_code.ToLower() == perType.create && x.isGrant == true);
+    bool edit = true; // all_aut.Any(x => x.perms_type_code.ToLower() == perType.edit && x.isGrant == true);
+    bool delete = true; //all_aut.Any(x => x.perms_type_code.ToLower() == perType.delete && x.isGrant == true);
+    bool viewdetail = true; // all_aut.Any(x => x.perms_type_code.ToLower() == perType.viewdetail && x.isGrant == true);
+    bool viewlist = true; // all_aut.Any(x => x.perms_type_code.ToLower() == perType.viewlist && x.isGrant == true);
+
+}
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0">Academic Year List</h5>
+        </div>
+        <input type="hidden" id="hid_isAut_Create" value="@create.ToString()" />
+        <input type="hidden" id="hid_isAut_Edit" value="@edit.ToString()" />
+        <input type="hidden" id="hid_isAut_Delete" value="@delete.ToString()" />
+        <input type="hidden" id="hid_isAut_ViewDetail" value="@viewdetail.ToString()" />
+        <input type="hidden" id="hid_menuID" value="@ViewBag.menuID.ToString()" />
+        <input type="hidden" id="hid_year" />
+        <input type="hidden" id="state" />
+        <div class="card-body">
+            @if (create)
+            {
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" id="btnNew" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#dialogSubjectAcademic"><i class="fa fa-plus"></i>&nbsp;New</button>
+                </div>
+            }
+            <hr />
+            @if (viewlist)
+            {
+                <div class="table-responsive">
+                    <table id="myTable" class="table table-bordered table-sm w-100">
+                        <thead>
+                            <tr>
+                                <th>Grade</th>
+                                <th>Year</th>
+                                <th class="w-15"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+
+<div class="modal fade" id="dialogDelete" tabindex="-3" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog w-30 mt-5" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h4 class="text-danger">Are you sure you want to delete this?</h4>
+                <input type="hidden" class="form-control" id="txtID" name="txtID" />
+            </div>
+            <div class="modal-footer">
+                <input type="button" id="btnDeletePopup" class="btn btn-primary" value="Confirm" />
+                <input type="button" class="btn btn-danger" data-dismiss="modal" value="Cancel" />
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div class="modal fade" id="dialogEntry" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false" aria-hidden="true">
+    <div class="modal-dialog w-50" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Subject List</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="col-sm-12 row mb-1 p-2">
+                <div class="col-sm-6 row mx-0">
+                    
+                    <label class="col-form-label col-sm-2 px-3">Year</label>
+                    <div class="col-sm-6 px-0">
+                        <select class="custom-select" id="year_id" name="year_id"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body" id="divSubjectList">
+                <div class="form-group row mx-0">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="button" id="btnSave" class="btn btn-primary" value="Save" />
+                <input type="button" class="btn btn-danger" data-dismiss="modal" value="Close" />
+            </div>
+        </div>
+         /.modal-content 
+    </div>
+     /.modal-dialog 
+</div>*@
+
+@Html.Partial("~//Areas/Setup/Views/SetupMaster/_SubjectbyAcademic.cshtml")
+@section Scripts {
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.validate-additional-methods.min.js"></script>
+    <script src="~/JavaScriptFiles/SubjectOfAcademic.js"></script>
+}
+

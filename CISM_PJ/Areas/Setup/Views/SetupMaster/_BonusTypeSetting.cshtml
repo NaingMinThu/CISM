@@ -1,0 +1,248 @@
+﻿
+    <div class="modal fade" id="dialogSubjectAcademic" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false" aria-hidden="true">
+        <div class="modal-dialog w-60 h-100" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel">Bonus Setting</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <input type="hidden" id="bonus_setting_id" />
+                <div class="modal-body">
+                    <div class="col-sm-12 row mb-1 p-0">
+                        <div class="col-sm-6 row mx-0">
+                            <label class="col-form-label col-sm-4 px-0">Bonus<span style="color:red;">*</span></label>
+                            <div class="col-sm-6 pr-0">
+                                <select id="bonus_id" name="bonus_id" class="custom-select"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 row mb-1 p-0">
+                        <div class="col-sm-6 row mx-0">
+                            <label class="col-form-label col-sm-4 px-0">Employee Type<span style="color:red;">*</span></label>
+                            <div class="col-sm-6 pr-0">
+                                <select id="emp_type_id" name="emp_type_id" class="custom-select"></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 row mx-0">
+                            <label class="col-form-label col-sm-4 px-0">Grade<span style="color:red;">*</span></label>
+                            <div class="col-sm-6 pr-0">
+                                <select id="emp_grade_id" name="emp_grade_id" class="custom-select"></select>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <input type="hidden" id="state" />
+                    <input type="hidden" id="index" />
+                    @*<div class="col-sm-12">
+                        <div class="form-group row mb-1">
+                            <label class="col-form-label col-sm-2 px-3"><b>Setting List</b></label>
+                            <br />
+                        </div>
+                    </div>*@
+
+                    <div class="col-sm-12 row mb-1 p-0">
+                        <div class="col-sm-6 row mx-0">
+                            <label class="col-form-label col-sm-4 px-0">Year From<span style="color:red;">*</span></label>
+                            <div class="col-sm-6 pr-0">
+                                <input type="text" class="form-control" id="from_year" name="from_year" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6 row mx-0">
+                            <label class="col-form-label col-sm-4 px-0">To<span style="color:red;">*</span></label>
+                            <div class="col-sm-6 pr-0">
+                                <input type="text" class="form-control" id="to_year" name="to_year" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 row mb-1 p-0">
+                        <div class="col-sm-6 row mx-0">
+                            <label class="col-form-label col-sm-4 px-0">Amount From<span style="color:red;">*</span></label>
+                            <div class="col-sm-6 pr-0">
+                                <input type="text" class="form-control" id="from_amt" name="from_amt" />
+                            </div>
+                        </div>
+
+
+                        <button type="button" class="btn btn-primary" id="btnAdd">
+                            <i class="fa fa-plus"></i>Add
+                        </button>
+
+                        <button type="button" class="btn btn-danger" id="btnClear">
+                            <i class="fa fa-close"></i>Clear
+                        </button>
+
+                        <div class="col-sm-6 row mx-0">
+                            <label class="col-form-label col-sm-4 px-0">To<span style="color:red;">*</span></label>
+                            <div class="col-sm-6 pr-0">
+                                <input type="text" class="form-control" id="to_amt" name="to_amt" />
+                            </div>
+                        </div>
+                    </div>
+
+                    @*<div class="col-sm-12">
+                        <div class="form-group row mb-1">
+                            <div class="col-sm-4 px-0"></div>
+                            <div class="col-sm-3">
+                                <input type="button" id="btnAdd" class="btn btn-primary" value="Add" />
+                                <input type="button" id="btnClear" class="btn btn-danger" value="Clear" />
+                            </div>
+                        </div>
+                    </div>*@
+
+                    <div class="table-responsive mt-2 pre-scrollable" id="div_data">
+                        <table id="SubjectTable" class="table table-bordered table-hover w-100">
+                            <thead>
+                                <tr>
+                                    <th style="width:10%">Sr/No</th>
+                                    <th style="width:15%">From Year</th>
+                                    <th style="width:15%">To Year</th>
+                                    <th style="width:20%">From Amount</th>
+                                    <th style="width:20%">To Amount</th>
+                                    <th style="width:20%"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="SubjectDataBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    @*<input type="button" id="btnSave" class="btn btn-primary" data-dismiss="modal" value="Save" />
+                    <input type="button" id="btnCancel" class="btn btn-dropbox" data-dismiss="modal" value="Cancel" />*@
+                    <button type="submit" class="btn btn-primary" id="btnSave" data-dismiss="modal">
+                        <i class="fa fa-save"></i> Save
+                    </button>
+
+                    <button type="button" class="btn btn-secondary" id="btnCancel" data-dismiss="modal">
+                        <i class="fa fa-sign-out"></i>Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+</div>
+<script type="text/javascript">
+    
+    function BindJson(obj) {
+        obj.index = $("#index").val();
+        obj.from_amt = $("#from_amt").val();
+        obj.to_amt = $("#to_amt").val();
+        obj.from_year = $('#from_year').val();
+        obj.to_year = $('#to_year').val();
+        return obj;
+    }
+
+    $("#btnAdd").click(function () {
+        var sub_index = $("#index").val();
+        if (sub_index != null && sub_index != "") {
+            var ext_list = SettingList.filter(x => x.from_year == $("#from_year").val() && x.to_year == $("#to_year").val() && x.index != sub_index);            
+            if (ext_list.length > 0) {
+                toastr.error("This setting is already added!", "Class Data"),
+                    setTimeout(function () { }, 1e4);
+            }
+            else {
+                $.each(SettingList, function (index, obj) {
+                    if (obj.index == sub_index) {
+                        BindJson(obj);
+                        return false;
+                    }
+                });
+            }
+        }
+        else {
+            var exit_list = SettingList.filter(x => x.from_year == $("#from_year").val() && x.to_year == $("#to_year").val());
+            if (exit_list.length > 0) {
+                toastr.error("This setting is already added!", "Class Data"),
+                    setTimeout(function () { }, 1e4);
+            }
+            else {
+                if ($("#class_id").val() != "") {
+                    var data_info = BindJson({});
+                    SettingList.push(data_info);
+                }
+            }
+        }
+        console.log(SettingList);
+        showTable();
+        clear();
+    });
+
+    $("#btnClear").click(function () {       
+        clear();
+    });
+    $("#btnCancel").click(function () {
+        window.location.reload();
+    });
+    function EditData(con_index) {
+        $.each(SettingList, function (index, obj) {
+            if (obj.index == con_index) {
+                BindControls(obj);
+                $("#btnAdd").val("Update");
+                return false;
+            }
+        });
+    }
+
+    function DeleteData(con_index) {
+        $.each(SettingList, function (index, obj) {
+            if (obj.index == con_index) {
+                obj.index = 0;
+                obj.isDelete = true;
+                return false;
+            }
+        });
+        showTable();
+        clear();
+    }
+
+    function BindControls(obj) {
+        $("#index").val(obj.index);
+        $("#from_amt").val(obj.from_amt);
+        $("#to_amt").val(obj.to_amt);        
+        $("#from_year").val(obj.from_year);        
+        $("#to_year").val(obj.to_year);        
+    }
+
+    function showTable() {
+          console.log(SettingList);
+        $("#SubjectDataBody").empty();
+        SettingList = SettingList.filter(x=>x.isDelete != true);
+        for (var i = 0; i < SettingList.length; i++) {
+            ////Re order index after delelting or inserting
+            SettingList[i]["index"] = i + 1;
+            var tr = "<tr>";
+            var td1 = "<td>" + SettingList[i]["index"] + "</td>";
+            var td2 = "<td>" + SettingList[i]["from_year"] + "</td>";
+            var td3 = "<td>" + SettingList[i]["to_year"] + "</td>";
+            var td4 = "<td>" + SettingList[i]["from_amt"] + "</td>";
+            var td5 = "<td>" + SettingList[i]["to_amt"] + "</td>";
+            var td6 = "<td>" +
+                "<button type='button'" +
+                "onclick=EditData('" + SettingList[i]["index"] + "'); " +
+                'style="color: white; " class="btn btn-primary btn-sm"><span class="fa fa-edit"></span>&nbsp;Edit' +
+                "</button>";
+
+            var td7 =
+                "<button type='button'" +
+                "onclick=DeleteData('" + SettingList[i]["index"] + "'); " +
+                'style="color: white; " class="btn btn-danger btn-sm"><span class="fa fa-edit"></span>&nbsp;Delete' +
+                "</button>"
+            "</td></tr > ";
+
+            $("#SubjectDataBody").append(tr + td1 + td2 + td3 + td4 + td5 + td6 + td7);
+        }
+    }
+
+    function clear() {
+        $("#index").val("");
+        $("#from_amt").val("");
+        $('#to_amt').val("");
+        $('#from_year').val("");
+        $('#to_year').val("");
+        $("#btnAdd").val("Add");
+    }
+</script>
+
+

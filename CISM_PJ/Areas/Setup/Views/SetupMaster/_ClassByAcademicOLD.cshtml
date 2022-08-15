@@ -1,0 +1,247 @@
+﻿
+    <div class="modal fade" id="dialogSubjectAcademic" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false" aria-hidden="true">
+        <div class="modal-dialog w-60 h-100" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel">Grade</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <input type="hidden" id="state" />
+                <div class="modal-body">
+                    <div class="col-sm-12">
+                        <div class="form-group row mb-1">
+                            <label class="col-form-label col-sm-2 px-3">Grade</label>
+                            <div class="col-sm-2">
+                                @*<input type="text" class="form-control" id="grade_name" name="grade_name" />*@
+                                <select id="grade_id" name="grade_id" class="custom-select"></select>
+                            </div>
+                            <div class="input-group col-sm-2 pl-0 d-block">
+                            </div>
+
+                        </div>
+                    </div>
+                    <input type="hidden" id="state" />
+                    <input type="hidden" id="index" />
+                    <div class="col-sm-12">
+                        <div class="form-group row mb-1">
+                            <label class="col-form-label col-sm-2 px-3"><b>Class List</b></label>
+                            <br />
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div class="form-group row mb-1">
+                            <label class="col-form-label col-sm-2 px-3">Class</label>
+                            <div class="col-sm-2">
+                                <select id="class_id" name="class_id" class="custom-select"></select>
+                            </div>
+                            <div class="input-group col-sm-2 pl-0 d-block">
+                            </div>
+                            <label class="col-form-label col-sm-2">Description</label>
+                            <div class="col-sm-2 px-0">
+                                <input type="text" class="form-control" id="class_desc" name="class_desc" readonly />
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-12">
+                        <div class="form-group row mb-1">
+                            <div class="col-sm-2 px-0"></div>
+                            <div class="col-sm-3">
+                                <input type="button" id="btnAdd" class="btn btn-primary" value="Add" />
+                                <input type="button" id="btnClear" class="btn btn-danger" value="Clear" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive mt-2 pre-scrollable" id="div_data">
+                        <table id="SubjectTable" class="table table-bordered table-hover w-100">
+                            <thead>
+                                <tr>
+                                    <th style="width:10%">Sr/No</th>
+                                    <th style="width:60%">Class</th>
+                                    <th style="width:30%"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="SubjectDataBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" id="btnSave" class="btn btn-danger" data-dismiss="modal" value="Save" />
+                </div>
+            </div>
+        </div>
+</div>
+<script type="text/javascript">
+    GetSubject('');
+    GetYearList("");
+
+    function GetYearList(selected) {
+        var actionUrl = '/SetupMaster/GetYearList';
+        $.getJSON(actionUrl, (response) => {
+            if (response !== null) {
+                var $select = $('#grade_id');
+                $select.find('option').remove();
+                $select.append(`<option value="">-- Please Select --</option>`);
+                for (let i = 0; i < response.length; i++) {
+                    $select.append(`<option value="${response[i].grade_id}">
+                                     ${response[i].grade_name}</option>`);
+                }
+                if (selected !== "") {
+                    $select.val(selected);
+                }
+            }
+        });
+    }
+
+    $('#class_id').change(function () {
+        console.log(ClassList);
+        if (ClassList.length > 0) {
+            var subjInfo = ClassList.filter(x => x.class_id == $(this).val());
+            console.log(subjInfo);
+            $('#class_desc').val(subjInfo[0].description);
+        }
+    });
+
+    function GetSubject(selected) {
+        var actionUrl = '/SetupMaster/GetClass';
+        $.getJSON(actionUrl, (response) => {
+            if (response !== null) {
+                ClassList = response;
+                var $select = $('#class_id');
+                $select.find('option').remove();
+                $select.append(`<option value="">-- Please Select --</option>`);
+                for (let i = 0; i < response.length; i++) {
+                    $select.append(`<option value="${response[i].class_id}">
+                                     ${response[i].calss_name}</option>`);
+                }
+                if (selected !== "") {
+                    $select.val(selected);
+                }
+            }
+        });
+    }
+
+    function BindJson_Subject(obj) {
+        obj.index = $("#index").val();
+        obj.class_id = $("#class_id").val();
+        obj.calss_name = $("#class_id option:selected").text();
+        obj.class_desc = $('#class_desc').val();
+        obj.isDelete = false;
+        //obj.grade_name = $("#grade_name").val();
+        //obj.description = $("#description").val();
+        //obj.year = $("#year").val();
+        return obj;
+    }
+
+    $("#btnAdd").click(function () {
+        var sub_index = $("#index").val();
+        console.log("sub_index ==> " + sub_index);
+        console.log("class_id ==> " + $("#class_id").val());
+        if (sub_index != null && sub_index != "") {
+            var ext_list = ClassListByGrade.filter(x => x.class_id == $("#class_id").val() && x.index != sub_index);
+            console.log("ext_list ==>" + ext_list);
+            if (ext_list.length > 0) {
+                toastr.error("This Class already added!", "Class Data"),
+                    setTimeout(function () { }, 1e4);
+            }
+            else {
+                $.each(ClassListByGrade, function (index, obj) {
+                    if (obj.index == sub_index) {
+                        BindJson_Subject(obj);
+                        return false;
+                    }
+                });
+            }
+        }
+        else {
+            var exit_list = ClassListByGrade.filter(x => x.class_id == $("#class_id").val());
+            if (exit_list.length > 0) {
+                toastr.error("This Class already added!", "Class Data"),
+                    setTimeout(function () { }, 1e4);
+            }
+            else {
+                if ($("#class_id").val() != "") {
+                    var data_info = BindJson_Subject({});
+                    ClassListByGrade.push(data_info);
+                }
+            }
+        }
+        console.log(ClassListByGrade);
+        showClassTable();
+        clearSubject();
+    });
+
+    $("#btnClear_UOMCon").click(function () {
+        clearSubject();
+    });
+
+    function EditData(con_index) {
+        $.each(ClassListByGrade, function (index, obj) {
+            if (obj.index == con_index) {
+                BindControlsSubject(obj);
+                $("#btnAdd").val("Update");
+                return false;
+            }
+        });
+    }
+
+    function DeleteData(con_index) {
+        $.each(ClassListByGrade, function (index, obj) {
+            if (obj.index == con_index) {
+                obj.index = 0;
+                obj.isDelete = true;
+                return false;
+            }
+        });
+        showClassTable();
+        clearSubject();
+    }
+
+    function BindControlsSubject(obj) {
+        $("#index").val(obj.index);
+        $("#class_id").val(obj.class_id);
+        $("#class_desc").val(obj.description);        
+    }
+
+    function showClassTable() {
+          console.log(ClassListByGrade);
+        $("#SubjectDataBody").empty();
+        for (var i = 0; i < ClassListByGrade.length; i++) {
+            ////Re order index after delelting or inserting
+            ClassListByGrade[i]["index"] = i + 1;
+            var tr = "<tr>";
+            var td1 = "<td>" + ClassListByGrade[i]["index"] + "</td>";
+            var td2 = "<td>" + ClassListByGrade[i]["calss_name"] + "</td>";
+            var td3 = "<td>" +
+                "<button type='button'" +
+                "onclick=EditData('" + ClassListByGrade[i]["index"] + "'); " +
+                'style="color: black; " class="btn btn-outline-primary btn-sm"><span class="fa fa-edit"></span>&nbsp;Edit' +
+                "</button>";
+
+            var td4 =
+                "<button type='button'" +
+                "onclick=DeleteData('" + ClassListByGrade[i]["index"] + "'); " +
+                'style="color: black; " class="btn btn-outline-primary btn-sm"><span class="fa fa-edit"></span>&nbsp;Delete' +
+                "</button>"
+            "</td></tr > ";
+
+            $("#SubjectDataBody").append(tr + td1 + td2 + td3 + td4);
+
+          
+        }
+    }
+
+    function clearSubject() {
+        $("#index").val("");
+        $("#class_id").val("");
+        $('#class_desc').val("");
+        $("#btnAdd").val("Add");
+    }
+</script>
+
+

@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CISMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Class">
+    <Key>
+      <PropertyRef Name="class_id" />
+    </Key>
+    <Property Name="class_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="calss_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Grade">
+    <Key>
+      <PropertyRef Name="year_id" />
+    </Key>
+    <Property Name="year_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="year_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Menus">
+    <Key>
+      <PropertyRef Name="menuid" />
+    </Key>
+    <Property Name="menuid" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="menu_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="area" Type="varchar" MaxLength="50" />
+    <Property Name="controller_name" Type="varchar" MaxLength="50" />
+    <Property Name="action_name" Type="varchar" MaxLength="50" />
+    <Property Name="parent_menuid" Type="smallint" />
+    <Property Name="isprogram" Type="bit" Nullable="false" />
+    <Property Name="is_sa_use" Type="bit" Nullable="false" />
+    <Property Name="sort_seq" Type="smallint" Nullable="false" />
+    <Property Name="isactive" Type="bit" Nullable="false" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RegNoFormatSetting">
+    <Key>
+      <PropertyRef Name="num_id" />
+    </Key>
+    <Property Name="num_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="format_no" Type="int" />
+    <Property Name="doc_control" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="doc_prefix" Type="nchar" MaxLength="10" />
+    <Property Name="doc_format" Type="nchar" MaxLength="10" />
+    <Property Name="next_no" Type="nchar" MaxLength="10" />
+    <Property Name="end_no" Type="nchar" MaxLength="10" />
+    <Property Name="restart_no" Type="nchar" MaxLength="10" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="student_id" />
+    </Key>
+    <Property Name="student_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="reg_no" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="dob" Type="date" Nullable="false" />
+    <Property Name="class_id" Type="int" Nullable="false" />
+    <Property Name="citizen" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="father_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="mother_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="address" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="contract_no" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="contract_no1" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="remark" Type="varchar" MaxLength="500" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Subject">
+    <Key>
+      <PropertyRef Name="subject_id" />
+    </Key>
+    <Property Name="subject_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="subj_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SubjectByAcademic">
+    <Key>
+      <PropertyRef Name="yearsubj_id" />
+    </Key>
+    <Property Name="yearsubj_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="year_id" Type="int" Nullable="false" />
+    <Property Name="subject_id" Type="int" Nullable="false" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_name" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="user_pwd" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="isactive" Type="tinyint" Nullable="false" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Menus_Menus">
+    <End Role="Menus" Type="Self.Menus" Multiplicity="0..1" />
+    <End Role="Menus1" Type="Self.Menus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menus">
+        <PropertyRef Name="menuid" />
+      </Principal>
+      <Dependent Role="Menus1">
+        <PropertyRef Name="parent_menuid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_student_tbl_log_in">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="createduser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_student_tbl_log_in1">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="modifieduser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_student_tbl_student">
+    <End Role="Class" Type="Self.Class" Multiplicity="1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="class_id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="class_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_subjects_Ofyear_tbl_subject">
+    <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+    <End Role="SubjectByAcademic" Type="Self.SubjectByAcademic" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="subject_id" />
+      </Principal>
+      <Dependent Role="SubjectByAcademic">
+        <PropertyRef Name="subject_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_subjects_Ofyear_tbl_Year">
+    <End Role="Grade" Type="Self.Grade" Multiplicity="1" />
+    <End Role="SubjectByAcademic" Type="Self.SubjectByAcademic" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Grade">
+        <PropertyRef Name="year_id" />
+      </Principal>
+      <Dependent Role="SubjectByAcademic">
+        <PropertyRef Name="year_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CISMModelStoreContainer">
+    <EntitySet Name="Class" EntityType="Self.Class" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Grade" EntityType="Self.Grade" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Menus" EntityType="Self.Menus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RegNoFormatSetting" EntityType="Self.RegNoFormatSetting" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubjectByAcademic" EntityType="Self.SubjectByAcademic" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Menus_Menus" Association="Self.FK_Menus_Menus">
+      <End Role="Menus" EntitySet="Menus" />
+      <End Role="Menus1" EntitySet="Menus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_student_tbl_log_in" Association="Self.FK_tbl_student_tbl_log_in">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_student_tbl_log_in1" Association="Self.FK_tbl_student_tbl_log_in1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_student_tbl_student" Association="Self.FK_tbl_student_tbl_student">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_subjects_Ofyear_tbl_subject" Association="Self.FK_tbl_subjects_Ofyear_tbl_subject">
+      <End Role="Subject" EntitySet="Subject" />
+      <End Role="SubjectByAcademic" EntitySet="SubjectByAcademic" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_subjects_Ofyear_tbl_Year" Association="Self.FK_tbl_subjects_Ofyear_tbl_Year">
+      <End Role="Grade" EntitySet="Grade" />
+      <End Role="SubjectByAcademic" EntitySet="SubjectByAcademic" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

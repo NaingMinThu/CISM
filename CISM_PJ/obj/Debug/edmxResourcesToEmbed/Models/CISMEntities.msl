@@ -1,0 +1,642 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CISMModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="Allowances">
+      <EntityTypeMapping TypeName="CISMModel.Allowance">
+        <MappingFragment StoreEntitySet="Allowance">
+          <ScalarProperty Name="modifieduser" ColumnName="modifieduser" />
+          <ScalarProperty Name="createduser" ColumnName="createduser" />
+          <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="allowance_type_id" ColumnName="allowance_type_id" />
+          <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+          <ScalarProperty Name="allowance_id" ColumnName="allowance_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AllowanceTypes">
+      <EntityTypeMapping TypeName="CISMModel.AllowanceType">
+        <MappingFragment StoreEntitySet="AllowanceType">
+          <ScalarProperty Name="modifieduser" ColumnName="modifieduser" />
+          <ScalarProperty Name="createduser" ColumnName="createduser" />
+          <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="allowance_type_id" ColumnName="allowance_type_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BonusSetups">
+      <EntityTypeMapping TypeName="CISMModel.BonusSetup">
+        <MappingFragment StoreEntitySet="BonusSetup">
+          <ScalarProperty Name="modifieduser" ColumnName="modifieduser" />
+          <ScalarProperty Name="createduser" ColumnName="createduser" />
+          <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="bonus_name" ColumnName="bonus_name" />
+          <ScalarProperty Name="bonus_id" ColumnName="bonus_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BonusTypeDetailSettings">
+      <EntityTypeMapping TypeName="CISMModel.BonusTypeDetailSetting">
+        <MappingFragment StoreEntitySet="BonusTypeDetailSetting">
+          <ScalarProperty Name="modifieduser" ColumnName="modifieduser" />
+          <ScalarProperty Name="createduser" ColumnName="createduser" />
+          <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="to_amt" ColumnName="to_amt" />
+          <ScalarProperty Name="from_amt" ColumnName="from_amt" />
+          <ScalarProperty Name="to_year" ColumnName="to_year" />
+          <ScalarProperty Name="from_year" ColumnName="from_year" />
+          <ScalarProperty Name="bonus_setting_id" ColumnName="bonus_setting_id" />
+          <ScalarProperty Name="bonus_setting_dtl_id" ColumnName="bonus_setting_dtl_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BonusTypeSettings">
+      <EntityTypeMapping TypeName="CISMModel.BonusTypeSetting">
+        <MappingFragment StoreEntitySet="BonusTypeSetting">
+          <ScalarProperty Name="modifieduser" ColumnName="modifieduser" />
+          <ScalarProperty Name="createduser" ColumnName="createduser" />
+          <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="bonus_id" ColumnName="bonus_id" />
+          <ScalarProperty Name="emp_grade_id" ColumnName="emp_grade_id" />
+          <ScalarProperty Name="emp_type_Id" ColumnName="emp_type_Id" />
+          <ScalarProperty Name="bonus_setting_id" ColumnName="bonus_setting_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CitizenShips">
+      <EntityTypeMapping TypeName="CISMModel.CitizenShip">
+        <MappingFragment StoreEntitySet="CitizenShip">
+          <ScalarProperty Name="modifieduser" ColumnName="modifieduser" />
+          <ScalarProperty Name="createduser" ColumnName="createduser" />
+          <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="citizen_name" ColumnName="citizen_name" />
+          <ScalarProperty Name="citizen_id" ColumnName="citizen_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Classes">
+      <EntityTypeMapping TypeName="CISMModel.Class">
+        <MappingFragment StoreEntitySet="Class">
+          <ScalarProperty Name="modifieduser" ColumnName="modifieduser" />
+          <ScalarProperty Name="createduser" ColumnName="createduser" />
+          <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="calss_name" ColumnName="calss_name" />
+          <ScalarProperty Name="class_id" ColumnName="class_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ClassByGrades">
+      <EntityTypeMapping TypeName="CISMModel.ClassByGrade">
+        <MappingFragment StoreEntitySet="ClassByGrade">
+          <ScalarProperty Name="modifieduser" ColumnName="modifieduser" />
+          <ScalarProperty Name="createduser" ColumnName="createduser" />
+          <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="year" ColumnName="year" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="class_name" ColumnName="class_name" />
+          <ScalarProperty Name="grade_id" ColumnName="grade_id" />
+          <ScalarProperty Name="class_id" ColumnName="class_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ClassTimetables">
+      <EntityTypeMapping TypeName="CISMModel.ClassTimetable">
+        <MappingFragment StoreEntitySet="ClassTimetable">
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="modifieduser" ColumnName="modifieduser" />
+          <ScalarProperty Name="createduser" ColumnName="createduser" />
+          <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="weekday" ColumnName="weekday" />
+          <ScalarProperty Name="period_id" ColumnName="period_id" />
+          <ScalarProperty Name="subject_id" ColumnName="subject_id" />
+          <ScalarProperty Name="time_table_id" ColumnName="time_table_id" />
+          <ScalarProperty Name="class_time_table_id" ColumnName="class_time_table_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Currencies">
+      <EntityTypeMapping TypeName="CISMModel.Currency">
+        <MappingFragment StoreEntitySet="Currency">
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="modifieduser" ColumnName="modifieduser" />
+          <ScalarProperty Name="createduser" ColumnName="createduser" />
+          <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="currency_code" ColumnName="currency_code" />
+          <ScalarProperty Name="currency_id" ColumnName="currency_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="CISMModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="modifieduser" ColumnName="modifieduser" />
+          <ScalarProperty Name="createduser" ColumnName="createduser" />
+          <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="contract_no1" ColumnName="contract_no1" />
+          <ScalarProperty Name="contract_no" ColumnName="contract_no" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="marital_status" ColumnName="marital_status" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="nationality" ColumnName="nationality" />
+          <ScalarProperty Name="nrc_passport" ColumnName="nrc_passport" />
+          <ScalarProperty Name="grade_id" ColumnName="grade_id" />
+          <ScalarProperty Name="emp_type_Id" ColumnName="emp_type_Id" />
+          <ScalarProperty Name="dob" ColumnName="dob" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="staff_no" ColumnName="staff_no" />
+          <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployeeEducations">
+      <EntityTypeMapping TypeName="CISMModel.EmployeeEducation">
+        <MappingFragment StoreEntitySet="EmployeeEducation">
+          <ScalarProperty Name="modifieduser" ColumnName="modifieduser" />
+          <ScalarProperty Name="createduser" ColumnName="createduser" />
+          <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="degree_obtained" ColumnName="degree_obtained" />
+          <ScalarProperty Name="courses" ColumnName="courses" />
+          <ScalarProperty Name="school" ColumnName="school" />
+          <ScalarProperty Name="year_to" ColumnName="year_to" />
+          <ScalarProperty Name="year_from" ColumnName="year_from" />
+          <ScalarProperty Name="reg_no" ColumnName="reg_no" />
+          <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+          <ScalarProperty Name="education_id" ColumnName="education_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployeeFamilies">
+      <EntityTypeMapping TypeName="CISMModel.EmployeeFamily">
+        <MappingFragment StoreEntitySet="EmployeeFamily">
+          <ScalarProperty Name="modifieduser" ColumnName="modifieduser" />
+          <ScalarProperty Name="createduser" ColumnName="createduser" />
+          <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="occupation" ColumnName="occupation" />
+          <ScalarProperty Name="age" ColumnName="age" />
+          <ScalarProperty Name="relationship" ColumnName="relationship" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="reg_no" ColumnName="reg_no" />
+          <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+          <ScalarProperty Name="family_id" ColumnName="family_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployeeGrades">
+      <EntityTypeMapping TypeName="CISMModel.EmployeeGrade">
+        <MappingFragment StoreEntitySet="EmployeeGrade">
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="modifieduser" ColumnName="modifieduser" />
+          <ScalarProperty Name="createduser" ColumnName="createduser" />
+          <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="emp_grade_name" ColumnName="emp_grade_name" />
+          <ScalarProperty Name="emp_grade_id" ColumnName="emp_grade_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployeeHobbies">
+      <EntityTypeMapping TypeName="CISMModel.EmployeeHobby">
+        <MappingFragment StoreEntitySet="EmployeeHobbies">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+          <ScalarProperty Name="hobbies_id" ColumnName="hobbies_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployeePaymentSettings">
+      <EntityTypeMapping TypeName="CISMModel.EmployeePaymentSetting">
+        <MappingFragment StoreEntitySet="EmployeePaymentSetting">
+          <ScalarProperty Name="modifieduser" ColumnName="modifieduser" />
+          <ScalarProperty Name="createduser" ColumnName="createduser" />
+          <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="currency_id" ColumnName="currency_id" />
+          <ScalarProperty Name="increment" ColumnName="increment" />
+          <ScalarProperty Name="probation" ColumnName="probation" />
+          <ScalarProperty Name="basic_pay" ColumnName="basic_pay" />
+          <ScalarProperty Name="emp_grade_id" ColumnName="emp_grade_id" />
+          <ScalarProperty Name="emp_type_Id" ColumnName="emp_type_Id" />
+          <ScalarProperty Name="emp_payment_setting_id" ColumnName="emp_payment_setting_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployeePersonalSkills">
+      <EntityTypeMapping TypeName="CISMModel.EmployeePersonalSkill">
+        <MappingFragment StoreEntitySet="EmployeePersonalSkill">
+          <ScalarProperty Name="modifieduser" ColumnName="modifieduser" />
+          <ScalarProperty Name="createduser" ColumnName="createduser" />
+          <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+          <ScalarProperty Name="skill_id" ColumnName="skill_id" />
+          <ScalarProperty Name="language" ColumnName="language" />
+          <ScalarProperty Name="personal_skill_id" ColumnName="personal_skill_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployeeTypes">
+      <EntityTypeMapping TypeName="CISMModel.EmployeeType">
+        <MappingFragment StoreEntitySet="EmployeeType">
+          <ScalarProperty Name="modifieduser" ColumnName="modifieduser" />
+          <ScalarProperty Name="createduser" ColumnName="createduser" />
+          <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="emp_type" ColumnName="emp_type" />
+          <ScalarProperty Name="emp_type_Id" ColumnName="emp_type_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployeeTypeGrades">
+      <EntityTypeMapping TypeName="CISMModel.EmployeeTypeGrade">
+        <MappingFragment StoreEntitySet="EmployeeTypeGrade">
+          <ScalarProperty Name="modifieduser" ColumnName="modifieduser" />
+          <ScalarProperty Name="createduser" ColumnName="createduser" />
+          <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="emp_grade_id" ColumnName="emp_grade_id" />
+          <ScalarProperty Name="emp_type_Id" ColumnName="emp_type_Id" />
+          <ScalarProperty Name="gradeType" ColumnName="gradeType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmploymentHistories">
+      <EntityTypeMapping TypeName="CISMModel.EmploymentHistory">
+        <MappingFragment StoreEntitySet="EmploymentHistory">
+          <ScalarProperty Name="modifieduser" ColumnName="modifieduser" />
+          <ScalarProperty Name="createduser" ColumnName="createduser" />
+          <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="salary" ColumnName="salary" />
+          <ScalarProperty Name="job_title" ColumnName="job_title" />
+          <ScalarProperty Name="employer" ColumnName="employer" />
+          <ScalarProperty Name="year_to" ColumnName="year_to" />
+          <ScalarProperty Name="year_from" ColumnName="year_from" />
+          <ScalarProperty Name="reg_no" ColumnName="reg_no" />
+          <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+          <ScalarProperty Name="employment_history_id" ColumnName="employment_history_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExchangeRates">
+      <EntityTypeMapping TypeName="CISMModel.ExchangeRate">
+        <MappingFragment StoreEntitySet="ExchangeRate">
+          <ScalarProperty Name="modifieduser" ColumnName="modifieduser" />
+          <ScalarProperty Name="createduser" ColumnName="createduser" />
+          <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="rate" ColumnName="rate" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="from_currency_id" ColumnName="from_currency_id" />
+          <ScalarProperty Name="to_currency_id" ColumnName="to_currency_id" />
+          <ScalarProperty Name="exchange_rate_id" ColumnName="exchange_rate_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Grades">
+      <EntityTypeMapping TypeName="CISMModel.Grade">
+        <MappingFragment StoreEntitySet="Grade">
+          <ScalarProperty Name="modifieduser" ColumnName="modifieduser" />
+          <ScalarProperty Name="createduser" ColumnName="createduser" />
+          <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="grade_name" ColumnName="grade_name" />
+          <ScalarProperty Name="grade_id" ColumnName="grade_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Holidays">
+      <EntityTypeMapping TypeName="CISMModel.Holiday">
+        <MappingFragment StoreEntitySet="Holiday">
+          <ScalarProperty Name="modifieduser" ColumnName="modifieduser" />
+          <ScalarProperty Name="createduser" ColumnName="createduser" />
+          <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="holiday_date" ColumnName="holiday_date" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="holiday_id" ColumnName="holiday_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Menus">
+      <EntityTypeMapping TypeName="CISMModel.Menu">
+        <MappingFragment StoreEntitySet="Menus">
+          <ScalarProperty Name="modifieduser" ColumnName="modifieduser" />
+          <ScalarProperty Name="createduser" ColumnName="createduser" />
+          <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="menu_icon" ColumnName="menu_icon" />
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+          <ScalarProperty Name="sort_seq" ColumnName="sort_seq" />
+          <ScalarProperty Name="is_sa_use" ColumnName="is_sa_use" />
+          <ScalarProperty Name="isprogram" ColumnName="isprogram" />
+          <ScalarProperty Name="parent_menuid" ColumnName="parent_menuid" />
+          <ScalarProperty Name="action_name" ColumnName="action_name" />
+          <ScalarProperty Name="controller_name" ColumnName="controller_name" />
+          <ScalarProperty Name="area" ColumnName="area" />
+          <ScalarProperty Name="menu_name" ColumnName="menu_name" />
+          <ScalarProperty Name="menuid" ColumnName="menuid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentModes">
+      <EntityTypeMapping TypeName="CISMModel.PaymentMode">
+        <MappingFragment StoreEntitySet="PaymentMode">
+          <ScalarProperty Name="modifieduser" ColumnName="modifieduser" />
+          <ScalarProperty Name="createduser" ColumnName="createduser" />
+          <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="pm_name" ColumnName="pm_name" />
+          <ScalarProperty Name="paymentmode_id" ColumnName="paymentmode_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PeriodSetups">
+      <EntityTypeMapping TypeName="CISMModel.PeriodSetup">
+        <MappingFragment StoreEntitySet="PeriodSetup">
+          <ScalarProperty Name="modifieduser" ColumnName="modifieduser" />
+          <ScalarProperty Name="createduser" ColumnName="createduser" />
+          <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="to_time" ColumnName="to_time" />
+          <ScalarProperty Name="from_time" ColumnName="from_time" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="period_name" ColumnName="period_name" />
+          <ScalarProperty Name="period_id" ColumnName="period_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PermissionTypes">
+      <EntityTypeMapping TypeName="CISMModel.PermissionType">
+        <MappingFragment StoreEntitySet="PermissionType">
+          <ScalarProperty Name="permissionTypeName" ColumnName="permissionTypeName" />
+          <ScalarProperty Name="permissionTypeId" ColumnName="permissionTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PreviosSchoolRecordByStudents">
+      <EntityTypeMapping TypeName="CISMModel.PreviosSchoolRecordByStudent">
+        <MappingFragment StoreEntitySet="PreviosSchoolRecordByStudent">
+          <ScalarProperty Name="modifieduser" ColumnName="modifieduser" />
+          <ScalarProperty Name="createduser" ColumnName="createduser" />
+          <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="attended_school" ColumnName="attended_school" />
+          <ScalarProperty Name="passed_grade" ColumnName="passed_grade" />
+          <ScalarProperty Name="year_to" ColumnName="year_to" />
+          <ScalarProperty Name="year_from" ColumnName="year_from" />
+          <ScalarProperty Name="student_id" ColumnName="student_id" />
+          <ScalarProperty Name="reg_no" ColumnName="reg_no" />
+          <ScalarProperty Name="prv_school_id" ColumnName="prv_school_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RegNoSetups">
+      <EntityTypeMapping TypeName="CISMModel.RegNoSetup">
+        <MappingFragment StoreEntitySet="RegNoSetup">
+          <ScalarProperty Name="modifieduser" ColumnName="modifieduser" />
+          <ScalarProperty Name="createduser" ColumnName="createduser" />
+          <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="restart_no" ColumnName="restart_no" />
+          <ScalarProperty Name="end_no" ColumnName="end_no" />
+          <ScalarProperty Name="next_no" ColumnName="next_no" />
+          <ScalarProperty Name="doc_format" ColumnName="doc_format" />
+          <ScalarProperty Name="doc_prefix" ColumnName="doc_prefix" />
+          <ScalarProperty Name="doc_control" ColumnName="doc_control" />
+          <ScalarProperty Name="format_no" ColumnName="format_no" />
+          <ScalarProperty Name="num_id" ColumnName="num_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="CISMModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="modifiedUser" ColumnName="modifiedUser" />
+          <ScalarProperty Name="createdUser" ColumnName="createdUser" />
+          <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="roleName" ColumnName="roleName" />
+          <ScalarProperty Name="roleId" ColumnName="roleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RolePermissions">
+      <EntityTypeMapping TypeName="CISMModel.RolePermission">
+        <MappingFragment StoreEntitySet="RolePermission">
+          <ScalarProperty Name="createdUser" ColumnName="createdUser" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="menuID" ColumnName="menuID" />
+          <ScalarProperty Name="roleId" ColumnName="roleId" />
+          <ScalarProperty Name="rolePermissionId" ColumnName="rolePermissionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RolePermissionDetails">
+      <EntityTypeMapping TypeName="CISMModel.RolePermissionDetail">
+        <MappingFragment StoreEntitySet="RolePermissionDetail">
+          <ScalarProperty Name="createdUser" ColumnName="createdUser" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="permissionTypeId" ColumnName="permissionTypeId" />
+          <ScalarProperty Name="rolePermissionId" ColumnName="rolePermissionId" />
+          <ScalarProperty Name="rolePermissionDetailId" ColumnName="rolePermissionDetailId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Schools">
+      <EntityTypeMapping TypeName="CISMModel.School">
+        <MappingFragment StoreEntitySet="School">
+          <ScalarProperty Name="modifieduser" ColumnName="modifieduser" />
+          <ScalarProperty Name="createduser" ColumnName="createduser" />
+          <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="currency_id" ColumnName="currency_id" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="ph_office" ColumnName="ph_office" />
+          <ScalarProperty Name="ph_code" ColumnName="ph_code" />
+          <ScalarProperty Name="addres" ColumnName="addres" />
+          <ScalarProperty Name="head_master_name" ColumnName="head_master_name" />
+          <ScalarProperty Name="established_year" ColumnName="established_year" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="school_id" ColumnName="school_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Skills">
+      <EntityTypeMapping TypeName="CISMModel.Skill">
+        <MappingFragment StoreEntitySet="Skill">
+          <ScalarProperty Name="modifieduser" ColumnName="modifieduser" />
+          <ScalarProperty Name="createduser" ColumnName="createduser" />
+          <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="skill_id" ColumnName="skill_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StaffGrades">
+      <EntityTypeMapping TypeName="CISMModel.StaffGrade">
+        <MappingFragment StoreEntitySet="StaffGrade">
+          <ScalarProperty Name="modifieduser" ColumnName="modifieduser" />
+          <ScalarProperty Name="createduser" ColumnName="createduser" />
+          <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="staff_grade_type" ColumnName="staff_grade_type" />
+          <ScalarProperty Name="staff_grade_Id" ColumnName="staff_grade_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Students">
+      <EntityTypeMapping TypeName="CISMModel.Student">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="modifieduser" ColumnName="modifieduser" />
+          <ScalarProperty Name="createduser" ColumnName="createduser" />
+          <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="date_of_exit" ColumnName="date_of_exit" />
+          <ScalarProperty Name="date_of_join" ColumnName="date_of_join" />
+          <ScalarProperty Name="nationality" ColumnName="nationality" />
+          <ScalarProperty Name="year_id" ColumnName="year_id" />
+          <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="contract_no1" ColumnName="contract_no1" />
+          <ScalarProperty Name="contract_no" ColumnName="contract_no" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="mother_name" ColumnName="mother_name" />
+          <ScalarProperty Name="father_name" ColumnName="father_name" />
+          <ScalarProperty Name="paymentmode_id" ColumnName="paymentmode_id" />
+          <ScalarProperty Name="citizen_id" ColumnName="citizen_id" />
+          <ScalarProperty Name="class_id" ColumnName="class_id" />
+          <ScalarProperty Name="grade_id" ColumnName="grade_id" />
+          <ScalarProperty Name="dob" ColumnName="dob" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="reg_no" ColumnName="reg_no" />
+          <ScalarProperty Name="student_id" ColumnName="student_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StudentGradeHistories">
+      <EntityTypeMapping TypeName="CISMModel.StudentGradeHistory">
+        <MappingFragment StoreEntitySet="StudentGradeHistory">
+          <ScalarProperty Name="modifieduser" ColumnName="modifieduser" />
+          <ScalarProperty Name="createduser" ColumnName="createduser" />
+          <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="filename" ColumnName="filename" />
+          <ScalarProperty Name="student_id" ColumnName="student_id" />
+          <ScalarProperty Name="grade_history_id" ColumnName="grade_history_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subjects">
+      <EntityTypeMapping TypeName="CISMModel.Subject">
+        <MappingFragment StoreEntitySet="Subject">
+          <ScalarProperty Name="modifieduser" ColumnName="modifieduser" />
+          <ScalarProperty Name="createduser" ColumnName="createduser" />
+          <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="subj_name" ColumnName="subj_name" />
+          <ScalarProperty Name="subject_id" ColumnName="subject_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubjectByGrades">
+      <EntityTypeMapping TypeName="CISMModel.SubjectByGrade">
+        <MappingFragment StoreEntitySet="SubjectByGrade">
+          <ScalarProperty Name="modifieduser" ColumnName="modifieduser" />
+          <ScalarProperty Name="createduser" ColumnName="createduser" />
+          <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="year_id" ColumnName="year_id" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="subject_name" ColumnName="subject_name" />
+          <ScalarProperty Name="grade_id" ColumnName="grade_id" />
+          <ScalarProperty Name="subject_id" ColumnName="subject_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Timetables">
+      <EntityTypeMapping TypeName="CISMModel.Timetable">
+        <MappingFragment StoreEntitySet="Timetable">
+          <ScalarProperty Name="modifieduser" ColumnName="modifieduser" />
+          <ScalarProperty Name="createduser" ColumnName="createduser" />
+          <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="affected_date" ColumnName="affected_date" />
+          <ScalarProperty Name="class_id" ColumnName="class_id" />
+          <ScalarProperty Name="grade_id" ColumnName="grade_id" />
+          <ScalarProperty Name="time_table_id" ColumnName="time_table_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="CISMModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="modifieduser" ColumnName="modifieduser" />
+          <ScalarProperty Name="createduser" ColumnName="createduser" />
+          <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="is_sa_use" ColumnName="is_sa_use" />
+          <ScalarProperty Name="roleId" ColumnName="roleId" />
+          <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="user_pwd" ColumnName="user_pwd" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Years">
+      <EntityTypeMapping TypeName="CISMModel.Year">
+        <MappingFragment StoreEntitySet="Year">
+          <ScalarProperty Name="modifieduser" ColumnName="modifieduser" />
+          <ScalarProperty Name="createduser" ColumnName="createduser" />
+          <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+          <ScalarProperty Name="to_year" ColumnName="to_year" />
+          <ScalarProperty Name="from_year" ColumnName="from_year" />
+          <ScalarProperty Name="year_id" ColumnName="year_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

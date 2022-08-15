@@ -1,0 +1,1346 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CISMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Allowance">
+    <Key>
+      <PropertyRef Name="allowance_id" />
+    </Key>
+    <Property Name="allowance_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="employee_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="allowance_type_id" Type="int" Nullable="false" />
+    <Property Name="date" Type="date" Nullable="false" />
+    <Property Name="amount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AllowanceType">
+    <Key>
+      <PropertyRef Name="allowance_type_id" />
+    </Key>
+    <Property Name="allowance_type_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="500" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BonusSetup">
+    <Key>
+      <PropertyRef Name="bonus_id" />
+    </Key>
+    <Property Name="bonus_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="bonus_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="500" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BonusTypeDetailSetting">
+    <Key>
+      <PropertyRef Name="bonus_setting_dtl_id" />
+    </Key>
+    <Property Name="bonus_setting_dtl_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="bonus_setting_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="from_year" Type="int" Nullable="false" />
+    <Property Name="to_year" Type="int" Nullable="false" />
+    <Property Name="from_amt" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="to_amt" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="500" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BonusTypeSetting">
+    <Key>
+      <PropertyRef Name="bonus_setting_id" />
+    </Key>
+    <Property Name="bonus_setting_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="emp_type_Id" Type="int" Nullable="false" />
+    <Property Name="emp_grade_id" Type="int" Nullable="false" />
+    <Property Name="bonus_id" Type="int" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="500" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CitizenShip">
+    <Key>
+      <PropertyRef Name="citizen_id" />
+    </Key>
+    <Property Name="citizen_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="citizen_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="50" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Class">
+    <Key>
+      <PropertyRef Name="class_id" />
+    </Key>
+    <Property Name="class_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="calss_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="50" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ClassByGrade">
+    <Key>
+      <PropertyRef Name="class_id" />
+    </Key>
+    <Property Name="class_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="grade_id" Type="int" Nullable="false" />
+    <Property Name="class_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="50" />
+    <Property Name="year" Type="int" Nullable="false" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ClassTimetable">
+    <Key>
+      <PropertyRef Name="class_time_table_id" />
+    </Key>
+    <Property Name="class_time_table_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="time_table_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="subject_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="period_id" Type="int" Nullable="false" />
+    <Property Name="weekday" Type="tinyint" Nullable="false" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+    <Property Name="isActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="Currency">
+    <Key>
+      <PropertyRef Name="currency_id" />
+    </Key>
+    <Property Name="currency_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="currency_code" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="50" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="employee_id" />
+    </Key>
+    <Property Name="employee_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="staff_no" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="dob" Type="date" Nullable="false" />
+    <Property Name="emp_type_Id" Type="int" Nullable="false" />
+    <Property Name="grade_id" Type="int" Nullable="false" />
+    <Property Name="nrc_passport" Type="varchar" MaxLength="50" />
+    <Property Name="nationality" Type="varchar" MaxLength="50" />
+    <Property Name="gender" Type="bit" Nullable="false" />
+    <Property Name="marital_status" Type="bit" Nullable="false" />
+    <Property Name="address" Type="varchar" MaxLength="500" />
+    <Property Name="contract_no" Type="varchar" MaxLength="50" />
+    <Property Name="contract_no1" Type="varchar" MaxLength="50" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="status" Type="tinyint" />
+    <Property Name="remark" Type="varchar" MaxLength="500" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" />
+    <Property Name="modifieduser" Type="int" />
+  </EntityType>
+  <EntityType Name="EmployeeEducation">
+    <Key>
+      <PropertyRef Name="education_id" />
+    </Key>
+    <Property Name="education_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="employee_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="reg_no" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="year_from" Type="date" Nullable="false" />
+    <Property Name="year_to" Type="date" Nullable="false" />
+    <Property Name="school" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="courses" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="degree_obtained" Type="varchar" MaxLength="100" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmployeeFamily">
+    <Key>
+      <PropertyRef Name="family_id" />
+    </Key>
+    <Property Name="family_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="employee_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="reg_no" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="relationship" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="age" Type="int" Nullable="false" />
+    <Property Name="occupation" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmployeeGrade">
+    <Key>
+      <PropertyRef Name="emp_grade_id" />
+    </Key>
+    <Property Name="emp_grade_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="emp_grade_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="50" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmployeeHobbies">
+    <Key>
+      <PropertyRef Name="hobbies_id" />
+    </Key>
+    <Property Name="hobbies_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="employee_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="EmployeePaymentSetting">
+    <Key>
+      <PropertyRef Name="emp_payment_setting_id" />
+    </Key>
+    <Property Name="emp_payment_setting_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="emp_type_Id" Type="int" Nullable="false" />
+    <Property Name="emp_grade_id" Type="int" Nullable="false" />
+    <Property Name="basic_pay" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="probation" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="increment" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="currency_id" Type="int" Nullable="false" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmployeePersonalSkill">
+    <Key>
+      <PropertyRef Name="personal_skill_id" />
+    </Key>
+    <Property Name="personal_skill_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="language" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="skill_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="employee_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmployeeType">
+    <Key>
+      <PropertyRef Name="emp_type_Id" />
+    </Key>
+    <Property Name="emp_type_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="emp_type" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="500" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmployeeTypeGrade">
+    <Key>
+      <PropertyRef Name="gradeType" />
+    </Key>
+    <Property Name="gradeType" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="emp_type_Id" Type="int" Nullable="false" />
+    <Property Name="emp_grade_id" Type="int" Nullable="false" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmploymentHistory">
+    <Key>
+      <PropertyRef Name="employment_history_id" />
+    </Key>
+    <Property Name="employment_history_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="employee_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="reg_no" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="year_from" Type="date" Nullable="false" />
+    <Property Name="year_to" Type="date" Nullable="false" />
+    <Property Name="employer" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="job_title" Type="varchar" MaxLength="100" />
+    <Property Name="salary" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ExchangeRate">
+    <Key>
+      <PropertyRef Name="exchange_rate_id" />
+    </Key>
+    <Property Name="exchange_rate_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="to_currency_id" Type="int" Nullable="false" />
+    <Property Name="from_currency_id" Type="int" Nullable="false" />
+    <Property Name="date" Type="date" Nullable="false" />
+    <Property Name="rate" Type="decimal" Precision="8" Scale="4" Nullable="false" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Grade">
+    <Key>
+      <PropertyRef Name="grade_id" />
+    </Key>
+    <Property Name="grade_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="grade_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="50" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Holiday">
+    <Key>
+      <PropertyRef Name="holiday_id" />
+    </Key>
+    <Property Name="holiday_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="holiday_date" Type="date" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="500" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Menus">
+    <Key>
+      <PropertyRef Name="menuid" />
+    </Key>
+    <Property Name="menuid" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="menu_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="area" Type="varchar" MaxLength="50" />
+    <Property Name="controller_name" Type="varchar" MaxLength="50" />
+    <Property Name="action_name" Type="varchar" MaxLength="50" />
+    <Property Name="parent_menuid" Type="smallint" />
+    <Property Name="isprogram" Type="bit" Nullable="false" />
+    <Property Name="is_sa_use" Type="bit" Nullable="false" />
+    <Property Name="sort_seq" Type="smallint" Nullable="false" />
+    <Property Name="isactive" Type="bit" Nullable="false" />
+    <Property Name="menu_icon" Type="varchar" MaxLength="50" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PaymentMode">
+    <Key>
+      <PropertyRef Name="paymentmode_id" />
+    </Key>
+    <Property Name="paymentmode_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="pm_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="50" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PeriodSetup">
+    <Key>
+      <PropertyRef Name="period_id" />
+    </Key>
+    <Property Name="period_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="period_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="500" />
+    <Property Name="from_time" Type="varchar" MaxLength="10" />
+    <Property Name="to_time" Type="varchar" MaxLength="10" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PermissionType">
+    <Key>
+      <PropertyRef Name="permissionTypeId" />
+    </Key>
+    <Property Name="permissionTypeId" Type="int" Nullable="false" />
+    <Property Name="permissionTypeName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PreviosSchoolRecordByStudent">
+    <Key>
+      <PropertyRef Name="prv_school_id" />
+    </Key>
+    <Property Name="prv_school_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="reg_no" Type="varchar" MaxLength="50" />
+    <Property Name="student_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="year_from" Type="date" Nullable="false" />
+    <Property Name="year_to" Type="date" Nullable="false" />
+    <Property Name="passed_grade" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="attended_school" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="country" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RegNoSetup">
+    <Key>
+      <PropertyRef Name="num_id" />
+    </Key>
+    <Property Name="num_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="format_no" Type="int" />
+    <Property Name="doc_control" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="doc_prefix" Type="nchar" MaxLength="10" />
+    <Property Name="doc_format" Type="nchar" MaxLength="10" />
+    <Property Name="next_no" Type="nchar" MaxLength="10" />
+    <Property Name="end_no" Type="nchar" MaxLength="10" />
+    <Property Name="restart_no" Type="nchar" MaxLength="10" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="roleId" />
+    </Key>
+    <Property Name="roleId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="roleName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="500" />
+    <Property Name="isDelete" Type="bit" Nullable="false" />
+    <Property Name="createdDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifiedDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createdUser" Type="int" Nullable="false" />
+    <Property Name="modifiedUser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RolePermission">
+    <Key>
+      <PropertyRef Name="rolePermissionId" />
+    </Key>
+    <Property Name="rolePermissionId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="roleId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="menuID" Type="smallint" Nullable="false" />
+    <Property Name="createdDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createdUser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RolePermissionDetail">
+    <Key>
+      <PropertyRef Name="rolePermissionDetailId" />
+    </Key>
+    <Property Name="rolePermissionDetailId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="rolePermissionId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="permissionTypeId" Type="int" Nullable="false" />
+    <Property Name="createdDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createdUser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="School">
+    <Key>
+      <PropertyRef Name="school_id" />
+    </Key>
+    <Property Name="school_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="established_year" Type="date" />
+    <Property Name="head_master_name" Type="varchar" MaxLength="50" />
+    <Property Name="addres" Type="nvarchar" MaxLength="500" />
+    <Property Name="ph_code" Type="varchar" MaxLength="50" />
+    <Property Name="ph_office" Type="varchar" MaxLength="50" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="currency_id" Type="int" />
+    <Property Name="country" Type="varchar" MaxLength="50" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Skill">
+    <Key>
+      <PropertyRef Name="skill_id" />
+    </Key>
+    <Property Name="skill_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="50" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StaffGrade">
+    <Key>
+      <PropertyRef Name="staff_grade_Id" />
+    </Key>
+    <Property Name="staff_grade_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="staff_grade_type" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="500" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="student_id" />
+    </Key>
+    <Property Name="student_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="reg_no" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="dob" Type="date" Nullable="false" />
+    <Property Name="grade_id" Type="int" Nullable="false" />
+    <Property Name="class_id" Type="uniqueidentifier" />
+    <Property Name="citizen_id" Type="int" Nullable="false" />
+    <Property Name="paymentmode_id" Type="int" Nullable="false" />
+    <Property Name="father_name" Type="varchar" MaxLength="50" />
+    <Property Name="mother_name" Type="varchar" MaxLength="50" />
+    <Property Name="address" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="contract_no" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="contract_no1" Type="varchar" MaxLength="50" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="remark" Type="varchar" MaxLength="500" />
+    <Property Name="isDelete" Type="bit" Nullable="false" />
+    <Property Name="year_id" Type="int" />
+    <Property Name="nationality" Type="varchar" MaxLength="50" />
+    <Property Name="date_of_join" Type="date" />
+    <Property Name="date_of_exit" Type="date" />
+    <Property Name="status" Type="tinyint" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StudentGradeHistory">
+    <Key>
+      <PropertyRef Name="grade_history_id" />
+    </Key>
+    <Property Name="grade_history_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="student_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="filename" Type="varchar" MaxLength="50" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Subject">
+    <Key>
+      <PropertyRef Name="subject_id" />
+    </Key>
+    <Property Name="subject_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="subj_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="50" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SubjectByGrade">
+    <Key>
+      <PropertyRef Name="subject_id" />
+    </Key>
+    <Property Name="subject_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="grade_id" Type="int" Nullable="false" />
+    <Property Name="subject_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="50" />
+    <Property Name="year_id" Type="int" Nullable="false" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Timetable">
+    <Key>
+      <PropertyRef Name="time_table_id" />
+    </Key>
+    <Property Name="time_table_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="grade_id" Type="int" Nullable="false" />
+    <Property Name="class_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="affected_date" Type="datetime" Nullable="false" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_name" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="user_pwd" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="500" />
+    <Property Name="isDelete" Type="bit" Nullable="false" />
+    <Property Name="roleId" Type="uniqueidentifier" />
+    <Property Name="is_sa_use" Type="bit" Nullable="false" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Year">
+    <Key>
+      <PropertyRef Name="year_id" />
+    </Key>
+    <Property Name="year_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="from_year" Type="int" Nullable="false" />
+    <Property Name="to_year" Type="int" Nullable="false" />
+    <Property Name="isactive" Type="bit" Nullable="false" />
+    <Property Name="createddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="modifieddate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="createduser" Type="int" Nullable="false" />
+    <Property Name="modifieduser" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Allowance_Allowance1">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Allowance" Type="Self.Allowance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="employee_id" />
+      </Principal>
+      <Dependent Role="Allowance">
+        <PropertyRef Name="employee_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Allowance_AllowanceType">
+    <End Role="AllowanceType" Type="Self.AllowanceType" Multiplicity="1" />
+    <End Role="Allowance" Type="Self.Allowance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AllowanceType">
+        <PropertyRef Name="allowance_type_id" />
+      </Principal>
+      <Dependent Role="Allowance">
+        <PropertyRef Name="allowance_type_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BonusSetting_BonusSetup">
+    <End Role="BonusSetup" Type="Self.BonusSetup" Multiplicity="1" />
+    <End Role="BonusTypeSetting" Type="Self.BonusTypeSetting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BonusSetup">
+        <PropertyRef Name="bonus_id" />
+      </Principal>
+      <Dependent Role="BonusTypeSetting">
+        <PropertyRef Name="bonus_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BonusTypeDetailSetting_BonusTypeSetting">
+    <End Role="BonusTypeSetting" Type="Self.BonusTypeSetting" Multiplicity="1" />
+    <End Role="BonusTypeDetailSetting" Type="Self.BonusTypeDetailSetting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BonusTypeSetting">
+        <PropertyRef Name="bonus_setting_id" />
+      </Principal>
+      <Dependent Role="BonusTypeDetailSetting">
+        <PropertyRef Name="bonus_setting_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BonusTypeSetting_EmployeeGrade">
+    <End Role="EmployeeGrade" Type="Self.EmployeeGrade" Multiplicity="1" />
+    <End Role="BonusTypeSetting" Type="Self.BonusTypeSetting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeGrade">
+        <PropertyRef Name="emp_grade_id" />
+      </Principal>
+      <Dependent Role="BonusTypeSetting">
+        <PropertyRef Name="emp_grade_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BonusTypeSetting_EmployeeType">
+    <End Role="EmployeeType" Type="Self.EmployeeType" Multiplicity="1" />
+    <End Role="BonusTypeSetting" Type="Self.BonusTypeSetting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeType">
+        <PropertyRef Name="emp_type_Id" />
+      </Principal>
+      <Dependent Role="BonusTypeSetting">
+        <PropertyRef Name="emp_type_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClassByGrade_Grade">
+    <End Role="Grade" Type="Self.Grade" Multiplicity="1" />
+    <End Role="ClassByGrade" Type="Self.ClassByGrade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Grade">
+        <PropertyRef Name="grade_id" />
+      </Principal>
+      <Dependent Role="ClassByGrade">
+        <PropertyRef Name="grade_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClassTimetable_PeriodSetup">
+    <End Role="PeriodSetup" Type="Self.PeriodSetup" Multiplicity="1" />
+    <End Role="ClassTimetable" Type="Self.ClassTimetable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PeriodSetup">
+        <PropertyRef Name="period_id" />
+      </Principal>
+      <Dependent Role="ClassTimetable">
+        <PropertyRef Name="period_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClassTimetable_SubjectByGrade">
+    <End Role="SubjectByGrade" Type="Self.SubjectByGrade" Multiplicity="1" />
+    <End Role="ClassTimetable" Type="Self.ClassTimetable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubjectByGrade">
+        <PropertyRef Name="subject_id" />
+      </Principal>
+      <Dependent Role="ClassTimetable">
+        <PropertyRef Name="subject_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClassTimetable_Timetable">
+    <End Role="Timetable" Type="Self.Timetable" Multiplicity="1" />
+    <End Role="ClassTimetable" Type="Self.ClassTimetable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Timetable">
+        <PropertyRef Name="time_table_id" />
+      </Principal>
+      <Dependent Role="ClassTimetable">
+        <PropertyRef Name="time_table_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_EmployeeType">
+    <End Role="EmployeeType" Type="Self.EmployeeType" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeType">
+        <PropertyRef Name="emp_type_Id" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="emp_type_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Grade">
+    <End Role="Grade" Type="Self.Grade" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Grade">
+        <PropertyRef Name="grade_id" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="grade_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmployeeEducation_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="EmployeeEducation" Type="Self.EmployeeEducation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="employee_id" />
+      </Principal>
+      <Dependent Role="EmployeeEducation">
+        <PropertyRef Name="employee_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmployeeFamily_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="EmployeeFamily" Type="Self.EmployeeFamily" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="employee_id" />
+      </Principal>
+      <Dependent Role="EmployeeFamily">
+        <PropertyRef Name="employee_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmployeeHobbies_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="EmployeeHobbies" Type="Self.EmployeeHobbies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="employee_id" />
+      </Principal>
+      <Dependent Role="EmployeeHobbies">
+        <PropertyRef Name="employee_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmployeePaymentSetting_EmployeePaymentSetting">
+    <End Role="EmployeeGrade" Type="Self.EmployeeGrade" Multiplicity="1" />
+    <End Role="EmployeePaymentSetting" Type="Self.EmployeePaymentSetting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeGrade">
+        <PropertyRef Name="emp_grade_id" />
+      </Principal>
+      <Dependent Role="EmployeePaymentSetting">
+        <PropertyRef Name="emp_grade_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmployeePaymentSetting_EmployeeType">
+    <End Role="EmployeeType" Type="Self.EmployeeType" Multiplicity="1" />
+    <End Role="EmployeePaymentSetting" Type="Self.EmployeePaymentSetting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeType">
+        <PropertyRef Name="emp_type_Id" />
+      </Principal>
+      <Dependent Role="EmployeePaymentSetting">
+        <PropertyRef Name="emp_type_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmployeePersonalSkill_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="EmployeePersonalSkill" Type="Self.EmployeePersonalSkill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="employee_id" />
+      </Principal>
+      <Dependent Role="EmployeePersonalSkill">
+        <PropertyRef Name="employee_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmployeePersonalSkill_Skill">
+    <End Role="Skill" Type="Self.Skill" Multiplicity="1" />
+    <End Role="EmployeePersonalSkill" Type="Self.EmployeePersonalSkill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Skill">
+        <PropertyRef Name="skill_id" />
+      </Principal>
+      <Dependent Role="EmployeePersonalSkill">
+        <PropertyRef Name="skill_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmployeeTypeGrade_EmployeeGrade">
+    <End Role="EmployeeGrade" Type="Self.EmployeeGrade" Multiplicity="1" />
+    <End Role="EmployeeTypeGrade" Type="Self.EmployeeTypeGrade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeGrade">
+        <PropertyRef Name="emp_grade_id" />
+      </Principal>
+      <Dependent Role="EmployeeTypeGrade">
+        <PropertyRef Name="emp_grade_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmployeeTypeGrade_EmployeeType1">
+    <End Role="EmployeeType" Type="Self.EmployeeType" Multiplicity="1" />
+    <End Role="EmployeeTypeGrade" Type="Self.EmployeeTypeGrade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeType">
+        <PropertyRef Name="emp_type_Id" />
+      </Principal>
+      <Dependent Role="EmployeeTypeGrade">
+        <PropertyRef Name="emp_type_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmploymentHistory_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="EmploymentHistory" Type="Self.EmploymentHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="employee_id" />
+      </Principal>
+      <Dependent Role="EmploymentHistory">
+        <PropertyRef Name="employee_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ExchangeRate_Currency">
+    <End Role="Currency" Type="Self.Currency" Multiplicity="1" />
+    <End Role="ExchangeRate" Type="Self.ExchangeRate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Currency">
+        <PropertyRef Name="currency_id" />
+      </Principal>
+      <Dependent Role="ExchangeRate">
+        <PropertyRef Name="to_currency_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ExchangeRate_Currency1">
+    <End Role="Currency" Type="Self.Currency" Multiplicity="1" />
+    <End Role="ExchangeRate" Type="Self.ExchangeRate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Currency">
+        <PropertyRef Name="currency_id" />
+      </Principal>
+      <Dependent Role="ExchangeRate">
+        <PropertyRef Name="from_currency_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Menus_Menus">
+    <End Role="Menus" Type="Self.Menus" Multiplicity="0..1" />
+    <End Role="Menus1" Type="Self.Menus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menus">
+        <PropertyRef Name="menuid" />
+      </Principal>
+      <Dependent Role="Menus1">
+        <PropertyRef Name="parent_menuid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PreviosSchoolRecordByStudent_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="PreviosSchoolRecordByStudent" Type="Self.PreviosSchoolRecordByStudent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="student_id" />
+      </Principal>
+      <Dependent Role="PreviosSchoolRecordByStudent">
+        <PropertyRef Name="student_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolePermission_Menus">
+    <End Role="Menus" Type="Self.Menus" Multiplicity="1" />
+    <End Role="RolePermission" Type="Self.RolePermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menus">
+        <PropertyRef Name="menuid" />
+      </Principal>
+      <Dependent Role="RolePermission">
+        <PropertyRef Name="menuID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolePermission_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="RolePermission" Type="Self.RolePermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="roleId" />
+      </Principal>
+      <Dependent Role="RolePermission">
+        <PropertyRef Name="roleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolePermissionDetail_PermissionType">
+    <End Role="PermissionType" Type="Self.PermissionType" Multiplicity="1" />
+    <End Role="RolePermissionDetail" Type="Self.RolePermissionDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PermissionType">
+        <PropertyRef Name="permissionTypeId" />
+      </Principal>
+      <Dependent Role="RolePermissionDetail">
+        <PropertyRef Name="permissionTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolePermissionDetail_RolePermission">
+    <End Role="RolePermission" Type="Self.RolePermission" Multiplicity="1" />
+    <End Role="RolePermissionDetail" Type="Self.RolePermissionDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RolePermission">
+        <PropertyRef Name="rolePermissionId" />
+      </Principal>
+      <Dependent Role="RolePermissionDetail">
+        <PropertyRef Name="rolePermissionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_School_Currency">
+    <End Role="Currency" Type="Self.Currency" Multiplicity="0..1" />
+    <End Role="School" Type="Self.School" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Currency">
+        <PropertyRef Name="currency_id" />
+      </Principal>
+      <Dependent Role="School">
+        <PropertyRef Name="currency_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_CitizenShip">
+    <End Role="CitizenShip" Type="Self.CitizenShip" Multiplicity="1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CitizenShip">
+        <PropertyRef Name="citizen_id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="citizen_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_ClassByGrade">
+    <End Role="ClassByGrade" Type="Self.ClassByGrade" Multiplicity="0..1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ClassByGrade">
+        <PropertyRef Name="class_id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="class_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Grade">
+    <End Role="Grade" Type="Self.Grade" Multiplicity="1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Grade">
+        <PropertyRef Name="grade_id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="grade_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_PaymentMode">
+    <End Role="PaymentMode" Type="Self.PaymentMode" Multiplicity="1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentMode">
+        <PropertyRef Name="paymentmode_id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="paymentmode_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Year">
+    <End Role="Year" Type="Self.Year" Multiplicity="0..1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Year">
+        <PropertyRef Name="year_id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="year_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentGradeHistory_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="StudentGradeHistory" Type="Self.StudentGradeHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="student_id" />
+      </Principal>
+      <Dependent Role="StudentGradeHistory">
+        <PropertyRef Name="student_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubjectByGrade_Grade">
+    <End Role="Grade" Type="Self.Grade" Multiplicity="1" />
+    <End Role="SubjectByGrade" Type="Self.SubjectByGrade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Grade">
+        <PropertyRef Name="grade_id" />
+      </Principal>
+      <Dependent Role="SubjectByGrade">
+        <PropertyRef Name="grade_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubjectByGrade_Year">
+    <End Role="Year" Type="Self.Year" Multiplicity="1" />
+    <End Role="SubjectByGrade" Type="Self.SubjectByGrade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Year">
+        <PropertyRef Name="year_id" />
+      </Principal>
+      <Dependent Role="SubjectByGrade">
+        <PropertyRef Name="year_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_student_tbl_log_in">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="createduser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_student_tbl_log_in1">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="modifieduser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Timetable_ClassByGrade">
+    <End Role="ClassByGrade" Type="Self.ClassByGrade" Multiplicity="1" />
+    <End Role="Timetable" Type="Self.Timetable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ClassByGrade">
+        <PropertyRef Name="class_id" />
+      </Principal>
+      <Dependent Role="Timetable">
+        <PropertyRef Name="class_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Timetable_Grade">
+    <End Role="Grade" Type="Self.Grade" Multiplicity="1" />
+    <End Role="Timetable" Type="Self.Timetable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Grade">
+        <PropertyRef Name="grade_id" />
+      </Principal>
+      <Dependent Role="Timetable">
+        <PropertyRef Name="grade_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="roleId" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="roleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CISMModelStoreContainer">
+    <EntitySet Name="Allowance" EntityType="Self.Allowance" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AllowanceType" EntityType="Self.AllowanceType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BonusSetup" EntityType="Self.BonusSetup" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BonusTypeDetailSetting" EntityType="Self.BonusTypeDetailSetting" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BonusTypeSetting" EntityType="Self.BonusTypeSetting" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CitizenShip" EntityType="Self.CitizenShip" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Class" EntityType="Self.Class" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ClassByGrade" EntityType="Self.ClassByGrade" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ClassTimetable" EntityType="Self.ClassTimetable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Currency" EntityType="Self.Currency" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeEducation" EntityType="Self.EmployeeEducation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeFamily" EntityType="Self.EmployeeFamily" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeGrade" EntityType="Self.EmployeeGrade" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeHobbies" EntityType="Self.EmployeeHobbies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeePaymentSetting" EntityType="Self.EmployeePaymentSetting" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeePersonalSkill" EntityType="Self.EmployeePersonalSkill" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeType" EntityType="Self.EmployeeType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeTypeGrade" EntityType="Self.EmployeeTypeGrade" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmploymentHistory" EntityType="Self.EmploymentHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ExchangeRate" EntityType="Self.ExchangeRate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Grade" EntityType="Self.Grade" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Holiday" EntityType="Self.Holiday" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Menus" EntityType="Self.Menus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PaymentMode" EntityType="Self.PaymentMode" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PeriodSetup" EntityType="Self.PeriodSetup" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PermissionType" EntityType="Self.PermissionType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PreviosSchoolRecordByStudent" EntityType="Self.PreviosSchoolRecordByStudent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RegNoSetup" EntityType="Self.RegNoSetup" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RolePermission" EntityType="Self.RolePermission" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RolePermissionDetail" EntityType="Self.RolePermissionDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="School" EntityType="Self.School" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Skill" EntityType="Self.Skill" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StaffGrade" EntityType="Self.StaffGrade" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StudentGradeHistory" EntityType="Self.StudentGradeHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubjectByGrade" EntityType="Self.SubjectByGrade" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Timetable" EntityType="Self.Timetable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Year" EntityType="Self.Year" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Allowance_Allowance1" Association="Self.FK_Allowance_Allowance1">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Allowance" EntitySet="Allowance" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Allowance_AllowanceType" Association="Self.FK_Allowance_AllowanceType">
+      <End Role="AllowanceType" EntitySet="AllowanceType" />
+      <End Role="Allowance" EntitySet="Allowance" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BonusSetting_BonusSetup" Association="Self.FK_BonusSetting_BonusSetup">
+      <End Role="BonusSetup" EntitySet="BonusSetup" />
+      <End Role="BonusTypeSetting" EntitySet="BonusTypeSetting" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BonusTypeDetailSetting_BonusTypeSetting" Association="Self.FK_BonusTypeDetailSetting_BonusTypeSetting">
+      <End Role="BonusTypeSetting" EntitySet="BonusTypeSetting" />
+      <End Role="BonusTypeDetailSetting" EntitySet="BonusTypeDetailSetting" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BonusTypeSetting_EmployeeGrade" Association="Self.FK_BonusTypeSetting_EmployeeGrade">
+      <End Role="EmployeeGrade" EntitySet="EmployeeGrade" />
+      <End Role="BonusTypeSetting" EntitySet="BonusTypeSetting" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BonusTypeSetting_EmployeeType" Association="Self.FK_BonusTypeSetting_EmployeeType">
+      <End Role="EmployeeType" EntitySet="EmployeeType" />
+      <End Role="BonusTypeSetting" EntitySet="BonusTypeSetting" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClassByGrade_Grade" Association="Self.FK_ClassByGrade_Grade">
+      <End Role="Grade" EntitySet="Grade" />
+      <End Role="ClassByGrade" EntitySet="ClassByGrade" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClassTimetable_PeriodSetup" Association="Self.FK_ClassTimetable_PeriodSetup">
+      <End Role="PeriodSetup" EntitySet="PeriodSetup" />
+      <End Role="ClassTimetable" EntitySet="ClassTimetable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClassTimetable_SubjectByGrade" Association="Self.FK_ClassTimetable_SubjectByGrade">
+      <End Role="SubjectByGrade" EntitySet="SubjectByGrade" />
+      <End Role="ClassTimetable" EntitySet="ClassTimetable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClassTimetable_Timetable" Association="Self.FK_ClassTimetable_Timetable">
+      <End Role="Timetable" EntitySet="Timetable" />
+      <End Role="ClassTimetable" EntitySet="ClassTimetable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_EmployeeType" Association="Self.FK_Employee_EmployeeType">
+      <End Role="EmployeeType" EntitySet="EmployeeType" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Grade" Association="Self.FK_Employee_Grade">
+      <End Role="Grade" EntitySet="Grade" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmployeeEducation_Employee" Association="Self.FK_EmployeeEducation_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="EmployeeEducation" EntitySet="EmployeeEducation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmployeeFamily_Employee" Association="Self.FK_EmployeeFamily_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="EmployeeFamily" EntitySet="EmployeeFamily" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmployeeHobbies_Employee" Association="Self.FK_EmployeeHobbies_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="EmployeeHobbies" EntitySet="EmployeeHobbies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmployeePaymentSetting_EmployeePaymentSetting" Association="Self.FK_EmployeePaymentSetting_EmployeePaymentSetting">
+      <End Role="EmployeeGrade" EntitySet="EmployeeGrade" />
+      <End Role="EmployeePaymentSetting" EntitySet="EmployeePaymentSetting" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmployeePaymentSetting_EmployeeType" Association="Self.FK_EmployeePaymentSetting_EmployeeType">
+      <End Role="EmployeeType" EntitySet="EmployeeType" />
+      <End Role="EmployeePaymentSetting" EntitySet="EmployeePaymentSetting" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmployeePersonalSkill_Employee" Association="Self.FK_EmployeePersonalSkill_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="EmployeePersonalSkill" EntitySet="EmployeePersonalSkill" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmployeePersonalSkill_Skill" Association="Self.FK_EmployeePersonalSkill_Skill">
+      <End Role="Skill" EntitySet="Skill" />
+      <End Role="EmployeePersonalSkill" EntitySet="EmployeePersonalSkill" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmployeeTypeGrade_EmployeeGrade" Association="Self.FK_EmployeeTypeGrade_EmployeeGrade">
+      <End Role="EmployeeGrade" EntitySet="EmployeeGrade" />
+      <End Role="EmployeeTypeGrade" EntitySet="EmployeeTypeGrade" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmployeeTypeGrade_EmployeeType1" Association="Self.FK_EmployeeTypeGrade_EmployeeType1">
+      <End Role="EmployeeType" EntitySet="EmployeeType" />
+      <End Role="EmployeeTypeGrade" EntitySet="EmployeeTypeGrade" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmploymentHistory_Employee" Association="Self.FK_EmploymentHistory_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="EmploymentHistory" EntitySet="EmploymentHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ExchangeRate_Currency" Association="Self.FK_ExchangeRate_Currency">
+      <End Role="Currency" EntitySet="Currency" />
+      <End Role="ExchangeRate" EntitySet="ExchangeRate" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ExchangeRate_Currency1" Association="Self.FK_ExchangeRate_Currency1">
+      <End Role="Currency" EntitySet="Currency" />
+      <End Role="ExchangeRate" EntitySet="ExchangeRate" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Menus_Menus" Association="Self.FK_Menus_Menus">
+      <End Role="Menus" EntitySet="Menus" />
+      <End Role="Menus1" EntitySet="Menus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PreviosSchoolRecordByStudent_Student" Association="Self.FK_PreviosSchoolRecordByStudent_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="PreviosSchoolRecordByStudent" EntitySet="PreviosSchoolRecordByStudent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolePermission_Menus" Association="Self.FK_RolePermission_Menus">
+      <End Role="Menus" EntitySet="Menus" />
+      <End Role="RolePermission" EntitySet="RolePermission" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolePermission_Role" Association="Self.FK_RolePermission_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="RolePermission" EntitySet="RolePermission" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolePermissionDetail_PermissionType" Association="Self.FK_RolePermissionDetail_PermissionType">
+      <End Role="PermissionType" EntitySet="PermissionType" />
+      <End Role="RolePermissionDetail" EntitySet="RolePermissionDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolePermissionDetail_RolePermission" Association="Self.FK_RolePermissionDetail_RolePermission">
+      <End Role="RolePermission" EntitySet="RolePermission" />
+      <End Role="RolePermissionDetail" EntitySet="RolePermissionDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_School_Currency" Association="Self.FK_School_Currency">
+      <End Role="Currency" EntitySet="Currency" />
+      <End Role="School" EntitySet="School" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_CitizenShip" Association="Self.FK_Student_CitizenShip">
+      <End Role="CitizenShip" EntitySet="CitizenShip" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_ClassByGrade" Association="Self.FK_Student_ClassByGrade">
+      <End Role="ClassByGrade" EntitySet="ClassByGrade" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Grade" Association="Self.FK_Student_Grade">
+      <End Role="Grade" EntitySet="Grade" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_PaymentMode" Association="Self.FK_Student_PaymentMode">
+      <End Role="PaymentMode" EntitySet="PaymentMode" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Year" Association="Self.FK_Student_Year">
+      <End Role="Year" EntitySet="Year" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentGradeHistory_Student" Association="Self.FK_StudentGradeHistory_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="StudentGradeHistory" EntitySet="StudentGradeHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubjectByGrade_Grade" Association="Self.FK_SubjectByGrade_Grade">
+      <End Role="Grade" EntitySet="Grade" />
+      <End Role="SubjectByGrade" EntitySet="SubjectByGrade" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubjectByGrade_Year" Association="Self.FK_SubjectByGrade_Year">
+      <End Role="Year" EntitySet="Year" />
+      <End Role="SubjectByGrade" EntitySet="SubjectByGrade" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_student_tbl_log_in" Association="Self.FK_tbl_student_tbl_log_in">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_student_tbl_log_in1" Association="Self.FK_tbl_student_tbl_log_in1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Timetable_ClassByGrade" Association="Self.FK_Timetable_ClassByGrade">
+      <End Role="ClassByGrade" EntitySet="ClassByGrade" />
+      <End Role="Timetable" EntitySet="Timetable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Timetable_Grade" Association="Self.FK_Timetable_Grade">
+      <End Role="Grade" EntitySet="Grade" />
+      <End Role="Timetable" EntitySet="Timetable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Role" Association="Self.FK_Users_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,132 @@
+﻿@*@using Ace.Admin.Data;
+@model List<Menus>
+
+
+@if (Model.Count > 0)
+
+{
+    @getChildMenu(Model)
+}
+
+
+@helper getChildMenu(List<Ace.Admin.Data.Menus>
+                   menuss)
+{
+
+
+
+if (Model != null)
+{
+    foreach (var item in menuss)
+
+    {
+        if (item.ChildMenus.Count() == 0)
+        {
+
+                <li class="nav-item" id=@item.MenusID>
+                    @Html.ActionLink(@item.MenusName, @item.ActionName, @item.ControllerName, new { area = @item.Area }, new { @class = "nav-link" })
+                </li>
+        }
+
+
+
+        if (item.ChildMenus.Count() > 0)
+        {
+                <li class="nav-item dropdown">
+                    @Html.ActionLink(@item.MenusName, @item.ActionName, @item.ControllerName, new { area = @item.Area }, new { @class = "nav-link dropdown-toggle", @data_toggle = "dropdown", @id = "navbarDropdownMenuLink", @aria_haspopup = "true", @aria_expanded = "false" })
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+                        @foreach (var child in item.ChildMenus)
+
+                        {
+                            if (child.ChildMenus.Count > 0)
+                            {
+                                <li class="dropdown-submenu">
+                                    @Html.ActionLink(@child.MenusName, @child.ActionName, @child.ControllerName, new { area = @child.Area }, new { @class = "dropdown-item dropdown-toggle" })
+                                    <ul class="dropdown-menu">
+                                        @foreach (var secondChild in child.ChildMenus)
+                                        {
+                                            if (secondChild.ChildMenus.Count > 0)
+                                            {
+                                                <li class="dropdown-submenu">
+                                                    @Html.ActionLink(@secondChild.MenusName, @secondChild.ActionName, @secondChild.ControllerName, new { area = @secondChild.Area }, new { @class = "dropdown-item dropdown-toggle" })
+                                                    <ul class="dropdown-menu">
+                                                        @foreach (var thirdChild in secondChild.ChildMenus)
+                                                        {
+                                                            if (thirdChild.ChildMenus.Count > 0)
+                                                            {
+                                                                <li class="dropdown-submenu">
+                                                                    @Html.ActionLink(@thirdChild.MenusName, @thirdChild.ActionName, @thirdChild.ControllerName, new { area = @thirdChild.Area }, new { @class = "dropdown-item dropdown-toggle" })
+                                                                    <ul class="dropdown-menu">
+                                                                        @foreach (var fourChild in thirdChild.ChildMenus)
+                                                                        {
+                                                                            <li>
+                                                                                @Html.ActionLink(@fourChild.MenusName, @fourChild.ActionName, @fourChild.ControllerName, new { area = @fourChild.Area }, new { @class = "dropdown-item" })
+                                                                            </li>
+
+                                                                        }
+                                                                    </ul>
+                                                                </li>
+
+                                                            }
+
+                                                            else
+                                                            {
+                                                                <li>
+                                                                    @Html.ActionLink(@thirdChild.MenusName, @thirdChild.ActionName, @thirdChild.ControllerName, new { area = @thirdChild.Area }, new { @class = "dropdown-item" })
+                                                                </li>
+                                                            }
+
+
+                                                        }
+                                                    </ul>
+                                                </li>
+
+                                            }
+
+                                            else
+                                            {
+                                                <li>
+                                                    @Html.ActionLink(@secondChild.MenusName, @secondChild.ActionName, @secondChild.ControllerName, new { area = @secondChild.Area }, new { @class = "dropdown-item" })
+                                                </li>
+
+
+                                            }
+                                        }
+
+
+
+
+                                    </ul>
+
+
+
+                                </li>
+
+
+                            }
+                            else
+                            {
+                                <li>
+                                    @Html.ActionLink(@child.MenusName, @child.ActionName, @child.ControllerName, new { area = @child.Area }, new { @class = "dropdown-item" })
+                                </li>
+
+                            }
+
+
+                        }
+                    </ul>
+                </li>
+        }
+    }
+}
+}*@
+
+
+
+
+
+
+
+
+

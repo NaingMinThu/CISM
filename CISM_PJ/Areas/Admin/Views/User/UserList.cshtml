@@ -1,0 +1,174 @@
+﻿@model IEnumerable<CISM_PJ.Areas.Admin.Models.UserViewModel>
+@using CISM_PJ.Models;
+@{
+    ViewBag.Title = "User List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    List<MenuAuthorizationModel> all_aut = ViewBag.ProgramPermission;
+    PermissionTypeCodeModel perType = new PermissionTypeCodeModel();
+    bool create = true; // all_aut.Any(x => x.perms_type_code.ToLower() == perType.create && x.isGrant == true);
+    bool edit = true; //all_aut.Any(x => x.perms_type_code.ToLower() == perType.edit && x.isGrant == true);
+    bool delete = true; //all_aut.Any(x => x.perms_type_code.ToLower() == perType.delete && x.isGrant == true);
+    bool viewdetail = true; // all_aut.Any(x => x.perms_type_code.ToLower() == perType.viewdetail && x.isGrant == true);
+    bool viewlist = true; //all_aut.Any(x => x.perms_type_code.ToLower() == perType.viewlist && x.isGrant == true);
+}
+<div class="card">
+    <div class="card-header">
+        <h5 class="mb-0">User List</h5>
+    </div>
+    <input type="hidden" id="hid_isAut_Create" value="@create.ToString()" />
+    <input type="hidden" id="hid_isAut_Edit" value="@edit.ToString()" />
+    <input type="hidden" id="hid_isAut_Delete" value="@delete.ToString()" />
+    <input type="hidden" id="hid_isAut_ViewDetail" value="@viewdetail.ToString()" />
+    <input type="hidden" id="hid_menuID" value="@ViewBag.menuID.ToString()" />
+
+    <div class="card-body">
+        @if (create)
+        {
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" id="btnAdd" class="btn btn-primary btn-sm" data-target="#dialogEntry" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;New</button>
+            </div>
+        }<hr />
+        @if (viewlist)
+        {
+            <div class="table-responsive">
+                <table id="myTable" class="table table-bordered table-sm w-100">
+                    <thead style="background-color:#cba135;color:#ffffff;">
+                        <tr>
+                            <th style="width : 30%;">User Name</th>
+                            <th  style="width : 30%;">Role</th>
+                            @*<th scope="col">Description</th>*@
+                            <th  style="width : 40%;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.user_name)</td>
+                                <td>@Html.DisplayFor(modelItem => item.role_name)</td>
+                                <td>
+                                    @if (edit || viewdetail)
+                                    {
+                                        <a class="btn btn-primary btn-sm" data-id="@item.user_id" id="btnEdit" name="btnEditLink" data-toggle="modal" data-target="#dialogEntry"><span class="fa fa-edit"></span>&nbsp;Edit</a>
+                                    }
+                                    @if (delete)
+                                    {
+                                        <a class="btn btn-danger btn-sm" data-id="@item.user_id" id="btnDelete" name="btnDeleteLink" data-toggle="modal" data-target="#dialogDelete"><span class="fa fa-trash"></span>&nbsp;Delete</a>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="modal fade" id="dialogDelete" tabindex="-3" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog w-30 mt-5" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="padding : 0.5rem;">
+                <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h4 class="text-danger">Are you sure you want to delete this?</h4>
+                <input type="hidden" class="form-control" id="txtID" name="txtID" />
+            </div>
+            <div class="modal-footer">
+                <input type="button" id="btnDeletePopup" class="btn btn-primary" value="Confirm" />
+                <input type="button" class="btn btn-dropbox" data-dismiss="modal" value="Cancel" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="dialogEntry" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false" aria-hidden="true">
+    <div class="modal-dialog w-50" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="padding : 0.5rem;">
+                <h4 class="modal-title">User</h4>
+                <button type="button" class="close" id="btnClose" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="myform" autocomplete="off">
+                <div class="modal-body">
+                    <input type="hidden" id="state" />
+                    <input type="hidden" id="user_id" />
+                    <div class="col-sm-12">
+                        <div class="form-group row mb-1">
+                            <label class="col-form-label col-sm-2 px-3">Name<span style="color:red;">*</span></label>
+                            <div class="col-sm-3 px-0" id="divUserName">
+                                <input type="text" class="form-control" id="txtuser_name" name="txtuser_name" autocomplete="user_name">
+                            </div>
+                            <div class="input-group col-sm-1 pl-0 d-block">
+                            </div>
+                            <label class="col-form-label col-sm-2">Password<span style="color:red;">*</span></label>
+                            <div class="col-sm-3 px-0" id="divPassword">
+                                <input type="password" class="form-control" id="txt_user_password" name="txt_user_password" autocomplete="user_password" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div class="form-group row mb-1">
+                            <label class="col-form-label col-sm-2 px-3">Role</label>
+                            <div class="col-sm-3 px-0">
+                                <select class="custom-select" id="roleId" name="roleId"></select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div class="form-group row mb-1">
+                            <label class="col-form-label col-sm-2 px-3">Description</label>
+                            <div class="col-sm-6 px-0">
+                                <textarea class="form-control" id="description" name="description" rows="3" maxlength="300" autocomplete="off"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" id="btnEntry" class="btn btn-primary" value="Save" />
+                    <button type="button" class="btn btn-dropbox" data-dismiss="modal" id="btnCancel">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <link rel="stylesheet" href="~/Content/themes/base/jquery-ui.css" />
+    <link rel="stylesheet" href="~/Content/jquery.timepicker.css" />
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.validate-additional-methods.min.js"></script>
+    <script src="~/Scripts/jqueryui/jquery-ui.js"></script>
+    <script src="~/Scripts/jquery.timepicker.js"></script>
+    <script src="~/Scripts/moment.js"></script>s
+    <script src="~/JavaScriptFiles/User.js"></script>
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#myTable').DataTable({
+            paging: true,
+            searching: true,
+            ordering: true,
+            order: [[0, 'asc']],
+            columns: [
+                null,
+                null,
+                { orderable: false },
+            ],
+        });
+
+    });
+
+</script>
+

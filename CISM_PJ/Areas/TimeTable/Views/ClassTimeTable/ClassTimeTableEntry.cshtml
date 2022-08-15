@@ -1,0 +1,259 @@
+﻿@using CISM_PJ.Models
+@{
+    ViewBag.Title = "Class TimeTable";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    List<MenuAuthorizationModel> all_aut = ViewBag.ProgramPermission;
+    PermissionTypeCodeModel perType = new PermissionTypeCodeModel();
+    bool create = all_aut.Any(x => x.perms_type_code.ToLower() == perType.create && x.isGrant == true);
+    bool edit = all_aut.Any(x => x.perms_type_code.ToLower() == perType.edit && x.isGrant == true);
+    bool delete = all_aut.Any(x => x.perms_type_code.ToLower() == perType.delete && x.isGrant == true);
+    bool viewdetail = all_aut.Any(x => x.perms_type_code.ToLower() == perType.viewdetail && x.isGrant == true);
+    bool viewlist = all_aut.Any(x => x.perms_type_code.ToLower() == perType.viewlist && x.isGrant == true);
+    var enum_weekDay = from WeeksDay e in Enum.GetValues(typeof(WeeksDay))
+                       select new
+                       {
+                           ID = (int)e,
+                           Name = EnumClass.GetDescriptionFromEnum(e)
+                       };
+    ViewBag.enum_weeksDay = new SelectList(enum_weekDay, "ID", "Name");
+}
+<style>
+    .hide-calendar .ui-datepicker-calendar {
+        display: none;
+    }
+</style>
+<form id="mywoform">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0 mt-0">Class Time Table</h5>
+        </div>
+        <div class="card-body">
+            <div class="container-fluid">
+                <div class="form-group row">
+                    <input type="hidden" id="hid_isAut_Edit" value="@edit.ToString()" />
+                    <input type="hidden" id="hid_menuID" value="@ViewBag.menuID.ToString()" />
+                    <input type="hidden" id="index" />
+                    <input type="hidden" id="state" />                   
+
+                    <div class="col-sm-12 row mb-1 p-0">
+                        <div class="col-sm-4 row mx-0">
+                            <label class="col-form-label col-sm-4 px-0">Grade<span style="color:red;">*</span></label>
+                            <div class="col-sm-6 pr-0">
+                                <select class="custom-select" id="grade_id" name="grade_id"></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 row mx-0">
+                            <label class="col-form-label col-sm-4 px-0">Class<span style="color:red;">*</span></label>
+                            <div class="col-sm-6 pr-0">
+                                <select class="custom-select" id="class_id" name="class_id"></select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 row mb-1 p-0">
+                        <div class="col-sm-4 row mx-0">
+                            <label class="col-form-label col-sm-4 px-0">Affected Date<span style="color:red;">*</span></label>
+                            <div class="col-sm-6 pr-0">
+                                <input type="text" class="form-control" id="affected_date" name="affected_date" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive mt-2 pre-scrollable" id="div_data">
+                        <table id="TimeTable" class="table table-bordered table-hover w-100">
+                            <thead>
+                                <tr>
+                                    <th style="width: 1%" hidden></th>
+                                    <th style="width: 14%">Period</th>
+                                    <th style="width: 17%">Monday</th>
+                                    <th style="width: 17%">Tuesday</th>
+                                    <th style="width: 17%">Wednesday</th>
+                                    <th style="width: 17%">Thursday</th>
+                                    <th style="width: 17%">Friday</th>
+                                </tr>
+                            </thead>
+                            <tbody id="TimeTableDataBody"></tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="form-group row mb-0">
+                <div class="col-md-2">
+                    @*<input class="btn btn-primary" type="button" name="BackBtn" id="BackBtn" value="Back" />*@
+                    <button type="submit" class="btn btn-dark" id="BackBtn">
+                        <i class="fa fa-arrow-left"></i> Back
+                    </button>
+                </div>
+                <div class="col-md-10">
+                    @*<input class="btn btn-primary" type="submit" id="btnSave" value="Save" />
+                    <input class="btn btn-danger" type="button" name="CancelBtn" id="CancelBtn" value="Cancel" />*@
+
+                    <button type="submit" class="btn btn-primary" id="btnSave">
+                        <i class="fa fa-save"></i> Save
+                    </button>
+
+                   <button type="submit" class="btn btn-secondary" id="CancelBtn">
+                        <i class="fa fa-sign-out"></i> Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div class="modal fade" id="dialogSubject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false" aria-hidden="true">
+    <div class="modal-dialog w-30 h-100" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="btnClose" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group row mx-0 mb-0">
+                    <input type="hidden" id="colIndex" />
+                    <input type="hidden" id="rowIndex" />
+                    <input type="hidden" id="period_id" />
+                    <input type="hidden" id="period_name" />
+                    <label for="stock_memo" class="col-form-label col-md-4">Subject</label>
+                    <div class="col-md-8">
+                        <select id="subject_id" name="subject_id" class="custom-select"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="button" class="btn btn-primary" id="addSubject" value="Add" />
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <link rel="stylesheet" href="~/Content/themes/base/jquery-ui.css" />
+    <link rel="stylesheet" href="~/Content/jquery.timepicker.css" />
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.validate-additional-methods.min.js"></script>
+    <script src="~/Scripts/jqueryui/jquery-ui.js"></script>
+    <script src="~/Scripts/jquery.timepicker.js"></script>
+    <script src="~/Scripts/moment.js"></script>
+
+
+    <script src="~/JavaScriptFiles/ClassTimeTable.js"></script>
+}
+@*<script src="~/JavaScriptFiles/bootstarp_ClassTimeTable.js"></script>*@
+<script type="text/javascript">
+      //$('#TimeTable td').click(function() {
+      //  alert("HTML: " +$(this).html());
+      //  alert("Cell Index: " + $(this).index());
+      //  alert("Row Index: " + $(this).closest('tr').index());
+      //});
+
+    //$('#TimeTable tbody').on('dblclick', 'tr', function () {
+    //    const data = $('#TimeTable').DataTable().row(this).data();
+    //    //console.log(data);
+    //    $('#period_id').val(data[0]); ///data.period_id);
+    //    $('#period_name').val(data[1]);//data.period_name);
+    //});
+
+    $('#TimeTable tbody').on('dblclick', 'td', function () {
+        //console.log("HTML: " + $(this).html());
+        //console.log("Cell Index: " + $(this).index());
+        var row = $(this).closest('tr');
+        var periodId = $(row).find('td').eq(0).html();
+        var periodName = $(row).find('td').eq(1).html();
+        $('#dialogSubject').modal('toggle');
+        $('#colIndex').val($(this).index());
+        $('#rowIndex').val($(this).closest('tr').index());
+        $('#period_id').val(periodId); ///data.period_id);
+        $('#period_name').val(periodName);//data.period_name);
+    });
+
+    $("#addSubject").click(function () {
+        //console.log(" data-dismiss=modal");
+        //console.log("colIndex = >>" + $('#colIndex').val());
+        //console.log("rowIndex = >>" + $('#rowIndex').val());
+        //console.log("period_id = >>" + $('#period_id').val());
+        //BindDetailEntity($('#rowIndex').val(), $('#colIndex').val(), period_id, {});
+
+        //var periodInfo = ClassTimeTable.filter(x => x.period_id == $('#period_id').val());
+        //console.log("periodInfo");
+        //console.log(periodInfo);
+        //if (periodInfo.length > 0) {
+        $.each(ClassTimeTable, function (i, obj) {
+            console.log("ClassTimeTable");
+            if (obj.period_id == $('#period_id').val()) {
+                console.log("Period == " + $('#period_id').val());
+                console.log(obj);
+                obj = BindDetailEntity($('#rowIndex').val(), $('#colIndex').val(), obj);
+            }
+        });
+        //}
+        //else {
+        //    ClassTimeTable.push(BindDetailEntity($('#rowIndex').val(), $('#colIndex').val(), period_id, {}));
+        //}
+        console.log(ClassTimeTable);
+        $('#dialogSubject').modal('hide');
+    });
+
+    function BindDetailEntity(rowIndex, colIndex, dataInfo) {
+
+        console.log("else");
+        console.log(dataInfo);
+        var subject = {
+            subject_id: $("#subject_id").val(),
+            subject_name: $("#subject_id option:selected").text(),
+        };
+        console.log(subject);
+        dataInfo.period_id = $("#period_id").val();
+        dataInfo.period_name = $('#period_name').val();
+        //dataInfo.monday_List = [];
+        //dataInfo.tue_List = [];
+        //dataInfo.wed_List = [];
+        //dataInfo.thur_List = [];
+        //dataInfo.fri_List = [];
+        //console.log(dataInfo);
+        var id = "#TimeTable tr:eq(" + (parseInt(rowIndex) + 1) + ") td:eq(" + colIndex + ")";
+        console.log(id);
+        $(id).html($("#subject_id option:selected").text());
+        //$('#TimeTable tr:eq(1) td:eq(1)').html("Whatever text you want");
+        switch (colIndex) {
+            case "2": ///Monday
+                console.log("Monday");
+                dataInfo.monday_List.push(subject);
+                // code block
+                break;
+            case "3": //Tuesday
+                // code block
+                console.log("Tuesday");
+                dataInfo.tue_List.push(subject);
+                break;
+            case "4": //Wednesday
+                // code block
+                console.log("Wednesday");
+                dataInfo.wed_List.push(subject);
+                break;
+            case "5": //Thursday
+                // code block
+                console.log("Thursday");
+                dataInfo.thur_List.push(subject);
+                break;
+            case "6": //Friday
+                // code block
+                console.log("Friday");
+                dataInfo.fri_List.push(subject);
+                break;
+        }
+        //}
+        console.log(dataInfo);
+        return dataInfo;
+    }
+
+</script>
+

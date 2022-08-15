@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="10b60e805b324029878405888ec9fb79" Name="Diagram1">
+        <EntityTypeShape EntityType="CISMModel.Allowance" Width="1.5" PointX="8.25" PointY="16.5" />
+        <EntityTypeShape EntityType="CISMModel.AllowanceType" Width="1.5" PointX="6" PointY="6.75" />
+        <EntityTypeShape EntityType="CISMModel.BonusSetup" Width="1.5" PointX="8.75" PointY="8.75" />
+        <EntityTypeShape EntityType="CISMModel.BonusTypeDetailSetting" Width="1.5" PointX="13.25" PointY="16.375" />
+        <EntityTypeShape EntityType="CISMModel.BonusTypeSetting" Width="1.5" PointX="11" PointY="16.25" />
+        <EntityTypeShape EntityType="CISMModel.CitizenShip" Width="1.5" PointX="3" PointY="26.5" />
+        <EntityTypeShape EntityType="CISMModel.Class" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CISMModel.ClassByGrade" Width="1.5" PointX="3" PointY="39.625" />
+        <EntityTypeShape EntityType="CISMModel.ClassTimetable" Width="1.5" PointX="10.5" PointY="25.125" />
+        <EntityTypeShape EntityType="CISMModel.Currency" Width="1.5" PointX="10.75" PointY="3.5" />
+        <EntityTypeShape EntityType="CISMModel.Employee" Width="1.5" PointX="3" PointY="18.875" />
+        <EntityTypeShape EntityType="CISMModel.EmployeeEducation" Width="1.5" PointX="5.25" PointY="37" />
+        <EntityTypeShape EntityType="CISMModel.EmployeeFamily" Width="1.5" PointX="5.25" PointY="10.125" />
+        <EntityTypeShape EntityType="CISMModel.EmployeeGrade" Width="1.5" PointX="0.75" PointY="10.5" />
+        <EntityTypeShape EntityType="CISMModel.EmployeeHobby" Width="1.5" PointX="5.25" PointY="14.875" />
+        <EntityTypeShape EntityType="CISMModel.EmployeePaymentSetting" Width="1.5" PointX="3" PointY="10.25" />
+        <EntityTypeShape EntityType="CISMModel.EmployeePersonalSkill" Width="1.5" PointX="8.25" PointY="20.625" />
+        <EntityTypeShape EntityType="CISMModel.EmployeeType" Width="1.5" PointX="0.75" PointY="16.5" />
+        <EntityTypeShape EntityType="CISMModel.EmployeeTypeGrade" Width="1.5" PointX="3" PointY="14.75" />
+        <EntityTypeShape EntityType="CISMModel.EmploymentHistory" Width="1.5" PointX="5.25" PointY="41.375" />
+        <EntityTypeShape EntityType="CISMModel.ExchangeRate" Width="1.5" PointX="13" PointY="1.25" />
+        <EntityTypeShape EntityType="CISMModel.Grade" Width="1.5" PointX="0.75" PointY="20.375" />
+        <EntityTypeShape EntityType="CISMModel.Holiday" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CISMModel.Menu" Width="1.5" PointX="7.75" PointY="38.5" />
+        <EntityTypeShape EntityType="CISMModel.PaymentMode" Width="1.5" PointX="3" PointY="34.25" />
+        <EntityTypeShape EntityType="CISMModel.PeriodSetup" Width="1.5" PointX="8.25" PointY="12.375" />
+        <EntityTypeShape EntityType="CISMModel.PermissionType" Width="1.5" PointX="10" PointY="37.875" />
+        <EntityTypeShape EntityType="CISMModel.PreviosSchoolRecordByStudent" Width="1.5" PointX="7.5" PointY="25.25" />
+        <EntityTypeShape EntityType="CISMModel.RegNoSetup" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="CISMModel.Role" Width="1.5" PointX="0.75" PointY="30.25" />
+        <EntityTypeShape EntityType="CISMModel.RolePermission" Width="1.5" PointX="10" PointY="34.375" />
+        <EntityTypeShape EntityType="CISMModel.RolePermissionDetail" Width="1.5" PointX="12.25" PointY="34.5" />
+        <EntityTypeShape EntityType="CISMModel.School" Width="1.5" PointX="13" PointY="5.125" />
+        <EntityTypeShape EntityType="CISMModel.Skill" Width="1.5" PointX="6" PointY="2.75" />
+        <EntityTypeShape EntityType="CISMModel.StaffGrade" Width="1.5" PointX="10.75" PointY="10.75" />
+        <EntityTypeShape EntityType="CISMModel.Student" Width="1.5" PointX="5.25" PointY="27.875" />
+        <EntityTypeShape EntityType="CISMModel.StudentGradeHistory" Width="1.5" PointX="7.5" PointY="34.5" />
+        <EntityTypeShape EntityType="CISMModel.Subject" Width="1.5" PointX="12.75" PointY="10.75" />
+        <EntityTypeShape EntityType="CISMModel.SubjectByGrade" Width="1.5" PointX="6" PointY="20.375" />
+        <EntityTypeShape EntityType="CISMModel.Timetable" Width="1.5" PointX="8.25" PointY="30.125" />
+        <EntityTypeShape EntityType="CISMModel.User" Width="1.5" PointX="3" PointY="29.875" />
+        <EntityTypeShape EntityType="CISMModel.Year" Width="1.5" PointX="3.75" PointY="5.625" />
+        <AssociationConnector Association="CISMModel.FK_Allowance_Allowance1" />
+        <AssociationConnector Association="CISMModel.FK_Allowance_AllowanceType" />
+        <AssociationConnector Association="CISMModel.FK_BonusSetting_BonusSetup" />
+        <AssociationConnector Association="CISMModel.FK_BonusTypeDetailSetting_BonusTypeSetting" />
+        <AssociationConnector Association="CISMModel.FK_BonusTypeSetting_EmployeeGrade" />
+        <AssociationConnector Association="CISMModel.FK_BonusTypeSetting_EmployeeType" />
+        <AssociationConnector Association="CISMModel.FK_Student_CitizenShip" />
+        <AssociationConnector Association="CISMModel.FK_ClassByGrade_Grade" />
+        <AssociationConnector Association="CISMModel.FK_Student_ClassByGrade" />
+        <AssociationConnector Association="CISMModel.FK_Timetable_ClassByGrade" />
+        <AssociationConnector Association="CISMModel.FK_ClassTimetable_PeriodSetup" />
+        <AssociationConnector Association="CISMModel.FK_ClassTimetable_SubjectByGrade" />
+        <AssociationConnector Association="CISMModel.FK_ClassTimetable_Timetable" />
+        <AssociationConnector Association="CISMModel.FK_ExchangeRate_Currency" />
+        <AssociationConnector Association="CISMModel.FK_ExchangeRate_Currency1" />
+        <AssociationConnector Association="CISMModel.FK_School_Currency" />
+        <AssociationConnector Association="CISMModel.FK_Employee_EmployeeType" />
+        <AssociationConnector Association="CISMModel.FK_Employee_Grade" />
+        <AssociationConnector Association="CISMModel.FK_EmployeeEducation_Employee" />
+        <AssociationConnector Association="CISMModel.FK_EmployeeFamily_Employee" />
+        <AssociationConnector Association="CISMModel.FK_EmployeeHobbies_Employee" />
+        <AssociationConnector Association="CISMModel.FK_EmployeePersonalSkill_Employee" />
+        <AssociationConnector Association="CISMModel.FK_EmploymentHistory_Employee" />
+        <AssociationConnector Association="CISMModel.FK_EmployeePaymentSetting_EmployeePaymentSetting" />
+        <AssociationConnector Association="CISMModel.FK_EmployeeTypeGrade_EmployeeGrade" />
+        <AssociationConnector Association="CISMModel.FK_EmployeePaymentSetting_EmployeeType" />
+        <AssociationConnector Association="CISMModel.FK_EmployeePersonalSkill_Skill" />
+        <AssociationConnector Association="CISMModel.FK_EmployeeTypeGrade_EmployeeType1" />
+        <AssociationConnector Association="CISMModel.FK_Student_Grade" />
+        <AssociationConnector Association="CISMModel.FK_SubjectByGrade_Grade" />
+        <AssociationConnector Association="CISMModel.FK_Timetable_Grade" />
+        <AssociationConnector Association="CISMModel.FK_Menus_Menus" />
+        <AssociationConnector Association="CISMModel.FK_RolePermission_Menus" />
+        <AssociationConnector Association="CISMModel.FK_Student_PaymentMode" />
+        <AssociationConnector Association="CISMModel.FK_RolePermissionDetail_PermissionType" />
+        <AssociationConnector Association="CISMModel.FK_PreviosSchoolRecordByStudent_Student" />
+        <AssociationConnector Association="CISMModel.FK_RolePermission_Role" />
+        <AssociationConnector Association="CISMModel.FK_Users_Role" />
+        <AssociationConnector Association="CISMModel.FK_RolePermissionDetail_RolePermission" />
+        <AssociationConnector Association="CISMModel.FK_Student_Year" />
+        <AssociationConnector Association="CISMModel.FK_StudentGradeHistory_Student" />
+        <AssociationConnector Association="CISMModel.FK_tbl_student_tbl_log_in" />
+        <AssociationConnector Association="CISMModel.FK_tbl_student_tbl_log_in1" />
+        <AssociationConnector Association="CISMModel.FK_SubjectByGrade_Year" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

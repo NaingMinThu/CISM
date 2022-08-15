@@ -1,0 +1,1434 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CISMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Allowances" EntityType="CISMModel.Allowance" />
+    <EntitySet Name="AllowanceTypes" EntityType="CISMModel.AllowanceType" />
+    <EntitySet Name="BonusSetups" EntityType="CISMModel.BonusSetup" />
+    <EntitySet Name="BonusTypeDetailSettings" EntityType="CISMModel.BonusTypeDetailSetting" />
+    <EntitySet Name="BonusTypeSettings" EntityType="CISMModel.BonusTypeSetting" />
+    <EntitySet Name="CitizenShips" EntityType="CISMModel.CitizenShip" />
+    <EntitySet Name="Classes" EntityType="CISMModel.Class" />
+    <EntitySet Name="ClassByGrades" EntityType="CISMModel.ClassByGrade" />
+    <EntitySet Name="ClassTimetables" EntityType="CISMModel.ClassTimetable" />
+    <EntitySet Name="Currencies" EntityType="CISMModel.Currency" />
+    <EntitySet Name="Employees" EntityType="CISMModel.Employee" />
+    <EntitySet Name="EmployeeEducations" EntityType="CISMModel.EmployeeEducation" />
+    <EntitySet Name="EmployeeFamilies" EntityType="CISMModel.EmployeeFamily" />
+    <EntitySet Name="EmployeeGrades" EntityType="CISMModel.EmployeeGrade" />
+    <EntitySet Name="EmployeeHobbies" EntityType="CISMModel.EmployeeHobby" />
+    <EntitySet Name="EmployeePaymentSettings" EntityType="CISMModel.EmployeePaymentSetting" />
+    <EntitySet Name="EmployeePersonalSkills" EntityType="CISMModel.EmployeePersonalSkill" />
+    <EntitySet Name="EmployeeTypes" EntityType="CISMModel.EmployeeType" />
+    <EntitySet Name="EmployeeTypeGrades" EntityType="CISMModel.EmployeeTypeGrade" />
+    <EntitySet Name="EmploymentHistories" EntityType="CISMModel.EmploymentHistory" />
+    <EntitySet Name="ExchangeRates" EntityType="CISMModel.ExchangeRate" />
+    <EntitySet Name="Grades" EntityType="CISMModel.Grade" />
+    <EntitySet Name="Holidays" EntityType="CISMModel.Holiday" />
+    <EntitySet Name="Menus" EntityType="CISMModel.Menu" />
+    <EntitySet Name="PaymentModes" EntityType="CISMModel.PaymentMode" />
+    <EntitySet Name="PeriodSetups" EntityType="CISMModel.PeriodSetup" />
+    <EntitySet Name="PermissionTypes" EntityType="CISMModel.PermissionType" />
+    <EntitySet Name="PreviosSchoolRecordByStudents" EntityType="CISMModel.PreviosSchoolRecordByStudent" />
+    <EntitySet Name="RegNoSetups" EntityType="CISMModel.RegNoSetup" />
+    <EntitySet Name="Roles" EntityType="CISMModel.Role" />
+    <EntitySet Name="RolePermissions" EntityType="CISMModel.RolePermission" />
+    <EntitySet Name="RolePermissionDetails" EntityType="CISMModel.RolePermissionDetail" />
+    <EntitySet Name="Schools" EntityType="CISMModel.School" />
+    <EntitySet Name="Skills" EntityType="CISMModel.Skill" />
+    <EntitySet Name="StaffGrades" EntityType="CISMModel.StaffGrade" />
+    <EntitySet Name="Students" EntityType="CISMModel.Student" />
+    <EntitySet Name="StudentGradeHistories" EntityType="CISMModel.StudentGradeHistory" />
+    <EntitySet Name="Subjects" EntityType="CISMModel.Subject" />
+    <EntitySet Name="SubjectByGrades" EntityType="CISMModel.SubjectByGrade" />
+    <EntitySet Name="Timetables" EntityType="CISMModel.Timetable" />
+    <EntitySet Name="Users" EntityType="CISMModel.User" />
+    <EntitySet Name="Years" EntityType="CISMModel.Year" />
+    <AssociationSet Name="FK_Allowance_Allowance1" Association="CISMModel.FK_Allowance_Allowance1">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Allowance" EntitySet="Allowances" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Allowance_AllowanceType" Association="CISMModel.FK_Allowance_AllowanceType">
+      <End Role="AllowanceType" EntitySet="AllowanceTypes" />
+      <End Role="Allowance" EntitySet="Allowances" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BonusSetting_BonusSetup" Association="CISMModel.FK_BonusSetting_BonusSetup">
+      <End Role="BonusSetup" EntitySet="BonusSetups" />
+      <End Role="BonusTypeSetting" EntitySet="BonusTypeSettings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BonusTypeDetailSetting_BonusTypeSetting" Association="CISMModel.FK_BonusTypeDetailSetting_BonusTypeSetting">
+      <End Role="BonusTypeSetting" EntitySet="BonusTypeSettings" />
+      <End Role="BonusTypeDetailSetting" EntitySet="BonusTypeDetailSettings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BonusTypeSetting_EmployeeGrade" Association="CISMModel.FK_BonusTypeSetting_EmployeeGrade">
+      <End Role="EmployeeGrade" EntitySet="EmployeeGrades" />
+      <End Role="BonusTypeSetting" EntitySet="BonusTypeSettings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BonusTypeSetting_EmployeeType" Association="CISMModel.FK_BonusTypeSetting_EmployeeType">
+      <End Role="EmployeeType" EntitySet="EmployeeTypes" />
+      <End Role="BonusTypeSetting" EntitySet="BonusTypeSettings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_CitizenShip" Association="CISMModel.FK_Student_CitizenShip">
+      <End Role="CitizenShip" EntitySet="CitizenShips" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClassByGrade_Grade" Association="CISMModel.FK_ClassByGrade_Grade">
+      <End Role="Grade" EntitySet="Grades" />
+      <End Role="ClassByGrade" EntitySet="ClassByGrades" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_ClassByGrade" Association="CISMModel.FK_Student_ClassByGrade">
+      <End Role="ClassByGrade" EntitySet="ClassByGrades" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Timetable_ClassByGrade" Association="CISMModel.FK_Timetable_ClassByGrade">
+      <End Role="ClassByGrade" EntitySet="ClassByGrades" />
+      <End Role="Timetable" EntitySet="Timetables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClassTimetable_PeriodSetup" Association="CISMModel.FK_ClassTimetable_PeriodSetup">
+      <End Role="PeriodSetup" EntitySet="PeriodSetups" />
+      <End Role="ClassTimetable" EntitySet="ClassTimetables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClassTimetable_SubjectByGrade" Association="CISMModel.FK_ClassTimetable_SubjectByGrade">
+      <End Role="SubjectByGrade" EntitySet="SubjectByGrades" />
+      <End Role="ClassTimetable" EntitySet="ClassTimetables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClassTimetable_Timetable" Association="CISMModel.FK_ClassTimetable_Timetable">
+      <End Role="Timetable" EntitySet="Timetables" />
+      <End Role="ClassTimetable" EntitySet="ClassTimetables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ExchangeRate_Currency" Association="CISMModel.FK_ExchangeRate_Currency">
+      <End Role="Currency" EntitySet="Currencies" />
+      <End Role="ExchangeRate" EntitySet="ExchangeRates" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ExchangeRate_Currency1" Association="CISMModel.FK_ExchangeRate_Currency1">
+      <End Role="Currency" EntitySet="Currencies" />
+      <End Role="ExchangeRate" EntitySet="ExchangeRates" />
+    </AssociationSet>
+    <AssociationSet Name="FK_School_Currency" Association="CISMModel.FK_School_Currency">
+      <End Role="Currency" EntitySet="Currencies" />
+      <End Role="School" EntitySet="Schools" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_EmployeeType" Association="CISMModel.FK_Employee_EmployeeType">
+      <End Role="EmployeeType" EntitySet="EmployeeTypes" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Grade" Association="CISMModel.FK_Employee_Grade">
+      <End Role="Grade" EntitySet="Grades" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmployeeEducation_Employee" Association="CISMModel.FK_EmployeeEducation_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="EmployeeEducation" EntitySet="EmployeeEducations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmployeeFamily_Employee" Association="CISMModel.FK_EmployeeFamily_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="EmployeeFamily" EntitySet="EmployeeFamilies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmployeeHobbies_Employee" Association="CISMModel.FK_EmployeeHobbies_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="EmployeeHobby" EntitySet="EmployeeHobbies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmployeePersonalSkill_Employee" Association="CISMModel.FK_EmployeePersonalSkill_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="EmployeePersonalSkill" EntitySet="EmployeePersonalSkills" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmploymentHistory_Employee" Association="CISMModel.FK_EmploymentHistory_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="EmploymentHistory" EntitySet="EmploymentHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmployeePaymentSetting_EmployeePaymentSetting" Association="CISMModel.FK_EmployeePaymentSetting_EmployeePaymentSetting">
+      <End Role="EmployeeGrade" EntitySet="EmployeeGrades" />
+      <End Role="EmployeePaymentSetting" EntitySet="EmployeePaymentSettings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmployeeTypeGrade_EmployeeGrade" Association="CISMModel.FK_EmployeeTypeGrade_EmployeeGrade">
+      <End Role="EmployeeGrade" EntitySet="EmployeeGrades" />
+      <End Role="EmployeeTypeGrade" EntitySet="EmployeeTypeGrades" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmployeePaymentSetting_EmployeeType" Association="CISMModel.FK_EmployeePaymentSetting_EmployeeType">
+      <End Role="EmployeeType" EntitySet="EmployeeTypes" />
+      <End Role="EmployeePaymentSetting" EntitySet="EmployeePaymentSettings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmployeePersonalSkill_Skill" Association="CISMModel.FK_EmployeePersonalSkill_Skill">
+      <End Role="Skill" EntitySet="Skills" />
+      <End Role="EmployeePersonalSkill" EntitySet="EmployeePersonalSkills" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmployeeTypeGrade_EmployeeType1" Association="CISMModel.FK_EmployeeTypeGrade_EmployeeType1">
+      <End Role="EmployeeType" EntitySet="EmployeeTypes" />
+      <End Role="EmployeeTypeGrade" EntitySet="EmployeeTypeGrades" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Grade" Association="CISMModel.FK_Student_Grade">
+      <End Role="Grade" EntitySet="Grades" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubjectByGrade_Grade" Association="CISMModel.FK_SubjectByGrade_Grade">
+      <End Role="Grade" EntitySet="Grades" />
+      <End Role="SubjectByGrade" EntitySet="SubjectByGrades" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Timetable_Grade" Association="CISMModel.FK_Timetable_Grade">
+      <End Role="Grade" EntitySet="Grades" />
+      <End Role="Timetable" EntitySet="Timetables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Menus_Menus" Association="CISMModel.FK_Menus_Menus">
+      <End Role="Menu" EntitySet="Menus" />
+      <End Role="Menu1" EntitySet="Menus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolePermission_Menus" Association="CISMModel.FK_RolePermission_Menus">
+      <End Role="Menu" EntitySet="Menus" />
+      <End Role="RolePermission" EntitySet="RolePermissions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_PaymentMode" Association="CISMModel.FK_Student_PaymentMode">
+      <End Role="PaymentMode" EntitySet="PaymentModes" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolePermissionDetail_PermissionType" Association="CISMModel.FK_RolePermissionDetail_PermissionType">
+      <End Role="PermissionType" EntitySet="PermissionTypes" />
+      <End Role="RolePermissionDetail" EntitySet="RolePermissionDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PreviosSchoolRecordByStudent_Student" Association="CISMModel.FK_PreviosSchoolRecordByStudent_Student">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="PreviosSchoolRecordByStudent" EntitySet="PreviosSchoolRecordByStudents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolePermission_Role" Association="CISMModel.FK_RolePermission_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="RolePermission" EntitySet="RolePermissions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Role" Association="CISMModel.FK_Users_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolePermissionDetail_RolePermission" Association="CISMModel.FK_RolePermissionDetail_RolePermission">
+      <End Role="RolePermission" EntitySet="RolePermissions" />
+      <End Role="RolePermissionDetail" EntitySet="RolePermissionDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Year" Association="CISMModel.FK_Student_Year">
+      <End Role="Year" EntitySet="Years" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentGradeHistory_Student" Association="CISMModel.FK_StudentGradeHistory_Student">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="StudentGradeHistory" EntitySet="StudentGradeHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_student_tbl_log_in" Association="CISMModel.FK_tbl_student_tbl_log_in">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_student_tbl_log_in1" Association="CISMModel.FK_tbl_student_tbl_log_in1">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubjectByGrade_Year" Association="CISMModel.FK_SubjectByGrade_Year">
+      <End Role="Year" EntitySet="Years" />
+      <End Role="SubjectByGrade" EntitySet="SubjectByGrades" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Allowance">
+    <Key>
+      <PropertyRef Name="allowance_id" />
+    </Key>
+    <Property Name="allowance_id" Type="Guid" Nullable="false" />
+    <Property Name="employee_id" Type="Guid" Nullable="false" />
+    <Property Name="allowance_type_id" Type="Int32" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="amount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="modifieddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createduser" Type="Int32" Nullable="false" />
+    <Property Name="modifieduser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="CISMModel.FK_Allowance_Allowance1" FromRole="Allowance" ToRole="Employee" />
+    <NavigationProperty Name="AllowanceType" Relationship="CISMModel.FK_Allowance_AllowanceType" FromRole="Allowance" ToRole="AllowanceType" />
+  </EntityType>
+  <EntityType Name="AllowanceType">
+    <Key>
+      <PropertyRef Name="allowance_type_id" />
+    </Key>
+    <Property Name="allowance_type_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="modifieddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createduser" Type="Int32" Nullable="false" />
+    <Property Name="modifieduser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Allowances" Relationship="CISMModel.FK_Allowance_AllowanceType" FromRole="AllowanceType" ToRole="Allowance" />
+  </EntityType>
+  <EntityType Name="BonusSetup">
+    <Key>
+      <PropertyRef Name="bonus_id" />
+    </Key>
+    <Property Name="bonus_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="bonus_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="modifieddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createduser" Type="Int32" Nullable="false" />
+    <Property Name="modifieduser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BonusTypeSettings" Relationship="CISMModel.FK_BonusSetting_BonusSetup" FromRole="BonusSetup" ToRole="BonusTypeSetting" />
+  </EntityType>
+  <EntityType Name="BonusTypeDetailSetting">
+    <Key>
+      <PropertyRef Name="bonus_setting_dtl_id" />
+    </Key>
+    <Property Name="bonus_setting_dtl_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="bonus_setting_id" Type="Guid" Nullable="false" />
+    <Property Name="from_year" Type="Int32" Nullable="false" />
+    <Property Name="to_year" Type="Int32" Nullable="false" />
+    <Property Name="from_amt" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="to_amt" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="modifieddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createduser" Type="Int32" Nullable="false" />
+    <Property Name="modifieduser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BonusTypeSetting" Relationship="CISMModel.FK_BonusTypeDetailSetting_BonusTypeSetting" FromRole="BonusTypeDetailSetting" ToRole="BonusTypeSetting" />
+  </EntityType>
+  <EntityType Name="BonusTypeSetting">
+    <Key>
+      <PropertyRef Name="bonus_setting_id" />
+    </Key>
+    <Property Name="bonus_setting_id" Type="Guid" Nullable="false" />
+    <Property Name="emp_type_Id" Type="Int32" Nullable="false" />
+    <Property Name="emp_grade_id" Type="Int32" Nullable="false" />
+    <Property Name="bonus_id" Type="Int32" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="modifieddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createduser" Type="Int32" Nullable="false" />
+    <Property Name="modifieduser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BonusSetup" Relationship="CISMModel.FK_BonusSetting_BonusSetup" FromRole="BonusTypeSetting" ToRole="BonusSetup" />
+    <NavigationProperty Name="BonusTypeDetailSettings" Relationship="CISMModel.FK_BonusTypeDetailSetting_BonusTypeSetting" FromRole="BonusTypeSetting" ToRole="BonusTypeDetailSetting" />
+    <NavigationProperty Name="EmployeeGrade" Relationship="CISMModel.FK_BonusTypeSetting_EmployeeGrade" FromRole="BonusTypeSetting" ToRole="EmployeeGrade" />
+    <NavigationProperty Name="EmployeeType" Relationship="CISMModel.FK_BonusTypeSetting_EmployeeType" FromRole="BonusTypeSetting" ToRole="EmployeeType" />
+  </EntityType>
+  <EntityType Name="CitizenShip">
+    <Key>
+      <PropertyRef Name="citizen_id" />
+    </Key>
+    <Property Name="citizen_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="citizen_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="modifieddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createduser" Type="Int32" Nullable="false" />
+    <Property Name="modifieduser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Students" Relationship="CISMModel.FK_Student_CitizenShip" FromRole="CitizenShip" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Class">
+    <Key>
+      <PropertyRef Name="class_id" />
+    </Key>
+    <Property Name="class_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="calss_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="modifieddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createduser" Type="Int32" Nullable="false" />
+    <Property Name="modifieduser" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ClassByGrade">
+    <Key>
+      <PropertyRef Name="class_id" />
+    </Key>
+    <Property Name="class_id" Type="Guid" Nullable="false" />
+    <Property Name="grade_id" Type="Int32" Nullable="false" />
+    <Property Name="class_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="year" Type="Int32" Nullable="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="modifieddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createduser" Type="Int32" Nullable="false" />
+    <Property Name="modifieduser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Grade" Relationship="CISMModel.FK_ClassByGrade_Grade" FromRole="ClassByGrade" ToRole="Grade" />
+    <NavigationProperty Name="Students" Relationship="CISMModel.FK_Student_ClassByGrade" FromRole="ClassByGrade" ToRole="Student" />
+    <NavigationProperty Name="Timetables" Relationship="CISMModel.FK_Timetable_ClassByGrade" FromRole="ClassByGrade" ToRole="Timetable" />
+  </EntityType>
+  <EntityType Name="ClassTimetable">
+    <Key>
+      <PropertyRef Name="class_time_table_id" />
+    </Key>
+    <Property Name="class_time_table_id" Type="Guid" Nullable="false" />
+    <Property Name="time_table_id" Type="Guid" Nullable="false" />
+    <Property Name="subject_id" Type="Guid" Nullable="false" />
+    <Property Name="period_id" Type="Int32" Nullable="false" />
+    <Property Name="weekday" Type="Byte" Nullable="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="modifieddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createduser" Type="Int32" Nullable="false" />
+    <Property Name="modifieduser" Type="Int32" Nullable="false" />
+    <Property Name="isActive" Type="Boolean" />
+    <NavigationProperty Name="PeriodSetup" Relationship="CISMModel.FK_ClassTimetable_PeriodSetup" FromRole="ClassTimetable" ToRole="PeriodSetup" />
+    <NavigationProperty Name="SubjectByGrade" Relationship="CISMModel.FK_ClassTimetable_SubjectByGrade" FromRole="ClassTimetable" ToRole="SubjectByGrade" />
+    <NavigationProperty Name="Timetable" Relationship="CISMModel.FK_ClassTimetable_Timetable" FromRole="ClassTimetable" ToRole="Timetable" />
+  </EntityType>
+  <EntityType Name="Currency">
+    <Key>
+      <PropertyRef Name="currency_id" />
+    </Key>
+    <Property Name="currency_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="currency_code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="modifieddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createduser" Type="Int32" Nullable="false" />
+    <Property Name="modifieduser" Type="Int32" Nullable="false" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ExchangeRates" Relationship="CISMModel.FK_ExchangeRate_Currency" FromRole="Currency" ToRole="ExchangeRate" />
+    <NavigationProperty Name="ExchangeRates1" Relationship="CISMModel.FK_ExchangeRate_Currency1" FromRole="Currency" ToRole="ExchangeRate" />
+    <NavigationProperty Name="Schools" Relationship="CISMModel.FK_School_Currency" FromRole="Currency" ToRole="School" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="employee_id" />
+    </Key>
+    <Property Name="employee_id" Type="Guid" Nullable="false" />
+    <Property Name="staff_no" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="dob" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="emp_type_Id" Type="Int32" Nullable="false" />
+    <Property Name="grade_id" Type="Int32" Nullable="false" />
+    <Property Name="nrc_passport" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="nationality" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="gender" Type="Boolean" Nullable="false" />
+    <Property Name="marital_status" Type="Boolean" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="contract_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="contract_no1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Byte" />
+    <Property Name="remark" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="modifieddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createduser" Type="Int32" />
+    <Property Name="modifieduser" Type="Int32" />
+    <NavigationProperty Name="Allowances" Relationship="CISMModel.FK_Allowance_Allowance1" FromRole="Employee" ToRole="Allowance" />
+    <NavigationProperty Name="EmployeeType" Relationship="CISMModel.FK_Employee_EmployeeType" FromRole="Employee" ToRole="EmployeeType" />
+    <NavigationProperty Name="Grade" Relationship="CISMModel.FK_Employee_Grade" FromRole="Employee" ToRole="Grade" />
+    <NavigationProperty Name="EmployeeEducations" Relationship="CISMModel.FK_EmployeeEducation_Employee" FromRole="Employee" ToRole="EmployeeEducation" />
+    <NavigationProperty Name="EmployeeFamilies" Relationship="CISMModel.FK_EmployeeFamily_Employee" FromRole="Employee" ToRole="EmployeeFamily" />
+    <NavigationProperty Name="EmployeeHobbies" Relationship="CISMModel.FK_EmployeeHobbies_Employee" FromRole="Employee" ToRole="EmployeeHobby" />
+    <NavigationProperty Name="EmployeePersonalSkills" Relationship="CISMModel.FK_EmployeePersonalSkill_Employee" FromRole="Employee" ToRole="EmployeePersonalSkill" />
+    <NavigationProperty Name="EmploymentHistories" Relationship="CISMModel.FK_EmploymentHistory_Employee" FromRole="Employee" ToRole="EmploymentHistory" />
+  </EntityType>
+  <EntityType Name="EmployeeEducation">
+    <Key>
+      <PropertyRef Name="education_id" />
+    </Key>
+    <Property Name="education_id" Type="Guid" Nullable="false" />
+    <Property Name="employee_id" Type="Guid" Nullable="false" />
+    <Property Name="reg_no" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="year_from" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="year_to" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="school" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="courses" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="degree_obtained" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="modifieddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createduser" Type="Int32" Nullable="false" />
+    <Property Name="modifieduser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="CISMModel.FK_EmployeeEducation_Employee" FromRole="EmployeeEducation" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="EmployeeFamily">
+    <Key>
+      <PropertyRef Name="family_id" />
+    </Key>
+    <Property Name="family_id" Type="Guid" Nullable="false" />
+    <Property Name="employee_id" Type="Guid" Nullable="false" />
+    <Property Name="reg_no" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="relationship" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="age" Type="Int32" Nullable="false" />
+    <Property Name="occupation" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="modifieddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createduser" Type="Int32" Nullable="false" />
+    <Property Name="modifieduser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="CISMModel.FK_EmployeeFamily_Employee" FromRole="EmployeeFamily" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="EmployeeGrade">
+    <Key>
+      <PropertyRef Name="emp_grade_id" />
+    </Key>
+    <Property Name="emp_grade_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="emp_grade_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="modifieddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createduser" Type="Int32" Nullable="false" />
+    <Property Name="modifieduser" Type="Int32" Nullable="false" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="BonusTypeSettings" Relationship="CISMModel.FK_BonusTypeSetting_EmployeeGrade" FromRole="EmployeeGrade" ToRole="BonusTypeSetting" />
+    <NavigationProperty Name="EmployeePaymentSettings" Relationship="CISMModel.FK_EmployeePaymentSetting_EmployeePaymentSetting" FromRole="EmployeeGrade" ToRole="EmployeePaymentSetting" />
+    <NavigationProperty Name="EmployeeTypeGrades" Relationship="CISMModel.FK_EmployeeTypeGrade_EmployeeGrade" FromRole="EmployeeGrade" ToRole="EmployeeTypeGrade" />
+  </EntityType>
+  <EntityType Name="EmployeeHobby">
+    <Key>
+      <PropertyRef Name="hobbies_id" />
+    </Key>
+    <Property Name="hobbies_id" Type="Guid" Nullable="false" />
+    <Property Name="employee_id" Type="Guid" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Employee" Relationship="CISMModel.FK_EmployeeHobbies_Employee" FromRole="EmployeeHobby" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="EmployeePaymentSetting">
+    <Key>
+      <PropertyRef Name="emp_payment_setting_id" />
+    </Key>
+    <Property Name="emp_payment_setting_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="emp_type_Id" Type="Int32" Nullable="false" />
+    <Property Name="emp_grade_id" Type="Int32" Nullable="false" />
+    <Property Name="basic_pay" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="probation" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="increment" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="currency_id" Type="Int32" Nullable="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="modifieddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createduser" Type="Int32" Nullable="false" />
+    <Property Name="modifieduser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="EmployeeGrade" Relationship="CISMModel.FK_EmployeePaymentSetting_EmployeePaymentSetting" FromRole="EmployeePaymentSetting" ToRole="EmployeeGrade" />
+    <NavigationProperty Name="EmployeeType" Relationship="CISMModel.FK_EmployeePaymentSetting_EmployeeType" FromRole="EmployeePaymentSetting" ToRole="EmployeeType" />
+  </EntityType>
+  <EntityType Name="EmployeePersonalSkill">
+    <Key>
+      <PropertyRef Name="personal_skill_id" />
+    </Key>
+    <Property Name="personal_skill_id" Type="Guid" Nullable="false" />
+    <Property Name="language" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="skill_id" Type="Guid" Nullable="false" />
+    <Property Name="employee_id" Type="Guid" Nullable="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="modifieddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createduser" Type="Int32" Nullable="false" />
+    <Property Name="modifieduser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="CISMModel.FK_EmployeePersonalSkill_Employee" FromRole="EmployeePersonalSkill" ToRole="Employee" />
+    <NavigationProperty Name="Skill" Relationship="CISMModel.FK_EmployeePersonalSkill_Skill" FromRole="EmployeePersonalSkill" ToRole="Skill" />
+  </EntityType>
+  <EntityType Name="EmployeeType">
+    <Key>
+      <PropertyRef Name="emp_type_Id" />
+    </Key>
+    <Property Name="emp_type_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="emp_type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="modifieddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createduser" Type="Int32" Nullable="false" />
+    <Property Name="modifieduser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BonusTypeSettings" Relationship="CISMModel.FK_BonusTypeSetting_EmployeeType" FromRole="EmployeeType" ToRole="BonusTypeSetting" />
+    <NavigationProperty Name="Employees" Relationship="CISMModel.FK_Employee_EmployeeType" FromRole="EmployeeType" ToRole="Employee" />
+    <NavigationProperty Name="EmployeePaymentSettings" Relationship="CISMModel.FK_EmployeePaymentSetting_EmployeeType" FromRole="EmployeeType" ToRole="EmployeePaymentSetting" />
+    <NavigationProperty Name="EmployeeTypeGrades" Relationship="CISMModel.FK_EmployeeTypeGrade_EmployeeType1" FromRole="EmployeeType" ToRole="EmployeeTypeGrade" />
+  </EntityType>
+  <EntityType Name="EmployeeTypeGrade">
+    <Key>
+      <PropertyRef Name="gradeType" />
+    </Key>
+    <Property Name="gradeType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="emp_type_Id" Type="Int32" Nullable="false" />
+    <Property Name="emp_grade_id" Type="Int32" Nullable="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="modifieddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createduser" Type="Int32" Nullable="false" />
+    <Property Name="modifieduser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="EmployeeGrade" Relationship="CISMModel.FK_EmployeeTypeGrade_EmployeeGrade" FromRole="EmployeeTypeGrade" ToRole="EmployeeGrade" />
+    <NavigationProperty Name="EmployeeType" Relationship="CISMModel.FK_EmployeeTypeGrade_EmployeeType1" FromRole="EmployeeTypeGrade" ToRole="EmployeeType" />
+  </EntityType>
+  <EntityType Name="EmploymentHistory">
+    <Key>
+      <PropertyRef Name="employment_history_id" />
+    </Key>
+    <Property Name="employment_history_id" Type="Guid" Nullable="false" />
+    <Property Name="employee_id" Type="Guid" Nullable="false" />
+    <Property Name="reg_no" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="year_from" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="year_to" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="employer" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="job_title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="salary" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="modifieddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createduser" Type="Int32" Nullable="false" />
+    <Property Name="modifieduser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="CISMModel.FK_EmploymentHistory_Employee" FromRole="EmploymentHistory" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="ExchangeRate">
+    <Key>
+      <PropertyRef Name="exchange_rate_id" />
+    </Key>
+    <Property Name="exchange_rate_id" Type="Guid" Nullable="false" />
+    <Property Name="to_currency_id" Type="Int32" Nullable="false" />
+    <Property Name="from_currency_id" Type="Int32" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="rate" Type="Decimal" Nullable="false" Precision="8" Scale="4" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="modifieddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createduser" Type="Int32" Nullable="false" />
+    <Property Name="modifieduser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Currency" Relationship="CISMModel.FK_ExchangeRate_Currency" FromRole="ExchangeRate" ToRole="Currency" />
+    <NavigationProperty Name="Currency1" Relationship="CISMModel.FK_ExchangeRate_Currency1" FromRole="ExchangeRate" ToRole="Currency" />
+  </EntityType>
+  <EntityType Name="Grade">
+    <Key>
+      <PropertyRef Name="grade_id" />
+    </Key>
+    <Property Name="grade_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="grade_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="modifieddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createduser" Type="Int32" Nullable="false" />
+    <Property Name="modifieduser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ClassByGrades" Relationship="CISMModel.FK_ClassByGrade_Grade" FromRole="Grade" ToRole="ClassByGrade" />
+    <NavigationProperty Name="Employees" Relationship="CISMModel.FK_Employee_Grade" FromRole="Grade" ToRole="Employee" />
+    <NavigationProperty Name="Students" Relationship="CISMModel.FK_Student_Grade" FromRole="Grade" ToRole="Student" />
+    <NavigationProperty Name="SubjectByGrades" Relationship="CISMModel.FK_SubjectByGrade_Grade" FromRole="Grade" ToRole="SubjectByGrade" />
+    <NavigationProperty Name="Timetables" Relationship="CISMModel.FK_Timetable_Grade" FromRole="Grade" ToRole="Timetable" />
+  </EntityType>
+  <EntityType Name="Holiday">
+    <Key>
+      <PropertyRef Name="holiday_id" />
+    </Key>
+    <Property Name="holiday_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="holiday_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="modifieddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createduser" Type="Int32" Nullable="false" />
+    <Property Name="modifieduser" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="menuid" />
+    </Key>
+    <Property Name="menuid" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="menu_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="area" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="controller_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="action_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="parent_menuid" Type="Int16" />
+    <Property Name="isprogram" Type="Boolean" Nullable="false" />
+    <Property Name="is_sa_use" Type="Boolean" Nullable="false" />
+    <Property Name="sort_seq" Type="Int16" Nullable="false" />
+    <Property Name="isactive" Type="Boolean" Nullable="false" />
+    <Property Name="menu_icon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="modifieddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createduser" Type="Int32" Nullable="false" />
+    <Property Name="modifieduser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Menus1" Relationship="CISMModel.FK_Menus_Menus" FromRole="Menu" ToRole="Menu1" />
+    <NavigationProperty Name="Menu1" Relationship="CISMModel.FK_Menus_Menus" FromRole="Menu1" ToRole="Menu" />
+    <NavigationProperty Name="RolePermissions" Relationship="CISMModel.FK_RolePermission_Menus" FromRole="Menu" ToRole="RolePermission" />
+  </EntityType>
+  <EntityType Name="PaymentMode">
+    <Key>
+      <PropertyRef Name="paymentmode_id" />
+    </Key>
+    <Property Name="paymentmode_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="pm_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="modifieddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createduser" Type="Int32" Nullable="false" />
+    <Property Name="modifieduser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Students" Relationship="CISMModel.FK_Student_PaymentMode" FromRole="PaymentMode" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="PeriodSetup">
+    <Key>
+      <PropertyRef Name="period_id" />
+    </Key>
+    <Property Name="period_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="period_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="from_time" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="to_time" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="modifieddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createduser" Type="Int32" Nullable="false" />
+    <Property Name="modifieduser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ClassTimetables" Relationship="CISMModel.FK_ClassTimetable_PeriodSetup" FromRole="PeriodSetup" ToRole="ClassTimetable" />
+  </EntityType>
+  <EntityType Name="PermissionType">
+    <Key>
+      <PropertyRef Name="permissionTypeId" />
+    </Key>
+    <Property Name="permissionTypeId" Type="Int32" Nullable="false" />
+    <Property Name="permissionTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="RolePermissionDetails" Relationship="CISMModel.FK_RolePermissionDetail_PermissionType" FromRole="PermissionType" ToRole="RolePermissionDetail" />
+  </EntityType>
+  <EntityType Name="PreviosSchoolRecordByStudent">
+    <Key>
+      <PropertyRef Name="prv_school_id" />
+    </Key>
+    <Property Name="prv_school_id" Type="Guid" Nullable="false" />
+    <Property Name="reg_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="student_id" Type="Guid" Nullable="false" />
+    <Property Name="year_from" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="year_to" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="passed_grade" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="attended_school" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="country" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="modifieddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createduser" Type="Int32" Nullable="false" />
+    <Property Name="modifieduser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Student" Relationship="CISMModel.FK_PreviosSchoolRecordByStudent_Student" FromRole="PreviosSchoolRecordByStudent" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="RegNoSetup">
+    <Key>
+      <PropertyRef Name="num_id" />
+    </Key>
+    <Property Name="num_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="format_no" Type="Int32" />
+    <Property Name="doc_control" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="doc_prefix" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="doc_format" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="next_no" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="end_no" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="restart_no" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="modifieddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createduser" Type="Int32" Nullable="false" />
+    <Property Name="modifieduser" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="roleId" />
+    </Key>
+    <Property Name="roleId" Type="Guid" Nullable="false" />
+    <Property Name="roleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="isDelete" Type="Boolean" Nullable="false" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createdUser" Type="Int32" Nullable="false" />
+    <Property Name="modifiedUser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="RolePermissions" Relationship="CISMModel.FK_RolePermission_Role" FromRole="Role" ToRole="RolePermission" />
+    <NavigationProperty Name="Users" Relationship="CISMModel.FK_Users_Role" FromRole="Role" ToRole="User" />
+  </EntityType>
+  <EntityType Name="RolePermission">
+    <Key>
+      <PropertyRef Name="rolePermissionId" />
+    </Key>
+    <Property Name="rolePermissionId" Type="Guid" Nullable="false" />
+    <Property Name="roleId" Type="Guid" Nullable="false" />
+    <Property Name="menuID" Type="Int16" Nullable="false" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createdUser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Menu" Relationship="CISMModel.FK_RolePermission_Menus" FromRole="RolePermission" ToRole="Menu" />
+    <NavigationProperty Name="Role" Relationship="CISMModel.FK_RolePermission_Role" FromRole="RolePermission" ToRole="Role" />
+    <NavigationProperty Name="RolePermissionDetails" Relationship="CISMModel.FK_RolePermissionDetail_RolePermission" FromRole="RolePermission" ToRole="RolePermissionDetail" />
+  </EntityType>
+  <EntityType Name="RolePermissionDetail">
+    <Key>
+      <PropertyRef Name="rolePermissionDetailId" />
+    </Key>
+    <Property Name="rolePermissionDetailId" Type="Guid" Nullable="false" />
+    <Property Name="rolePermissionId" Type="Guid" Nullable="false" />
+    <Property Name="permissionTypeId" Type="Int32" Nullable="false" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createdUser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="PermissionType" Relationship="CISMModel.FK_RolePermissionDetail_PermissionType" FromRole="RolePermissionDetail" ToRole="PermissionType" />
+    <NavigationProperty Name="RolePermission" Relationship="CISMModel.FK_RolePermissionDetail_RolePermission" FromRole="RolePermissionDetail" ToRole="RolePermission" />
+  </EntityType>
+  <EntityType Name="School">
+    <Key>
+      <PropertyRef Name="school_id" />
+    </Key>
+    <Property Name="school_id" Type="Guid" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="established_year" Type="DateTime" Precision="0" />
+    <Property Name="head_master_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="addres" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ph_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ph_office" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="currency_id" Type="Int32" />
+    <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="modifieddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createduser" Type="Int32" Nullable="false" />
+    <Property Name="modifieduser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Currency" Relationship="CISMModel.FK_School_Currency" FromRole="School" ToRole="Currency" />
+  </EntityType>
+  <EntityType Name="Skill">
+    <Key>
+      <PropertyRef Name="skill_id" />
+    </Key>
+    <Property Name="skill_id" Type="Guid" Nullable="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="modifieddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createduser" Type="Int32" Nullable="false" />
+    <Property Name="modifieduser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="EmployeePersonalSkills" Relationship="CISMModel.FK_EmployeePersonalSkill_Skill" FromRole="Skill" ToRole="EmployeePersonalSkill" />
+  </EntityType>
+  <EntityType Name="StaffGrade">
+    <Key>
+      <PropertyRef Name="staff_grade_Id" />
+    </Key>
+    <Property Name="staff_grade_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="staff_grade_type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="modifieddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createduser" Type="Int32" Nullable="false" />
+    <Property Name="modifieduser" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="student_id" />
+    </Key>
+    <Property Name="student_id" Type="Guid" Nullable="false" />
+    <Property Name="reg_no" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="dob" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="grade_id" Type="Int32" Nullable="false" />
+    <Property Name="class_id" Type="Guid" />
+    <Property Name="citizen_id" Type="Int32" Nullable="false" />
+    <Property Name="paymentmode_id" Type="Int32" Nullable="false" />
+    <Property Name="father_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="mother_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="address" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="contract_no" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="contract_no1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="remark" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="isDelete" Type="Boolean" Nullable="false" />
+    <Property Name="year_id" Type="Int32" />
+    <Property Name="nationality" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="date_of_join" Type="DateTime" Precision="0" />
+    <Property Name="date_of_exit" Type="DateTime" Precision="0" />
+    <Property Name="status" Type="Byte" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="modifieddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createduser" Type="Int32" Nullable="false" />
+    <Property Name="modifieduser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CitizenShip" Relationship="CISMModel.FK_Student_CitizenShip" FromRole="Student" ToRole="CitizenShip" />
+    <NavigationProperty Name="ClassByGrade" Relationship="CISMModel.FK_Student_ClassByGrade" FromRole="Student" ToRole="ClassByGrade" />
+    <NavigationProperty Name="Grade" Relationship="CISMModel.FK_Student_Grade" FromRole="Student" ToRole="Grade" />
+    <NavigationProperty Name="PaymentMode" Relationship="CISMModel.FK_Student_PaymentMode" FromRole="Student" ToRole="PaymentMode" />
+    <NavigationProperty Name="PreviosSchoolRecordByStudents" Relationship="CISMModel.FK_PreviosSchoolRecordByStudent_Student" FromRole="Student" ToRole="PreviosSchoolRecordByStudent" />
+    <NavigationProperty Name="Year" Relationship="CISMModel.FK_Student_Year" FromRole="Student" ToRole="Year" />
+    <NavigationProperty Name="StudentGradeHistories" Relationship="CISMModel.FK_StudentGradeHistory_Student" FromRole="Student" ToRole="StudentGradeHistory" />
+    <NavigationProperty Name="User" Relationship="CISMModel.FK_tbl_student_tbl_log_in" FromRole="Student" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="CISMModel.FK_tbl_student_tbl_log_in1" FromRole="Student" ToRole="User" />
+  </EntityType>
+  <EntityType Name="StudentGradeHistory">
+    <Key>
+      <PropertyRef Name="grade_history_id" />
+    </Key>
+    <Property Name="grade_history_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="student_id" Type="Guid" Nullable="false" />
+    <Property Name="filename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="modifieddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createduser" Type="Int32" Nullable="false" />
+    <Property Name="modifieduser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Student" Relationship="CISMModel.FK_StudentGradeHistory_Student" FromRole="StudentGradeHistory" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Subject">
+    <Key>
+      <PropertyRef Name="subject_id" />
+    </Key>
+    <Property Name="subject_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="subj_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="modifieddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createduser" Type="Int32" Nullable="false" />
+    <Property Name="modifieduser" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SubjectByGrade">
+    <Key>
+      <PropertyRef Name="subject_id" />
+    </Key>
+    <Property Name="subject_id" Type="Guid" Nullable="false" />
+    <Property Name="grade_id" Type="Int32" Nullable="false" />
+    <Property Name="subject_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="year_id" Type="Int32" Nullable="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="modifieddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createduser" Type="Int32" Nullable="false" />
+    <Property Name="modifieduser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ClassTimetables" Relationship="CISMModel.FK_ClassTimetable_SubjectByGrade" FromRole="SubjectByGrade" ToRole="ClassTimetable" />
+    <NavigationProperty Name="Grade" Relationship="CISMModel.FK_SubjectByGrade_Grade" FromRole="SubjectByGrade" ToRole="Grade" />
+    <NavigationProperty Name="Year" Relationship="CISMModel.FK_SubjectByGrade_Year" FromRole="SubjectByGrade" ToRole="Year" />
+  </EntityType>
+  <EntityType Name="Timetable">
+    <Key>
+      <PropertyRef Name="time_table_id" />
+    </Key>
+    <Property Name="time_table_id" Type="Guid" Nullable="false" />
+    <Property Name="grade_id" Type="Int32" Nullable="false" />
+    <Property Name="class_id" Type="Guid" Nullable="false" />
+    <Property Name="affected_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="modifieddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createduser" Type="Int32" Nullable="false" />
+    <Property Name="modifieduser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ClassByGrade" Relationship="CISMModel.FK_Timetable_ClassByGrade" FromRole="Timetable" ToRole="ClassByGrade" />
+    <NavigationProperty Name="ClassTimetables" Relationship="CISMModel.FK_ClassTimetable_Timetable" FromRole="Timetable" ToRole="ClassTimetable" />
+    <NavigationProperty Name="Grade" Relationship="CISMModel.FK_Timetable_Grade" FromRole="Timetable" ToRole="Grade" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_name" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="user_pwd" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="isDelete" Type="Boolean" Nullable="false" />
+    <Property Name="roleId" Type="Guid" />
+    <Property Name="is_sa_use" Type="Boolean" Nullable="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="modifieddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createduser" Type="Int32" Nullable="false" />
+    <Property Name="modifieduser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Role" Relationship="CISMModel.FK_Users_Role" FromRole="User" ToRole="Role" />
+    <NavigationProperty Name="Students" Relationship="CISMModel.FK_tbl_student_tbl_log_in" FromRole="User" ToRole="Student" />
+    <NavigationProperty Name="Students1" Relationship="CISMModel.FK_tbl_student_tbl_log_in1" FromRole="User" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Year">
+    <Key>
+      <PropertyRef Name="year_id" />
+    </Key>
+    <Property Name="year_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="from_year" Type="Int32" Nullable="false" />
+    <Property Name="to_year" Type="Int32" Nullable="false" />
+    <Property Name="isactive" Type="Boolean" Nullable="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="modifieddate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="createduser" Type="Int32" Nullable="false" />
+    <Property Name="modifieduser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Students" Relationship="CISMModel.FK_Student_Year" FromRole="Year" ToRole="Student" />
+    <NavigationProperty Name="SubjectByGrades" Relationship="CISMModel.FK_SubjectByGrade_Year" FromRole="Year" ToRole="SubjectByGrade" />
+  </EntityType>
+  <Association Name="FK_Allowance_Allowance1">
+    <End Type="CISMModel.Employee" Role="Employee" Multiplicity="1" />
+    <End Type="CISMModel.Allowance" Role="Allowance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="employee_id" />
+      </Principal>
+      <Dependent Role="Allowance">
+        <PropertyRef Name="employee_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Allowance_AllowanceType">
+    <End Type="CISMModel.AllowanceType" Role="AllowanceType" Multiplicity="1" />
+    <End Type="CISMModel.Allowance" Role="Allowance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AllowanceType">
+        <PropertyRef Name="allowance_type_id" />
+      </Principal>
+      <Dependent Role="Allowance">
+        <PropertyRef Name="allowance_type_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BonusSetting_BonusSetup">
+    <End Type="CISMModel.BonusSetup" Role="BonusSetup" Multiplicity="1" />
+    <End Type="CISMModel.BonusTypeSetting" Role="BonusTypeSetting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BonusSetup">
+        <PropertyRef Name="bonus_id" />
+      </Principal>
+      <Dependent Role="BonusTypeSetting">
+        <PropertyRef Name="bonus_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BonusTypeDetailSetting_BonusTypeSetting">
+    <End Type="CISMModel.BonusTypeSetting" Role="BonusTypeSetting" Multiplicity="1" />
+    <End Type="CISMModel.BonusTypeDetailSetting" Role="BonusTypeDetailSetting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BonusTypeSetting">
+        <PropertyRef Name="bonus_setting_id" />
+      </Principal>
+      <Dependent Role="BonusTypeDetailSetting">
+        <PropertyRef Name="bonus_setting_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BonusTypeSetting_EmployeeGrade">
+    <End Type="CISMModel.EmployeeGrade" Role="EmployeeGrade" Multiplicity="1" />
+    <End Type="CISMModel.BonusTypeSetting" Role="BonusTypeSetting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeGrade">
+        <PropertyRef Name="emp_grade_id" />
+      </Principal>
+      <Dependent Role="BonusTypeSetting">
+        <PropertyRef Name="emp_grade_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BonusTypeSetting_EmployeeType">
+    <End Type="CISMModel.EmployeeType" Role="EmployeeType" Multiplicity="1" />
+    <End Type="CISMModel.BonusTypeSetting" Role="BonusTypeSetting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeType">
+        <PropertyRef Name="emp_type_Id" />
+      </Principal>
+      <Dependent Role="BonusTypeSetting">
+        <PropertyRef Name="emp_type_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_CitizenShip">
+    <End Type="CISMModel.CitizenShip" Role="CitizenShip" Multiplicity="1" />
+    <End Type="CISMModel.Student" Role="Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CitizenShip">
+        <PropertyRef Name="citizen_id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="citizen_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClassByGrade_Grade">
+    <End Type="CISMModel.Grade" Role="Grade" Multiplicity="1" />
+    <End Type="CISMModel.ClassByGrade" Role="ClassByGrade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Grade">
+        <PropertyRef Name="grade_id" />
+      </Principal>
+      <Dependent Role="ClassByGrade">
+        <PropertyRef Name="grade_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_ClassByGrade">
+    <End Type="CISMModel.ClassByGrade" Role="ClassByGrade" Multiplicity="0..1" />
+    <End Type="CISMModel.Student" Role="Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ClassByGrade">
+        <PropertyRef Name="class_id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="class_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Timetable_ClassByGrade">
+    <End Type="CISMModel.ClassByGrade" Role="ClassByGrade" Multiplicity="1" />
+    <End Type="CISMModel.Timetable" Role="Timetable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ClassByGrade">
+        <PropertyRef Name="class_id" />
+      </Principal>
+      <Dependent Role="Timetable">
+        <PropertyRef Name="class_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClassTimetable_PeriodSetup">
+    <End Type="CISMModel.PeriodSetup" Role="PeriodSetup" Multiplicity="1" />
+    <End Type="CISMModel.ClassTimetable" Role="ClassTimetable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PeriodSetup">
+        <PropertyRef Name="period_id" />
+      </Principal>
+      <Dependent Role="ClassTimetable">
+        <PropertyRef Name="period_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClassTimetable_SubjectByGrade">
+    <End Type="CISMModel.SubjectByGrade" Role="SubjectByGrade" Multiplicity="1" />
+    <End Type="CISMModel.ClassTimetable" Role="ClassTimetable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubjectByGrade">
+        <PropertyRef Name="subject_id" />
+      </Principal>
+      <Dependent Role="ClassTimetable">
+        <PropertyRef Name="subject_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClassTimetable_Timetable">
+    <End Type="CISMModel.Timetable" Role="Timetable" Multiplicity="1" />
+    <End Type="CISMModel.ClassTimetable" Role="ClassTimetable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Timetable">
+        <PropertyRef Name="time_table_id" />
+      </Principal>
+      <Dependent Role="ClassTimetable">
+        <PropertyRef Name="time_table_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ExchangeRate_Currency">
+    <End Type="CISMModel.Currency" Role="Currency" Multiplicity="1" />
+    <End Type="CISMModel.ExchangeRate" Role="ExchangeRate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Currency">
+        <PropertyRef Name="currency_id" />
+      </Principal>
+      <Dependent Role="ExchangeRate">
+        <PropertyRef Name="to_currency_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ExchangeRate_Currency1">
+    <End Type="CISMModel.Currency" Role="Currency" Multiplicity="1" />
+    <End Type="CISMModel.ExchangeRate" Role="ExchangeRate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Currency">
+        <PropertyRef Name="currency_id" />
+      </Principal>
+      <Dependent Role="ExchangeRate">
+        <PropertyRef Name="from_currency_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_School_Currency">
+    <End Type="CISMModel.Currency" Role="Currency" Multiplicity="0..1" />
+    <End Type="CISMModel.School" Role="School" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Currency">
+        <PropertyRef Name="currency_id" />
+      </Principal>
+      <Dependent Role="School">
+        <PropertyRef Name="currency_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_EmployeeType">
+    <End Type="CISMModel.EmployeeType" Role="EmployeeType" Multiplicity="1" />
+    <End Type="CISMModel.Employee" Role="Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeType">
+        <PropertyRef Name="emp_type_Id" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="emp_type_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Grade">
+    <End Type="CISMModel.Grade" Role="Grade" Multiplicity="1" />
+    <End Type="CISMModel.Employee" Role="Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Grade">
+        <PropertyRef Name="grade_id" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="grade_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmployeeEducation_Employee">
+    <End Type="CISMModel.Employee" Role="Employee" Multiplicity="1" />
+    <End Type="CISMModel.EmployeeEducation" Role="EmployeeEducation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="employee_id" />
+      </Principal>
+      <Dependent Role="EmployeeEducation">
+        <PropertyRef Name="employee_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmployeeFamily_Employee">
+    <End Type="CISMModel.Employee" Role="Employee" Multiplicity="1" />
+    <End Type="CISMModel.EmployeeFamily" Role="EmployeeFamily" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="employee_id" />
+      </Principal>
+      <Dependent Role="EmployeeFamily">
+        <PropertyRef Name="employee_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmployeeHobbies_Employee">
+    <End Type="CISMModel.Employee" Role="Employee" Multiplicity="1" />
+    <End Type="CISMModel.EmployeeHobby" Role="EmployeeHobby" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="employee_id" />
+      </Principal>
+      <Dependent Role="EmployeeHobby">
+        <PropertyRef Name="employee_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmployeePersonalSkill_Employee">
+    <End Type="CISMModel.Employee" Role="Employee" Multiplicity="1" />
+    <End Type="CISMModel.EmployeePersonalSkill" Role="EmployeePersonalSkill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="employee_id" />
+      </Principal>
+      <Dependent Role="EmployeePersonalSkill">
+        <PropertyRef Name="employee_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmploymentHistory_Employee">
+    <End Type="CISMModel.Employee" Role="Employee" Multiplicity="1" />
+    <End Type="CISMModel.EmploymentHistory" Role="EmploymentHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="employee_id" />
+      </Principal>
+      <Dependent Role="EmploymentHistory">
+        <PropertyRef Name="employee_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmployeePaymentSetting_EmployeePaymentSetting">
+    <End Type="CISMModel.EmployeeGrade" Role="EmployeeGrade" Multiplicity="1" />
+    <End Type="CISMModel.EmployeePaymentSetting" Role="EmployeePaymentSetting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeGrade">
+        <PropertyRef Name="emp_grade_id" />
+      </Principal>
+      <Dependent Role="EmployeePaymentSetting">
+        <PropertyRef Name="emp_grade_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmployeeTypeGrade_EmployeeGrade">
+    <End Type="CISMModel.EmployeeGrade" Role="EmployeeGrade" Multiplicity="1" />
+    <End Type="CISMModel.EmployeeTypeGrade" Role="EmployeeTypeGrade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeGrade">
+        <PropertyRef Name="emp_grade_id" />
+      </Principal>
+      <Dependent Role="EmployeeTypeGrade">
+        <PropertyRef Name="emp_grade_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmployeePaymentSetting_EmployeeType">
+    <End Type="CISMModel.EmployeeType" Role="EmployeeType" Multiplicity="1" />
+    <End Type="CISMModel.EmployeePaymentSetting" Role="EmployeePaymentSetting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeType">
+        <PropertyRef Name="emp_type_Id" />
+      </Principal>
+      <Dependent Role="EmployeePaymentSetting">
+        <PropertyRef Name="emp_type_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmployeePersonalSkill_Skill">
+    <End Type="CISMModel.Skill" Role="Skill" Multiplicity="1" />
+    <End Type="CISMModel.EmployeePersonalSkill" Role="EmployeePersonalSkill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Skill">
+        <PropertyRef Name="skill_id" />
+      </Principal>
+      <Dependent Role="EmployeePersonalSkill">
+        <PropertyRef Name="skill_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmployeeTypeGrade_EmployeeType1">
+    <End Type="CISMModel.EmployeeType" Role="EmployeeType" Multiplicity="1" />
+    <End Type="CISMModel.EmployeeTypeGrade" Role="EmployeeTypeGrade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeType">
+        <PropertyRef Name="emp_type_Id" />
+      </Principal>
+      <Dependent Role="EmployeeTypeGrade">
+        <PropertyRef Name="emp_type_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Grade">
+    <End Type="CISMModel.Grade" Role="Grade" Multiplicity="1" />
+    <End Type="CISMModel.Student" Role="Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Grade">
+        <PropertyRef Name="grade_id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="grade_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubjectByGrade_Grade">
+    <End Type="CISMModel.Grade" Role="Grade" Multiplicity="1" />
+    <End Type="CISMModel.SubjectByGrade" Role="SubjectByGrade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Grade">
+        <PropertyRef Name="grade_id" />
+      </Principal>
+      <Dependent Role="SubjectByGrade">
+        <PropertyRef Name="grade_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Timetable_Grade">
+    <End Type="CISMModel.Grade" Role="Grade" Multiplicity="1" />
+    <End Type="CISMModel.Timetable" Role="Timetable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Grade">
+        <PropertyRef Name="grade_id" />
+      </Principal>
+      <Dependent Role="Timetable">
+        <PropertyRef Name="grade_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Menus_Menus">
+    <End Type="CISMModel.Menu" Role="Menu" Multiplicity="0..1" />
+    <End Type="CISMModel.Menu" Role="Menu1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="menuid" />
+      </Principal>
+      <Dependent Role="Menu1">
+        <PropertyRef Name="parent_menuid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolePermission_Menus">
+    <End Type="CISMModel.Menu" Role="Menu" Multiplicity="1" />
+    <End Type="CISMModel.RolePermission" Role="RolePermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="menuid" />
+      </Principal>
+      <Dependent Role="RolePermission">
+        <PropertyRef Name="menuID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_PaymentMode">
+    <End Type="CISMModel.PaymentMode" Role="PaymentMode" Multiplicity="1" />
+    <End Type="CISMModel.Student" Role="Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentMode">
+        <PropertyRef Name="paymentmode_id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="paymentmode_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolePermissionDetail_PermissionType">
+    <End Type="CISMModel.PermissionType" Role="PermissionType" Multiplicity="1" />
+    <End Type="CISMModel.RolePermissionDetail" Role="RolePermissionDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PermissionType">
+        <PropertyRef Name="permissionTypeId" />
+      </Principal>
+      <Dependent Role="RolePermissionDetail">
+        <PropertyRef Name="permissionTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PreviosSchoolRecordByStudent_Student">
+    <End Type="CISMModel.Student" Role="Student" Multiplicity="1" />
+    <End Type="CISMModel.PreviosSchoolRecordByStudent" Role="PreviosSchoolRecordByStudent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="student_id" />
+      </Principal>
+      <Dependent Role="PreviosSchoolRecordByStudent">
+        <PropertyRef Name="student_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolePermission_Role">
+    <End Type="CISMModel.Role" Role="Role" Multiplicity="1" />
+    <End Type="CISMModel.RolePermission" Role="RolePermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="roleId" />
+      </Principal>
+      <Dependent Role="RolePermission">
+        <PropertyRef Name="roleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Role">
+    <End Type="CISMModel.Role" Role="Role" Multiplicity="0..1" />
+    <End Type="CISMModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="roleId" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="roleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolePermissionDetail_RolePermission">
+    <End Type="CISMModel.RolePermission" Role="RolePermission" Multiplicity="1" />
+    <End Type="CISMModel.RolePermissionDetail" Role="RolePermissionDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RolePermission">
+        <PropertyRef Name="rolePermissionId" />
+      </Principal>
+      <Dependent Role="RolePermissionDetail">
+        <PropertyRef Name="rolePermissionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Year">
+    <End Type="CISMModel.Year" Role="Year" Multiplicity="0..1" />
+    <End Type="CISMModel.Student" Role="Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Year">
+        <PropertyRef Name="year_id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="year_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentGradeHistory_Student">
+    <End Type="CISMModel.Student" Role="Student" Multiplicity="1" />
+    <End Type="CISMModel.StudentGradeHistory" Role="StudentGradeHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="student_id" />
+      </Principal>
+      <Dependent Role="StudentGradeHistory">
+        <PropertyRef Name="student_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_student_tbl_log_in">
+    <End Type="CISMModel.User" Role="User" Multiplicity="1" />
+    <End Type="CISMModel.Student" Role="Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="createduser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_student_tbl_log_in1">
+    <End Type="CISMModel.User" Role="User" Multiplicity="1" />
+    <End Type="CISMModel.Student" Role="Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="modifieduser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubjectByGrade_Year">
+    <End Type="CISMModel.Year" Role="Year" Multiplicity="1" />
+    <End Type="CISMModel.SubjectByGrade" Role="SubjectByGrade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Year">
+        <PropertyRef Name="year_id" />
+      </Principal>
+      <Dependent Role="SubjectByGrade">
+        <PropertyRef Name="year_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,247 @@
+﻿@using CISM_PJ.Models;
+@{
+    ViewBag.Title = "Student";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    List<MenuAuthorizationModel> all_aut = ViewBag.ProgramPermission;
+    PermissionTypeCodeModel perType = new PermissionTypeCodeModel();
+    bool create = all_aut.Any(x => x.perms_type_code.ToLower() == perType.create && x.isGrant == true);
+    bool edit = all_aut.Any(x => x.perms_type_code.ToLower() == perType.edit && x.isGrant == true);
+    bool delete = all_aut.Any(x => x.perms_type_code.ToLower() == perType.delete && x.isGrant == true);
+    bool viewdetail = all_aut.Any(x => x.perms_type_code.ToLower() == perType.viewdetail && x.isGrant == true);
+    bool viewlist = all_aut.Any(x => x.perms_type_code.ToLower() == perType.viewlist && x.isGrant == true);
+}
+<style>
+    .hide-calendar .ui-datepicker-calendar {
+        display: none;
+    }
+</style>
+<form id="mywoform">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0 mt-0">Student</h5>
+        </div>
+        <div class="card-body">
+            <div class="container-fluid">
+                <div class="form-group row">
+                    <input type="hidden" id="hid_isAut_Edit" value="@edit.ToString()" />
+                    <input type="hidden" id="hid_menuID" value="@ViewBag.menuID.ToString()" />
+                    <input type="hidden" id="student_id" />
+                    <input type="hidden" id="state" />
+
+                    <div class="col-sm-12 row mb-1 p-0">
+                        <div class="col-sm-4 row mx-0">
+                            <div class="ml-3" style="border: thin solid black">
+                                <img src="" width="120px" height="100px" class="col-form-label" onclick="ViewImage()" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 row mb-1 p-0">
+                        <div class="col-sm-4 row mx-0">
+                            <input type="file" name="files" id="files" />
+                            <label id="lblmsg" style="color: red" class="col-md-8"></label>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 row mb-1 p-0">
+                        <div class="col-sm-4 row mx-0">
+                            <label class="col-form-label col-sm-4 px-0">Name<span style="color:red;">*</span></label>
+                            <div class="col-sm-6 pr-0">
+                                <input type="text" class="form-control" id="name" name="name" maxlength="50" autocomplete="off" />
+                            </div>
+                        </div>
+                        <div class="col-sm-4 row mx-0">
+                            <label class="col-form-label col-sm-4 px-0">Reg.No</label>
+                            <div class="col-sm-6 pr-0">
+                                <input type="text" class="form-control" id="reg_no" name="reg_no" readonly autocomplete="off" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 row mb-1 p-0">
+                        <div class="col-sm-4 row mx-0">
+                            <label class="col-form-label col-sm-4 px-0">DOB<span style="color:red;">*</span></label>
+                            <div class="col-sm-6 pr-0">
+                                <input type="text" class="form-control" id="dob" name="dob" maxlength="50" />
+                            </div>
+                        </div>
+                        <div class="col-sm-4 row mx-0">
+                            <label class="col-form-label col-sm-4 px-0">Email<span style="color:red;">*</span></label>
+                            <div class="col-sm-6 pr-0">
+                                <input type="text" class="form-control" id="email" name="email" maxlength="50" autocomplete="off" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 row mb-1 p-0">
+                        <div class="col-sm-4 row mx-0">
+                            <label class="col-form-label col-sm-4 px-0">Grade<span style="color:red;">*</span></label>
+                            <div class="col-sm-6 pr-0">
+                                <select class="custom-select" id="grade_id" name="grade_id"></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 row mx-0">
+                            <label class="col-form-label col-sm-4 px-0">Class</label>
+                            <div class="col-sm-6 pr-0">
+                                <select class="custom-select" id="class_id" name="class_id"></select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 row mb-1 p-0">
+                        <div class="col-sm-4 row mx-0">
+                            <label class="col-form-label col-sm-4 px-0">Year<span style="color:red;">*</span></label>
+                            <div class="col-sm-6 pr-0">
+                                <select id="year_id" name="year_id" class="custom-select"></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 row mx-0">
+                            <label class="col-form-label col-sm-4 px-0">Nationality</label>
+                            <div class="col-sm-6 pr-0">
+                                <input type="text" class="form-control" id="nationality" name="nationality" maxlength="50" autocomplete="off" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 row mb-1 p-0">
+                        <div class="col-sm-4 row mx-0">
+                            <label class="col-form-label col-sm-4 px-0">Citizen<span style="color:red;">*</span></label>
+                            <div class="col-sm-6 pr-0">
+                                <select class="custom-select" id="citizen_id" name="citizen_id"></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 row mx-0">
+                            <label class="col-form-label col-sm-4 px-0">Payment Mode<span style="color:red;">*</span></label>
+                            <div class="col-sm-6 pr-0">
+                                <select class="custom-select" id="paymentmode_id" name="paymentmode_id"></select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 row mb-1 p-0">
+                        <div class="col-sm-4 row mx-0">
+                            <label class="col-form-label col-sm-4 px-0">Father Name</label>
+                            <div class="col-sm-6 pr-0">
+                                <input type="text" class="form-control" id="father_name" name="father_name" maxlength="50" autocomplete="off" />
+                            </div>
+                        </div>
+                        <div class="col-sm-4 row mx-0">
+                            <label class="col-form-label col-sm-4 px-0">Mother Name</label>
+                            <div class="col-sm-6 pr-0">
+                                <input type="text" class="form-control" id="mother_name" name="mother_name" maxlength="50" autocomplete="off" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 row mb-1 p-0">
+                        <div class="col-sm-4 row mx-0">
+                            <label class="col-form-label col-sm-4 px-0">Contract No<span style="color:red;">*</span></label>
+                            <div class="col-sm-6 pr-0">
+                                <input type="text" class="form-control" id="contract_no" name="contract_no" maxlength="50" autocomplete="off" />
+                            </div>
+                        </div>
+                        <div class="col-sm-4 row mx-0">
+                            <label class="col-form-label col-sm-4 px-0">Contract No 1</label>
+                            <div class="col-sm-6 pr-0">
+                                <input type="text" class="form-control" id="contract_no1" name="contract_no1" maxlength="50" autocomplete="off" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 row mb-1 p-0">
+                        <div class="col-sm-4 row mx-0">
+                            <label class="col-form-label col-sm-4 px-0">Date of Join<span style="color:red;">*</span></label>
+                            <div class="col-sm-6 pr-0">
+                                <input type="text" class="form-control" id="date_of_join" name="date_of_join" maxlength="50" />
+                            </div>
+                        </div>
+                        <div class="col-sm-4 row mx-0">
+                            <label class="col-form-label col-sm-4 px-0">Date of Exit</label>
+                            <div class="col-sm-6 pr-0">
+                                <input type="text" class="form-control" id="date_of_exit" name="date_of_exit" maxlength="50" autocomplete="off" />
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-sm-12 row mb-1 p-0">
+                        <div class="col-sm-8 row mx-0">
+                            <label class="col-form-label col-sm-2 px-0">Address<span style="color:red;">*</span></label>
+                            <div class="col-sm-10 pr-0">
+                                <textarea class="form-control" id="address" name="address" rows="3" maxlength="300" autocomplete="off"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-12 row mb-1 p-0">
+                        <div class="col-sm-8 row mx-0">
+                            <label class="col-form-label col-sm-2 px-0">Remarks</label>
+                            <div class="col-sm-10 pr-0">
+                                <textarea class="form-control" id="remark" name="remark" rows="3" autocomplete="off"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="form-group row mb-0">
+                <div class="col-md-2">
+                    @*<input class="btn btn-primary" type="button" name="BackBtn" id="BackBtn" value="Back" />*@
+                    <button type="button" class="btn btn-dark" id="BackBtn">
+                        <i class="fa fa-arrow-left"></i> Back
+                    </button>
+                </div>
+                <div class="col-md-10">
+                    <button type="submit" class="btn btn-primary" id="btnSave">
+                        <i class="fa fa-save"></i> <lale id="lblAction">Save</lale>
+                    </button>
+
+                    <button type="button" class="btn btn-warning" id="btnSchoolRecord" data-toggle="modal" data-target="#dialogPreviousSchoolRecord" style="display :none;">
+                        <i class="fa fa-upload"></i> Shool Record
+                    </button>
+
+                    @*<button type="button" class="btn btn-success" id="btnAttach" data-toggle="modal" data-target="#dialogAttachList">
+                        <i class="fa fa-upload"></i> Attachment
+                    </button>
+                    <button type="button" class="btn btn-warning" id="btnViewAttach" data-toggle="modal" data-target="#ViewdialogAttachList">
+                        <i class="fa fa-eye"></i> View Attachment
+                    </button>*@
+                    <button type="button" class="btn btn-secondary" id="CancelBtn">
+                        <i class="fa fa-sign-out"></i> Cancel
+                    </button>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+@Html.Partial("~/Areas/StudentsInfo/Views/Students/_PreviousSchoolRecord.cshtml")
+
+@section Scripts {
+    <link rel="stylesheet" href="~/Content/themes/base/jquery-ui.css" />
+    <link rel="stylesheet" href="~/Content/jquery.timepicker.css" />
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.validate-additional-methods.min.js"></script>
+    <script src="~/Scripts/jqueryui/jquery-ui.js"></script>
+    <script src="~/Scripts/jquery.timepicker.js"></script>
+    <script src="~/Scripts/moment.js"></script>
+
+
+    <script src="~/JavaScriptFiles/Student.js"></script>
+}
+
+<script type="text/javascript">
+    @*var Cur_Rate_List = @Html.Raw(Json.Encode(@ViewBag.Cur_Rate_Data));*@
+
+</script>
+
+

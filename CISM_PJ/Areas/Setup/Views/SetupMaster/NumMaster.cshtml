@@ -1,0 +1,168 @@
+﻿@using CISM_PJ.Models
+@using CISM_PJ.Common
+@{
+    ViewBag.Title = "Reg Master";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@{
+    List<MenuAuthorizationModel> all_aut = ViewBag.ProgramPermission;
+    PermissionTypeCodeModel perType = new PermissionTypeCodeModel();
+    bool create = all_aut.Any(x => x.perms_type_code.ToLower() == perType.create && x.isGrant == true);
+    bool edit = all_aut.Any(x => x.perms_type_code.ToLower() == perType.edit && x.isGrant == true);
+    bool delete = all_aut.Any(x => x.perms_type_code.ToLower() == perType.delete && x.isGrant == true);
+    bool viewdetail = all_aut.Any(x => x.perms_type_code.ToLower() == perType.viewdetail && x.isGrant == true);
+    bool viewlist = all_aut.Any(x => x.perms_type_code.ToLower() == perType.viewlist && x.isGrant == true);
+}
+<div class="card">
+    <div class="card-header">
+        <h5 class="mb-0">Reg Master</h5>
+    </div>
+    <div class="card-body">
+        <input type="hidden" id="hid_isAut_Create" value="@create.ToString()" />
+        <input type="hidden" id="hid_isAut_Edit" value="@edit.ToString()" />
+        <input type="hidden" id="hid_isAut_Delete" value="@delete.ToString()" />
+        <input type="hidden" id="hid_isAut_ViewDetail" value="@viewdetail.ToString()" />
+        <input type="hidden" id="hid_menuID" value="@ViewBag.menuID.ToString()" />
+        <input type="hidden" id="state" />
+        @if (create)
+        {
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#dialogAdd"><i class="fa fa-plus"></i>&nbsp;New</button>
+            </div>
+        }
+        <hr />
+        @if (viewlist)
+        {
+            <div class="table-responsive">
+                <table id="myTable" class="table table-bordered table-sm w-100">
+                    <thead>
+                        <tr>
+                            <th>Prefix</th>
+                            <th>Format</th>
+                            <th>Next No</th>
+                            <th>End No</th>
+                            <th class="w-15"></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="modal fade" id="dialogDelete" tabindex="-3" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog w-30 mt-5" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5 class="text-black">Are you sure you want to delete this?</h5>
+                <input type="hidden" class="form-control" id="txtID" name="txtID" />
+            </div>
+            <div class="modal-footer">
+                <input type="button" id="btnDeletePopup" class="btn btn-primary" value="Confirm" />
+                <input type="button" class="btn btn-danger" data-dismiss="modal" value="Cancel" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="dialogAdd" tabindex="-3" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <form id="addform">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Number Master</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        @*Customer No*@
+                        <div class="col-sm-12 row mx-0 mb-1 p-0">
+                            <div class="col-sm-6 row mx-0">
+                                <input type="hidden" id="num_id"/>
+                                <label for="format_no" class="col-form-label col-sm-4 px-0">Format No<span style="color:red;">*</span></label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="format_no" name="format_no" />
+                                </div>
+                            </div>
+                            <div class="col-sm-6 row mx-0">
+                                <label for="doc_control" class="col-form-label col-sm-4 px-0">Document Control<span style="color:red;">*</span></label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="doc_control" name="doc_control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 row mx-0 mb-1 p-0">
+                            <div class="col-sm-6 row mx-0">
+                                <label for="doc_prefix" class="col-form-label col-sm-4 px-0">Prefix<span style="color:red;">*</span></label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="doc_prefix" name="doc_prefix" />
+                                </div>
+                            </div>
+                            <div class="col-sm-6 row mx-0">
+                                <label for="doc_format" class="col-form-label col-sm-4 px-0">Format<span style="color:red;">*</span></label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="doc_format" name="doc_format" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 row mx-0 mb-1 p-0">
+
+                            <div class="col-sm-6 row mx-0">
+                                <label for="next_no" class="col-form-label col-sm-4 px-0">Next No<span style="color:red;">*</span></label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="next_no" name="next_no" />
+                                </div>
+                            </div>
+                            <div class="col-sm-6 row mx-0">
+                                <label for="end_no" class="col-form-label col-sm-4 px-0">End No<span style="color:red;">*</span></label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="end_no" name="end_no" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 row mx-0 mb-1 p-0">
+                           
+                            <div class="col-sm-6 row mx-0">
+                                <label for="restart_no" class="col-form-label col-sm-4 px-0">Restart No<span style="color:red;">*</span></label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="restart_no" name="restart_no" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    @*<button type="submit" class="btn btn-primary" id="btnAdd">Save</button>
+                    <button type="button" class="btn btn-dropbox" data-dismiss="modal">Cancel</button>*@
+                     <button type="submit" class="btn btn-primary" id="btnSave">
+                        <i class="fa fa-save"></i> Save
+                    </button>
+                    <button type="submit" class="btn btn-secondary" id="CancelBtn" data-dismiss="modal">
+                        <i class="fa fa-sign-out"></i> Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <link rel="stylesheet" href="~/Content/themes/base/jquery-ui.css" />
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.validate-additional-methods.min.js"></script>
+    <script src="~/Scripts/jqueryui/jquery-ui.js"></script>
+    <script src="~/JavaScriptFiles/RegNoMaster.js"></script>
+}
+
+

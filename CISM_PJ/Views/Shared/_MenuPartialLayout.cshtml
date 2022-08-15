@@ -1,0 +1,88 @@
+﻿@using CISM_PJ.Helpers
+@using CISM_PJ.Areas.Admin.Models
+@if (SessionHelper.Get<List<MenuViewModel>>("MenuMaster") != null)
+{
+
+    var menuslist = SessionHelper.Get<List<MenuViewModel>>("MenuMaster");
+
+    var groupByMeus = menuslist.GroupBy(x => x.MenusName).ToList();
+
+    foreach (var MenusList in groupByMeus)
+    {
+        foreach (var ChildMenus in MenusList)
+        {
+    <li class="nav-item nav-dropdown">
+        @if (@ChildMenus.ChildMenus.Count > 0)
+        {
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon @ChildMenus.menu_icon"></i> @ChildMenus.MenusName </a>
+        }
+        else
+        {
+            <a href="/@ChildMenus.Area/@ChildMenus.ControllerName/@ChildMenus.ActionName?MenuID=@ChildMenus.MenusID@ChildMenus.query_str" class="nav-link">
+                <i class="nav-icon @ChildMenus.menu_icon"></i>@ChildMenus.MenusName
+            </a>
+
+            @*<a class="nav-link" href="#"><i class="nav-icon @ChildMenus.menu_icon"></i> @ChildMenus.MenusName </a>*@
+        }
+
+        <ul class="nav-dropdown-items">
+
+            @foreach (var SecondChild in ChildMenus.ChildMenus)
+            {
+
+                if (SecondChild.ChildMenus.Count() > 0)
+                {
+                    <li class="nav-item nav-dropdown">
+                        <a href="#" class="nav-link nav-dropdown-toggle">
+                            <i class="nav-icon @SecondChild.menu_icon"></i>@SecondChild.MenusName
+                        </a>
+                        <ul class="nav-dropdown-items">
+                            @foreach (var ThirdChild in SecondChild.ChildMenus)
+                            {
+                                if (ThirdChild.ChildMenus.Count > 0)
+                                {
+                                    <li class="nav-item nav-dropdown">
+                                        <a href="#" class="nav-link nav-dropdown-toggle">
+                                            <i class="nav-icon @ThirdChild.menu_icon"></i>@ThirdChild.MenusName
+                                        </a>
+                                        <ul class="nav-dropdown-items">
+                                            @foreach (var FourthChild in ThirdChild.ChildMenus)
+                                            {
+                                                <li class="nav-item px-2">
+                                                    <a href="/@FourthChild.Area/@FourthChild.ControllerName/@FourthChild.ActionName?MenuID=@FourthChild.MenusID@FourthChild.query_str" class="nav-link">
+                                                        <i class="nav-icon @FourthChild.menu_icon"></i>@FourthChild.MenusName
+                                                        @*<a href="@Url.Action(FourthChild.ActionName,FourthChild.ControllerName,new { Area = FourthChild.Area, MenuID= FourthChild.MenusID + FourthChild.query_str})" class="nav-link">
+                                                        <i class="nav-icon icon-star"></i>@FourthChild.MenusName*@
+                                                    </a>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="nav-item px-2">
+                                        <a href="/@ThirdChild.Area/@ThirdChild.ControllerName/@ThirdChild.ActionName?MenuID=@ThirdChild.MenusID@ThirdChild.query_str" class="nav-link">
+                                            <i class="nav-icon @ThirdChild.menu_icon"></i>@ThirdChild.MenusName
+                                        </a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item px-2">
+                        <a href="/@SecondChild.Area/@SecondChild.ControllerName/@SecondChild.ActionName?MenuID=@SecondChild.MenusID@SecondChild.query_str" class="nav-link">
+                            <i class="nav-icon @SecondChild.menu_icon"></i>@SecondChild.MenusName
+                        </a>
+                    </li>
+                }
+            }
+        </ul>
+    </li>
+        }
+    }
+
+}

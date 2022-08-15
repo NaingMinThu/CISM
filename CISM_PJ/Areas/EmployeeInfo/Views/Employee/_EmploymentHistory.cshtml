@@ -1,0 +1,347 @@
+﻿
+<div class="modal fade" id="dialogEmployementHistory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false" aria-hidden="true">
+    <div class="modal-dialog w-75 h-100" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Employment History</h5>
+                <button type="button" id="btnClose" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+                <div class="modal-body">
+                    <input type="hidden" id="serial_no_Histories" />
+                    <input type="hidden" id="employment_history_id" />
+
+                    <div class="col-sm-12 row mb-1 p-0">
+                        <div class="col-sm-4 row mx-0">
+                            <label class="col-form-label col-sm-4 px-0">Reg No</label>
+                            <div class="col-sm-6 pr-0">
+                                <input type="text" class="form-control" id="his_reg_no" name="his_reg_no" maxlength="50" readonly />
+                                <em id="his_reg_no_error" class="error error_msg"></em>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-12 row mb-1 p-0">
+                        <div class="col-sm-4 row mx-0">
+                            <label class="col-form-label col-sm-4 px-0">Year From<span style="color:red;">*</span></label>
+                            <div class="col-sm-6 pr-0">
+                                <input type="text" class="form-control" id="his_year_from" name="his_year_from" maxlength="50" />
+                                <em id="his_year_from_error" class="error error_msg"></em>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 row mx-0">
+                            <label class="col-form-label col-sm-4 px-3">To<span style="color:red;">*</span></label>
+                            <div class="col-sm-6 pr-0">
+                                <input type="text" class="form-control" id="his_year_to" name="his_year_to" maxlength="50" autocomplete="off" />
+                                <em id="his_year_to_error" class="error error_msg"></em>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 row mb-1 p-0">
+                        <div class="col-sm-4 row mx-0">
+                            <label class="col-form-label col-sm-4 px-0">Employer<span style="color:red;">*</span></label>
+                            <div class="col-sm-6 pr-0">
+                                <input type="text" class="form-control" id="employer" name="employer" maxlength="50" />
+                                <em id="employer_error" class="error error_msg"></em>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 row mx-0">
+                            <label class="col-form-label col-sm-4 px-3">Job Title<span style="color:red;">*</span></label>
+                            <div class="col-sm-6 pr-0">
+                                <input type="text" class="form-control" id="job_title" name="job_title" maxlength="50" autocomplete="off" />
+                                <em id="job_title_error" class="error error_msg"></em>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 row mb-1 p-0">
+                        <div class="col-sm-4 row mx-0">
+                            <label class="col-form-label col-sm-4 px-0">Salary</label>
+                            <div class="col-sm-6 pr-0">
+                                <input type="text" class="form-control" id="salary" name="salary" maxlength="50" />
+                                <em id="salary_error" class="error error_msg"></em>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row mb-0">
+                        <div class="offset-sm-4 col-sm-3">
+                            <button type="button" class="btn btn-primary" id="btnHistoriesAdd">
+                                <i class="fa fa-plus"></i> <lable id="lblHistories"> Add</lable>
+                            </button>
+                            <button type="button" class="btn btn-danger" id="btnClearHistories">
+                                <i class="fa fa-close"></i> Clear
+                            </button>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="form-group row">
+                        <div class="col-sm table-responsive pre-scrollable px-1">
+                            <table id="HistoriesTable" class="table table-bordered table-sm" style="table-layout:fixed">
+                                <thead>
+                                    <tr>
+                                        <th style="width:5%">S/No</th>
+                                        <th style="width:20%">Reg No</th>
+                                        <th style="width:10%">Year From</th>
+                                        <th style="width:13%">Year To</th>
+                                        <th style="width:15%">Employer</th>
+                                        <th style="width:11%">Job Title</th>
+                                        <th style="width:11%">Salary</th>
+                                        <th style="width:15%"></th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                                <tfoot>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-danger" data-dismiss="modal" value="Close" />
+                </div>
+        </div>
+    </div>
+</div>
+
+<link href="~/Components/Treed/style.css" rel="stylesheet" />
+<style>
+    .noselect {
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+    }
+
+    #mceu_121 {
+        display: none;
+    }
+
+    #mceu_123 {
+        display: none;
+    }
+
+    #mceu_152 {
+        display: none;
+    }
+
+    #mceu_154 {
+        display: none;
+    }
+    .error_msg {
+        width: 100%;
+        margin-top: 0.25rem;
+        font-size: 80%;
+        color: #f86c6b
+    }
+</style>
+
+<script src="~/Scripts/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+    var serial_no_Histories = 0;
+    $('#btnClearHistories').click(function (e) {
+        clear_Histories();
+    });
+
+    $('#btnHistoriesAdd').click(function (e) {
+        if ($("#his_reg_no").val() != "" && $("#his_reg_no").val() != null &&
+            $("#his_year_from").val() != "" && $("#his_year_from").val() != null &&
+            $("#his_year_to").val() != "" && $("#his_year_to").val() != null &&
+            $("#employer").val() != "" && $("#employer").val() != null &&
+            $("#job_title").val() != "" && $("#job_title").val() != null &&
+            $("#salary").val() != "" && $("#salary").val() != null) {
+            console.log("True");
+            var schoolInfo = Hisotries.filter(x => x.passed_grade == $('#passed_grade').val() && x.serial_no_Histories != $('#serial_no_Histories').val());
+            console.log(schoolInfo);
+            if (schoolInfo.length == 0) {
+
+                if ($("#serial_no_Histories").val() != "" && $("#serial_no_Histories").val() != null) {
+                    $.each(Hisotries, function (i, obj) {
+                        if (obj.serial_no_Histories == $("#serial_no_Histories").val()) {
+                            obj = BindHistories(obj);
+                            return false;
+                        }
+                    });
+                }
+                else {
+                    let a = BindHistories({});
+                    Hisotries.push(a);
+                }
+                console.log(Hisotries);
+                $("#HistoriesTable tbody").empty();
+                showHistoriesTable();
+                clear_Histories();
+            }
+            else {
+                toastr.error("This passed grade is already existed!", "Error."),
+                    setTimeout(function () { }, 1e4);
+            }
+        }
+        else {
+            console.log("False");
+            console.log($("#passed_grade").val());
+            if ($("#his_reg_no").val() == "" || $("#his_reg_no").val() == null) {
+                $("#his_reg_no_error").text("Reg No is required!");
+            }
+            else {
+                $("#his_reg_no_error").text("");
+            }
+
+            if ($("#his_year_from").val() == "" || $("#his_year_from").val() == null) {
+                $("#his_year_from_error").text("Year From is required!");
+            }
+            else {
+                $("#his_year_from_error").text("");
+            }
+
+            if ($("#his_year_to").val() == "" || $("#his_year_to").val() == null) {
+                $("#his_year_to_error").text("Year From is required!");
+            }
+            else {
+                $("#his_year_to_error").text("");
+            }
+
+            if ($("#employer").val() == "" || $("#employer").val() == null) {
+                console.log("true");
+                $("#employer_error").text("Employer is required!");
+            }
+            else {
+                console.log("false");
+                $("#employer_error").text("");
+            }
+
+            if ($("#job_title").val() == "" || $("#job_title").val() == null) {
+                $("#job_title_error").text("Job Title is required!");
+            }
+            else {
+                $("#job_title_error").text("");
+            }
+              if ($("#salary").val() == "" || $("#salary").val() == null) {
+                $("#salary_error").text("Salary is required!");
+            }
+            else {
+                $("#salary_error").text("");
+            }
+        }
+    });
+
+    function BindHistories(obj) {
+        obj.reg_no = $("#his_reg_no").val();
+        obj.employment_history_id = $("#employment_history_id").val();
+        obj.year_from = $("#his_year_from").val();
+        obj.year_to = $("#his_year_to").val();
+        obj.syear_from = $("#his_year_from").val();
+        obj.syear_to = $("#his_year_to").val();
+        obj.employer = $("#employer").val();
+        obj.job_title = $('#job_title').val();
+        obj.salary = $('#salary').val();
+        return obj;
+    }
+
+    function showHistoriesTable() {
+        serial_no_Histories = 0;
+        console.log("showTeamMemberTable");
+        if (Hisotries.length === 0) return;
+        $("#HistoriesTable tbody").empty();
+        $.each(Hisotries, function (i, obj) {
+            serial_no_Histories += 1;
+            obj.serial_no_Histories = serial_no_Histories;
+            //obj.year_from = syear_from;
+            //obj.syear_to = syear_to;
+            $("#HistoriesTable tbody").append(create_Rowstring_Histories(obj));
+        });
+    }
+
+    function create_Rowstring_Histories(row) {
+        var tblrow = "<tr>";
+
+        tblrow += create_Colstring_Histories(row.serial_no_Histories, false);
+        tblrow += create_Colstring_Histories(row.reg_no, false);
+        tblrow += create_Colstring_Histories(row.syear_from, false);
+        tblrow += create_Colstring_Histories(row.syear_to, false);
+        tblrow += create_Colstring_Histories(row.employer, false);
+        tblrow += create_Colstring_Histories(row.job_title, false);
+        tblrow += create_Colstring_Histories(row.salary, true);
+
+        var td4 = "<td>" +
+            "<button type='button'" +
+            "onclick=editing_histories('" + row.serial_no_Histories + "'); " +
+            'style="color: white; " class="btn btn-primary btn-sm"><span class="fa fa-edit"></span>&nbsp;Edit' +
+            "</button>";
+
+        var td5 =
+            "<button type='button'" +
+            "onclick=deleting_Histories('" + row.serial_no_Histories + "','" + row.prv_school_id + "'); " +
+            'style="color: white; " class="btn btn-danger btn-sm"><span class="fa fa-edit"></span>&nbsp;Delete' +
+            "</button>"
+        "</td></tr > ";
+
+        tblrow += td4 + td5 + "</tr>";
+        return tblrow;
+    }
+
+    function create_Colstring_Histories(data, isalignright) {
+        var tblcol = "<td" + (isalignright ? " class='text-right'>" : ">") + data + "</td>";
+        return tblcol;
+    }
+
+    function deleting_Histories(serial,prv_shool_id) {
+        Hisotries = $.grep(Hisotries, function (obj) { return obj.serial_no_Histories != serial; });
+        console.log(Hisotries);
+        $("#HistoriesTable tbody").empty();
+        showHistoriesTable();
+    }
+
+    function editing_histories(serial) {
+        $.each(Hisotries, function (i, obj) {
+            if (obj.serial_no_Histories == serial) {
+                $("#serial_no_Histories").val(serial);
+                $("#employment_history_id").val(obj.employment_history_id);
+                $("#his_year_from").val(obj.syear_from);
+                $("#his_year_to").val(obj.syear_to);
+                $("#employer").val(obj.employer);
+                $("#job_title").val(obj.job_title);
+                $("#salary").val(obj.salary);
+                $("#lblHistories").text("Update");
+                return false;
+            }
+        });
+    }
+
+    function clear_Histories() {
+        $("#serial_no_Histories").val("");
+        $("#employment_history_id").val("");
+        setToday("#his_year_from");
+        setToday("#his_year_to");
+        $("#employer").val("");
+        $("#job_title").val("");
+        $("#salary").val("");
+        $("#lblHistories").text("Add");
+        $("#his_reg_no_error").text("");
+        $("#his_year_from_error").text("");
+        $("#his_year_to_error").text("");
+        $("#employer_error").text("");
+        $("#job_title_error").text("");
+        $("#salary_error").text("");
+    }
+
+    $("#salary").keypress(function (e) {
+        return isWholeNumber(e);
+    });
+
+    function isWholeNumber(evt) {
+        evt = (evt) ? evt : window.event;
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+    }
+</script>

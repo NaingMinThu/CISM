@@ -1,0 +1,339 @@
+﻿
+<div class="modal fade" id="dialogFaimly" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false" aria-hidden="true">
+    <div class="modal-dialog w-75 h-100" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Family</h5>
+                <button type="button" id="btnClose" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+                <div class="modal-body">
+                    <input type="hidden" id="serial_no_family" />
+                    <input type="hidden" id="family_id" />
+
+                    <div class="col-sm-12 row mb-1 p-0">
+                        <div class="col-sm-4 row mx-0">
+                            <label class="col-form-label col-sm-4 px-0">Reg No</label>
+                            <div class="col-sm-6 pr-0">
+                                <input type="text" class="form-control" id="fm_reg_no" name="fm_reg_no" maxlength="50" readonly />
+                                <em id="fm_reg_no_error" class="error error_msg"></em>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-12 row mb-1 p-0">
+                        <div class="col-sm-4 row mx-0">
+                            <label class="col-form-label col-sm-4 px-0">Name<span style="color:red;">*</span></label>
+                            <div class="col-sm-6 pr-0">
+                                <input type="text" class="form-control" id="fm_name" name="fm_name" maxlength="50" />
+                                <em id="fm_name_error" class="error error_msg"></em>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 row mx-0">
+                            <label class="col-form-label col-sm-4 px-3">Relationship<span style="color:red;">*</span></label>
+                            <div class="col-sm-6 pr-0">
+                                <input type="text" class="form-control" id="relationship" name="relationship" maxlength="50" autocomplete="off" />
+                                <em id="relationship_error" class="error error_msg"></em>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 row mb-1 p-0">
+                        <div class="col-sm-4 row mx-0">
+                            <label class="col-form-label col-sm-4 px-0">Age<span style="color:red;">*</span></label>
+                            <div class="col-sm-6 pr-0">
+                                <input type="text" class="form-control" id="age" name="age" maxlength="50" />
+                                <em id="age_error" class="error error_msg"></em>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 row mx-0">
+                            <label class="col-form-label col-sm-4 px-3">Occupation<span style="color:red;">*</span></label>
+                            <div class="col-sm-6 pr-0">
+                                <input type="text" class="form-control" id="occupation" name="occupation" maxlength="50" autocomplete="off" />
+                                <em id="occupation_error" class="error error_msg"></em>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row mb-0">
+                        <div class="offset-sm-4 col-sm-3">
+                            <button type="button" class="btn btn-primary" id="btnFamilyData">
+                                <i class="fa fa-plus"></i> <lable id="lblFamilyAction"> Add</lable>
+                            </button>
+                            <button type="button" class="btn btn-danger" id="btnClearFamily">
+                                <i class="fa fa-close"></i> Clear
+                            </button>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="form-group row">
+                        <div class="col-sm table-responsive pre-scrollable px-1">
+                            <table id="FamilyTable" class="table table-bordered table-sm" style="table-layout:fixed">
+                                <thead>
+                                    <tr>
+                                        <th style="width:5%">S/No</th>
+                                        <th style="width:20%">Reg No</th>
+                                        <th style="width:10%">Name</th>
+                                        <th style="width:13%">Relationship</th>
+                                        <th style="width:15%">Age</th>
+                                        <th style="width:22%">Occupation</th>
+                                        <th style="width:15%"></th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                                <tfoot>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-danger" data-dismiss="modal" value="Close" />
+                </div>
+        </div>
+    </div>
+</div>
+
+<link href="~/Components/Treed/style.css" rel="stylesheet" />
+<style>
+    .noselect {
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+    }
+
+    #mceu_121 {
+        display: none;
+    }
+
+    #mceu_123 {
+        display: none;
+    }
+
+    #mceu_152 {
+        display: none;
+    }
+
+    #mceu_154 {
+        display: none;
+    }
+    .error_msg {
+        width: 100%;
+        margin-top: 0.25rem;
+        font-size: 80%;
+        color: #f86c6b
+    }
+</style>
+
+<script src="~/Scripts/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+    var serial_no_family = 0;
+    $('#btnClearFamily').click(function (e) {
+        clear_Family();
+    });
+
+    $('#btnFamilyData').click(function (e) {
+        if ($("#fm_reg_no").val() != "" && $("#fm_reg_no").val() != null &&
+            $("#fm_name").val() != "" && $("#fm_name").val() != null &&
+            $("#relationship").val() != "" && $("#relationship").val() != null &&
+            $("#age").val() != "" && $("#age").val() != null &&
+            $("#occupation").val() != "" && $("#occupation").val() != null) {
+            console.log("True");
+            //var schoolInfo = Family.filter(x => x.age == $('#age').val() && x.serial_no_family != $('#serial_no_family').val());
+            //console.log(schoolInfo);
+            //if (schoolInfo.length == 0) {
+
+            if ($("#serial_no_family").val() != "" && $("#serial_no_family").val() != null) {
+                $.each(Family, function (i, obj) {
+                    if (obj.serial_no_family == $("#serial_no_family").val()) {
+                        obj = BindFamily(obj);
+                        return false;
+                    }
+                });
+            }
+            else {
+                let a = BindPreviousSchoolRecord({});
+                Family.push(a);
+            }
+            console.log(Family);
+            $("#FamilyTable tbody").empty();
+            showFamilyTable();
+            clear_Family();
+            //}
+            //else {
+            //    toastr.error("This passed grade is already existed!", "Error."),
+            //        setTimeout(function () { }, 1e4);
+            //}
+        }
+        else {
+            console.log("False");
+            console.log($("#age").val());
+            if ($("#fm_reg_no").val() == "" || $("#fm_reg_no").val() == null) {
+                $("#fm_reg_no_error").text("Reg No is required!");
+            }
+            else {
+                $("#fm_reg_no_error").text("");
+            }
+
+            if ($("#fm_name").val() == "" || $("#fm_name").val() == null) {
+                $("#fm_name_error").text("Name is required!");
+            }
+            else {
+                $("#fm_name_error").text("");
+            }
+
+            if ($("#relationship").val() == "" || $("#relationship").val() == null) {
+                $("#relationship_error").text("Relationship is required!");
+            }
+            else {
+                $("#relationship_error").text("");
+            }
+
+            if ($("#age").val() == "" || $("#age").val() == null) {
+                console.log("true");
+                $("#age_error").text("Age is required!");
+            }
+            else {
+                console.log("false");
+                $("#age_error").text("");
+            }
+
+            if ($("#occupation").val() == "" || $("#occupation").val() == null) {
+                $("#occupation_error").text("Occuption is required!");
+            }
+            else {
+                $("#occupation_error").text("");
+            }
+        }
+    });
+
+    function BindPreviousSchoolRecord(obj) {
+        obj.reg_no = $("#fm_reg_no").val();
+        obj.family_id = $("#family_id").val();
+        obj.name = $("#fm_name").val();
+        obj.relationship = $("#relationship").val();
+        obj.age = $("#age").val();
+        obj.occupation = $('#occupation').val();
+        return obj;
+    }
+
+    function showFamilyTable() {
+        serial_no_family = 0;
+        console.log("showTeamMemberTable");
+        if (Family.length === 0) return;
+        $("#FamilyTable tbody").empty();
+        $.each(Family, function (i, obj) {
+            serial_no_family += 1;
+            obj.serial_no_family = serial_no_family;
+            //obj.fm_name = sfm_name;
+            //obj.srelationship = srelationship;
+            $("#FamilyTable tbody").append(create_Rowstring_Family(obj));
+        });
+    }
+
+    function create_Rowstring_Family(row) {
+        var tblrow = "<tr>";
+
+        tblrow += create_Colstring_Family(row.serial_no_family, false);
+        tblrow += create_Colstring_Family(row.reg_no, false);
+        tblrow += create_Colstring_Family(row.name, false);
+        tblrow += create_Colstring_Family(row.relationship, false);
+        tblrow += create_Colstring_Family(row.age, false);
+        tblrow += create_Colstring_Family(row.occupation, false);
+
+        var td4 = "<td>" +
+            "<button type='button'" +
+            "onclick=editing_Family('" + row.serial_no_family + "'); " +
+            'style="color: white; " class="btn btn-primary btn-sm"><span class="fa fa-edit"></span>&nbsp;Edit' +
+            "</button>";
+
+        var td5 =
+            "<button type='button'" +
+            "onclick=deleting_Family('" + row.serial_no_family + "','" + row.prv_school_id + "'); " +
+            'style="color: white; " class="btn btn-danger btn-sm"><span class="fa fa-edit"></span>&nbsp;Delete' +
+            "</button>"
+        "</td></tr > ";
+
+        tblrow += td4 + td5 + "</tr>";
+        return tblrow;
+    }
+
+    function create_Colstring_Family(data, isalignright) {
+        var tblcol = "<td" + (isalignright ? " class='text-right'>" : ">") + data + "</td>";
+        return tblcol;
+    }
+
+    function reserialize_Previous() {
+        var count = 0;
+        var activecount = $.grep(Family, function (obj) { return obj.state != 'Deleted'; }).length;
+        $.each(Family, function (index, obj) {
+            if (obj.state != "Deleted") {
+                count += 1;
+                obj.serial_no_family = count;
+            }
+            else {
+                activecount += 1;
+                obj.serial_no_family = activecount;
+            }
+        });
+    }
+
+    function deleting_Family(serial,prv_shool_id) {
+        Family = $.grep(Family, function (obj) { return obj.serial_no_family != serial; });
+        console.log(Family);
+        $("#FamilyTable tbody").empty();
+        showFamilyTable();
+    }
+
+    function editing_Family(serial) {
+        $.each(Family, function (i, obj) {
+            if (obj.serial_no_family == serial) {
+                $("#serial_no_family").val(serial);
+                $("#family_id").val(obj.family_id);
+                $("#fm_name").val(obj.name);
+                $("#relationship").val(obj.relationship);
+                $("#age").val(obj.age);
+                $("#occupation").val(obj.occupation);
+                $("#lblFamilyAction").text("Update");
+                return false;
+            }
+        });
+    }
+
+    function clear_Family() {
+        $("#serial_no_family").val("");
+        $("#family_id").val("");
+        setToday("#fm_name");
+        setToday("#relationship");
+        $("#fm_name").val("");
+        $("#relationship").val("");
+        $("#age").val("");
+        $("#occupation").val("");
+        $("#lblFamilyAction").text("Add");
+
+        $("#fm_reg_no_error").text("");
+        $("#fm_name_error").text("");
+        $("#relationship_error").text("");
+        $("#age_error").text("");
+        $("#occupation_error").text("");
+    }
+
+    $("#age").keypress(function (e) {
+        return isWholeNumber(e);
+    });
+
+    function isWholeNumber(evt) {
+        evt = (evt) ? evt : window.event;
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+    }
+</script>

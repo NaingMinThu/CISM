@@ -1,0 +1,280 @@
+﻿
+    <div class="modal fade" id="dialogSubjectAcademic" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false" aria-hidden="true">
+        <div class="modal-dialog w-60 h-100" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel">Class</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <input type="hidden" id="state" />
+                <div class="modal-body">
+                    <div class="col-sm-12">
+                        <div class="form-group row mb-1">
+                            <label class="col-form-label col-sm-2 px-3">Grade</label>
+                            <div class="col-sm-2">
+                                @*<input type="text" class="form-control" id="grade_name" name="grade_name" />*@
+                                <select id="grade_id" name="grade_id" class="custom-select"></select>
+                            </div>
+                            <div class="input-group col-sm-2 pl-0 d-block">
+                            </div>
+
+                        </div>
+                    </div>
+                    <input type="hidden" id="state" />
+                    <input type="hidden" id="index" />
+                    <input type="hidden" id="class_id" />
+                    @*<div class="col-sm-12">
+                        <div class="form-group row mb-1">
+                            <label class="col-form-label col-sm-2 px-3"><b>Class List</b></label>
+                            <br />
+                        </div>
+                    </div>*@
+
+                    <div class="col-sm-12">
+                        <div class="form-group row mb-1">
+                            <label class="col-form-label col-sm-2 px-3">Class</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="class_name" name="class_name" />
+                            </div>
+                            <div class="input-group col-sm-2 pl-0 d-block">
+                                &nbsp;&nbsp;
+                                <button type="submit" class="btn btn-primary" id="btnAdd">
+                                    <i class="fa fa-plus"></i> Add
+                                </button>
+                                <button type="submit" class="btn btn-danger" id="btnClear">
+                                    <i class="fa fa-close"></i> Clear
+                                </button>
+                            </div>
+                            <label class="col-form-label col-sm-2">Description</label>
+                            <div class="col-sm-2 px-0">
+                                <input type="text" class="form-control" id="description" name="description" />
+                            </div>
+                        </div>
+                    </div>
+
+
+                    @*<div class="col-sm-12">
+                        <div class="form-group row mb-1">
+                            <div class="col-sm-2 px-0"></div>
+                            <div class="col-sm-3">
+                                <input type="button" id="btnAdd" class="btn btn-primary" value="Add" />
+                                <input type="button" id="btnClear" class="btn btn-danger" value="Clear" />
+                            </div>
+                        </div>
+                    </div>*@
+
+                    <div class="table-responsive mt-2 pre-scrollable" id="div_data">
+                        <table id="DetailTable" class="table table-bordered table-hover w-100">
+                            <thead>
+                                <tr>
+                                    <th style="width:10%">Sr/No</th>
+                                    <th style="width:35%">Class</th>
+                                    <th style="width:35%">Description</th>
+                                    <th style="width:20%"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="DetailTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    @*<input type="button" id="btnSave" class="btn btn-primary" data-dismiss="modal" value="Save" />
+                    <input type="button" id="btnSave" class="btn btn-dropbox" data-dismiss="modal" value="Cancel" />*@
+                    <button type="submit" class="btn btn-primary" id="btnSave"  data-dismiss="modal" >
+                            <i class="fa fa-save"></i> Save
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="btnCancel"  data-dismiss="modal" >
+                            <i class="fa fa-sign-out"></i>Cancel
+                        </button>
+                </div>
+            </div>
+        </div>
+</div>
+<script type="text/javascript">
+  
+    GetGradeList("");
+
+    function GetGradeList(selected) {
+        var actionUrl = '/SetupMaster/GetGradeList';
+        $.getJSON(actionUrl, (response) => {
+            if (response !== null) {
+                var $select = $('#grade_id');
+                $select.find('option').remove();
+                $select.append(`<option value="">-- Please Select --</option>`);
+                for (let i = 0; i < response.length; i++) {
+                    $select.append(`<option value="${response[i].grade_id}">
+                                     ${response[i].grade_name}</option>`);
+                }
+                if (selected !== "") {
+                    $select.val(selected);
+                }
+            }
+        });
+    }
+
+   
+    function BindJson_Subject(obj) {
+        obj.index = $("#index").val();
+        obj.class_id = $("#class_id").val();
+        obj.class_name = $("#class_name").val();
+        obj.description = $('#description').val();
+        obj.isDelete = false;
+      
+        return obj;
+    }
+
+    $("#btnAdd").click(function () {
+        var sub_index = $("#index").val();
+        console.log("sub_index ==> " + sub_index);
+        if (sub_index != null && sub_index != "") {
+              console.log("T 1");
+            var ext_list = ClassListByGrade.filter(x => x.class_name == $("#class_name").val() && x.index != sub_index);
+            console.log("ext_list ==>" + ext_list);
+            if (ext_list.length > 0) {
+                toastr.error("This Class already added!", "Class Data"),
+                    setTimeout(function () { }, 1e4);
+            }
+            else {
+                console.log("T 2");
+                $.each(ClassListByGrade, function (index, obj) {
+                    if (obj.index == sub_index) {
+                        BindJson_Subject(obj);
+                        return false;
+                    }
+                });
+            }
+        }
+        else {
+            console.log("T 3");
+            var exit_list = ClassListByGrade.filter(x => x.class_name == $("#class_name").val());
+            if (exit_list.length > 0) {
+                toastr.error("This Class already added!", "Class Data"),
+                    setTimeout(function () { }, 1e4);
+            }
+            else {
+                console.log("T 4");
+                if ($("#class_name").val() != "") {
+                    var data_info = BindJson_Subject({});
+                    ClassListByGrade.push(data_info);
+                }
+                else {
+
+                }
+            }
+        }
+        console.log(ClassListByGrade);
+        showClassTable();
+        clearClass();
+    });
+
+    $("#btnClear").click(function () {
+        clearClass();
+    });
+
+    function EditData(con_index) {
+        $.each(ClassListByGrade, function (index, obj) {
+            if (obj.index == con_index) {
+                BindControlsSubject(obj);
+                $("#btnAdd").val("Update");
+                return false;
+            }
+        });
+    }
+
+      
+    function deleteBOM(ctrl) {
+        var stockID = $(ctrl).data("stockid");
+        var bomID = $(ctrl).data("id");
+        if (bomID != null && bomID != '' && bomID != 'undefined') {
+            $.each(BOMItems, function (index, obj) {
+                if (obj.stock_bom_id == bomID) {
+                    obj.state = "Deleted";
+                    return false;
+                }
+            });
+        }
+        else {
+            BOMItems = $.grep(BOMItems, function (obj) { return obj.child_stock_id !== stockID; });
+        }
+        showBOMItemList();
+    }
+
+    function DeleteData(c_index, class_id) {
+        console.log("indesx ==> " + c_index);
+        console.log("class_id ==> " + class_id);
+        if (class_id != null && class_id != '' && class_id != 'undefined') {
+            $.each(ClassListByGrade, function (index, obj) {
+                if (obj.index == c_index && obj.class_id == class_id) {
+                    console.log("Treu");
+                    obj.index = 0;
+                    obj.Sstate = "Deleted";
+                    return false;
+                }
+            });
+        }
+        else {
+             console.log("Flase");
+            ClassListByGrade = $.grep(ClassListByGrade, function (obj) { return obj.index != c_index; });
+        }
+        console.log(ClassListByGrade);
+        showClassTable();
+        clearClass();
+        //$.each(ClassListByGrade, function (index, obj) {
+        //    if (obj.index == con_index) {
+        //        obj.index = 0;
+        //        obj.isDelete = true;
+        //        return false;
+        //    }
+        //});
+        
+        
+    }
+
+    function BindControlsSubject(obj) {
+        $("#index").val(obj.index);
+        $("#class_id").val(obj.class_id);
+        $("#class_name").val(obj.class_name);        
+        $("#description").val(obj.description);        
+    }
+
+    function showClassTable() {
+        console.log(ClassListByGrade);
+        $("#DetailTableBody").empty();
+        var list = ClassListByGrade.filter(x=>x.Sstate != "Deleted");
+        for (var i = 0; i < list.length; i++) {
+            ////Re order index after delelting or inserting
+           
+            list[i]["index"] = i + 1;
+            var tr = "<tr>";
+            var td1 = "<td>" + list[i]["index"] + "</td>";
+            var td2 = "<td>" + list[i]["class_name"] + "</td>";
+            var td3 = "<td>" + (list[i]["description"] == null ? "" : list[i]["description"]) + "</td>";
+            var td4 = "<td>" +
+                "<button type='button'" +
+                "onclick=EditData('" + list[i]["index"] + "'); " +
+                'style="color: white; " class="btn btn-primary btn-sm"><span class="fa fa-edit"></span>&nbsp;Edit' +
+                "</button>";
+
+            var td5 =
+                "<button type='button'" +
+                "onclick=DeleteData('" + list[i]["index"] + "','" + list[i]["class_id"] + "'); " +
+                'style="color: white; " class="btn btn-danger btn-sm"><span class="fa fa-edit"></span>&nbsp;Delete' +
+                "</button>"
+            "</td></tr > ";
+
+            $("#DetailTableBody").append(tr + td1 + td2 + td3 + td4 + td5);
+        }
+    }
+
+    function clearClass() {
+        $("#index").val("");
+        $("#class_id").val("");
+        $("#class_name").val("");
+        $('#description').val("");
+        $("#btnAdd").val("Add");
+    }
+</script>
+
+

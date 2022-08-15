@@ -1,0 +1,356 @@
+﻿
+<div class="modal fade" id="dialogPreviousSchoolRecord" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false" aria-hidden="true">
+    <div class="modal-dialog w-75 h-100" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Previous School Record</h5>
+                <button type="button" id="btnClose" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+                <div class="modal-body">
+                    <input type="hidden" id="serial_no_prvSchool" />
+                    <input type="hidden" id="prv_school_id" />
+
+                    <div class="col-sm-12 row mb-1 p-0">
+                        <div class="col-sm-4 row mx-0">
+                            <label class="col-form-label col-sm-4 px-0">Reg No</label>
+                            <div class="col-sm-6 pr-0">
+                                <input type="text" class="form-control" id="prv_reg_no" name="prv_reg_no" maxlength="50" readonly />
+                                <em id="prv_reg_no_error" class="error error_msg"></em>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-12 row mb-1 p-0">
+                        <div class="col-sm-4 row mx-0">
+                            <label class="col-form-label col-sm-4 px-0">Year From<span style="color:red;">*</span></label>
+                            <div class="col-sm-6 pr-0">
+                                <input type="text" class="form-control" id="year_from" name="year_from" maxlength="50" />
+                                <em id="year_from_error" class="error error_msg"></em>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 row mx-0">
+                            <label class="col-form-label col-sm-4 px-3">To<span style="color:red;">*</span></label>
+                            <div class="col-sm-6 pr-0">
+                                <input type="text" class="form-control" id="year_to" name="year_to" maxlength="50" autocomplete="off" />
+                                <em id="year_to_error" class="error error_msg"></em>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 row mb-1 p-0">
+                        <div class="col-sm-4 row mx-0">
+                            <label class="col-form-label col-sm-4 px-0">Passed Grade<span style="color:red;">*</span></label>
+                            <div class="col-sm-6 pr-0">
+                                <input type="text" class="form-control" id="passed_grade" name="passed_grade" maxlength="50" />
+                                <em id="passed_grade_error" class="error error_msg"></em>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 row mx-0">
+                            <label class="col-form-label col-sm-4 px-3">School<span style="color:red;">*</span></label>
+                            <div class="col-sm-6 pr-0">
+                                <input type="text" class="form-control" id="attended_school" name="attended_school" maxlength="50" autocomplete="off" />
+                                <em id="attended_school_error" class="error error_msg"></em>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 row mb-1 p-0">
+                        <div class="col-sm-4 row mx-0">
+                            <label class="col-form-label col-sm-4 px-0">Country</label>
+                            <div class="col-sm-6 pr-0">
+                                <input type="text" class="form-control" id="country" name="country" maxlength="50" />
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row mb-0">
+                        <div class="offset-sm-4 col-sm-3">
+                            <button type="button" class="btn btn-primary" id="btnPrvSchool">
+                                <i class="fa fa-plus"></i> <lable id="lblPrvAction"> Add</lable>
+                            </button>
+                            <button type="button" class="btn btn-danger" id="btnClearPrevious">
+                                <i class="fa fa-close"></i> Clear
+                            </button>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="form-group row">
+                        <div class="col-sm table-responsive pre-scrollable px-1">
+                            <table id="PreviousSchoolTable" class="table table-bordered table-sm" style="table-layout:fixed">
+                                <thead>
+                                    <tr>
+                                        <th style="width:5%">S/No</th>
+                                        <th style="width:20%">Reg No</th>
+                                        <th style="width:10%">Year From</th>
+                                        <th style="width:13%">Year To</th>
+                                        <th style="width:15%">Passed Grade</th>
+                                        <th style="width:22%">School</th>
+                                        <th style="width:15%"></th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                                <tfoot>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-danger" data-dismiss="modal" value="Close" />
+                </div>
+        </div>
+    </div>
+</div>
+
+<link href="~/Components/Treed/style.css" rel="stylesheet" />
+<style>
+    .noselect {
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+    }
+
+    #mceu_121 {
+        display: none;
+    }
+
+    #mceu_123 {
+        display: none;
+    }
+
+    #mceu_152 {
+        display: none;
+    }
+
+    #mceu_154 {
+        display: none;
+    }
+    .error_msg {
+        width: 100%;
+        margin-top: 0.25rem;
+        font-size: 80%;
+        color: #f86c6b
+    }
+</style>
+
+<script src="~/Scripts/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+    var serial_no_prvSchool = 0;
+    $('#btnClearPrevious').click(function (e) {
+        clear_Previous();
+    });
+
+    $('#btnPrvSchool').click(function (e) {
+        if ($("#prv_reg_no").val() != "" && $("#prv_reg_no").val() != null &&
+            $("#year_from").val() != "" && $("#year_from").val() != null &&
+            $("#year_to").val() != "" && $("#year_to").val() != null &&
+            $("#passed_grade").val() != "" && $("#passed_grade").val() != null &&
+            $("#attended_school").val() != "" && $("#attended_school").val() != null) {
+            console.log("True");
+            var schoolInfo = PreviousSchools.filter(x => x.passed_grade == $('#passed_grade').val() && x.serial_no_prvSchool != $('#serial_no_prvSchool').val());
+            console.log(schoolInfo);
+            if (schoolInfo.length == 0) {
+
+                if ($("#serial_no_prvSchool").val() != "" && $("#serial_no_prvSchool").val() != null) {
+                    $.each(PreviousSchools, function (i, obj) {
+                        if (obj.serial_no_prvSchool == $("#serial_no_prvSchool").val()) {
+                            obj = BindPreviousSchoolRecord(obj);
+                            return false;
+                        }
+                    });
+                }
+                else {
+                    let a = BindPreviousSchoolRecord({});
+                    PreviousSchools.push(a);
+                }
+                console.log(PreviousSchools);
+                $("#PreviousSchoolTable tbody").empty();
+                showPreviousTable();
+                clear_Previous();
+            }
+            else {
+                toastr.error("This passed grade is already existed!", "Error."),
+                    setTimeout(function () { }, 1e4);
+            }
+        }
+        else {
+            console.log("False");
+            console.log($("#passed_grade").val());
+            if ($("#prv_reg_no").val() == "" || $("#prv_reg_no").val() == null) {
+                $("#prv_reg_no_error").text("Reg No is required!");
+            }
+            else {
+                $("#prv_reg_no_error").text("");
+            }
+
+            if ($("#year_from").val() == "" || $("#year_from").val() == null) {
+                $("#year_from_error").text("Year From is required!");
+            }
+            else {
+                $("#year_from_error").text("");
+            }
+
+            if ($("#year_to").val() == "" || $("#year_to").val() == null) {
+                $("#year_to_error").text("Year To is required!");
+            }
+            else {
+                $("#year_to_error").text("");
+            }
+
+            if ($("#passed_grade").val() == "" || $("#passed_grade").val() == null) {
+                console.log("true");
+                $("#passed_grade_error").text("Passed Grade is required!");
+            }
+            else {
+                console.log("false");
+                $("#passed_grade_error").text("");
+            }
+
+            if ($("#attended_school").val() == "" || $("#attended_school").val() == null) {
+                $("#attended_school_error").text("School is required!");
+            }
+            else {
+                $("#attended_school_error").text("");
+            }
+        }
+    });
+
+    function BindPreviousSchoolRecord(obj) {
+        obj.reg_no = $("#prv_reg_no").val();
+        obj.prv_school_id = $("#prv_school_id").val();
+        obj.year_from = $("#year_from").val();
+        obj.year_to = $("#year_to").val();
+        obj.syear_from = $("#year_from").val();
+        obj.syear_to = $("#year_to").val();
+        obj.passed_grade = $("#passed_grade").val();
+        obj.attended_school = $('#attended_school').val();
+        obj.country = $('#country').val();
+        return obj;
+    }
+
+    function GetTeamDetailByID(team_id) {
+        $.ajax({
+            url: "/Team/GetTeamBytemID",
+            type: "GET",
+            data: { team_id: team_id },
+            async: !0,
+            dataType: "json",
+            success: function (data) {
+                if (PreviousSchools.length <= 0) {
+                    PreviousSchools = data.teamD;
+                    $("#PreviousSchoolTable tbody").empty();
+                    showTeamMemberTable();
+                }
+            },
+            error: function () { }
+        });
+    }
+
+    function showPreviousTable() {
+        serial_no_prvSchool = 0;
+        console.log("showTeamMemberTable");
+        if (PreviousSchools.length === 0) return;
+        $("#PreviousSchoolTable tbody").empty();
+        $.each(PreviousSchools, function (i, obj) {
+            serial_no_prvSchool += 1;
+            obj.serial_no_prvSchool = serial_no_prvSchool;
+            //obj.year_from = syear_from;
+            //obj.syear_to = syear_to;
+            $("#PreviousSchoolTable tbody").append(create_Rowstring_PreviousSchool(obj));
+        });
+    }
+
+    function create_Rowstring_PreviousSchool(row) {
+        var tblrow = "<tr>";
+
+        tblrow += create_Colstring_PreviousSchool(row.serial_no_prvSchool, false);
+        tblrow += create_Colstring_PreviousSchool(row.reg_no, false);
+        tblrow += create_Colstring_PreviousSchool(row.syear_from, false);
+        tblrow += create_Colstring_PreviousSchool(row.syear_to, false);
+        tblrow += create_Colstring_PreviousSchool(row.passed_grade, false);
+        tblrow += create_Colstring_PreviousSchool(row.attended_school, false);
+
+        var td4 = "<td>" +
+            "<button type='button'" +
+            "onclick=edit_previous_school('" + row.serial_no_prvSchool + "'); " +
+            'style="color: white; " class="btn btn-primary btn-sm"><span class="fa fa-edit"></span>&nbsp;Edit' +
+            "</button>";
+
+        var td5 =
+            "<button type='button'" +
+            "onclick=deleting_PreviousSchool('" + row.serial_no_prvSchool + "','" + row.prv_school_id + "'); " +
+            'style="color: white; " class="btn btn-danger btn-sm"><span class="fa fa-edit"></span>&nbsp;Delete' +
+            "</button>"
+        "</td></tr > ";
+
+        tblrow += td4 + td5 + "</tr>";
+        return tblrow;
+    }
+
+    function create_Colstring_PreviousSchool(data, isalignright) {
+        var tblcol = "<td" + (isalignright ? " class='text-right'>" : ">") + data + "</td>";
+        return tblcol;
+    }
+
+    function reserialize_Previous() {
+        var count = 0;
+        var activecount = $.grep(PreviousSchools, function (obj) { return obj.state != 'Deleted'; }).length;
+        $.each(PreviousSchools, function (index, obj) {
+            if (obj.state != "Deleted") {
+                count += 1;
+                obj.serial_no_prvSchool = count;
+            }
+            else {
+                activecount += 1;
+                obj.serial_no_prvSchool = activecount;
+            }
+        });
+    }
+
+    function deleting_PreviousSchool(serial,prv_shool_id) {
+        PreviousSchools = $.grep(PreviousSchools, function (obj) { return obj.serial_no_prvSchool != serial; });
+        console.log(PreviousSchools);
+        $("#PreviousSchoolTable tbody").empty();
+        showPreviousTable();
+    }
+
+    function edit_previous_school(serial) {
+        $.each(PreviousSchools, function (i, obj) {
+            if (obj.serial_no_prvSchool == serial) {
+                $("#serial_no_prvSchool").val(serial);
+                $("#prv_school_id").val(obj.prv_school_id);
+                $("#year_from").val(obj.syear_from);
+                $("#year_to").val(obj.syear_to);
+                $("#passed_grade").val(obj.passed_grade);
+                $("#attended_school").val(obj.attended_school);
+                $("#country").val(obj.country);
+                $("#lblPrvAction").text("Update");
+                return false;
+            }
+        });
+    }
+
+    function clear_Previous() {
+        $("#serial_no_prvSchool").val("");
+        $("#prv_school_id").val("");
+        setToday("#year_from");
+        setToday("#year_to");
+        $("#passed_grade").val("");
+        $("#attended_school").val("");
+        $("#country").val("");
+        $("#lblPrvAction").text("Add");
+        $("#prv_reg_no_error").text("");
+        $("#year_from_error").text("");
+        $("#year_to_error").text("");
+        $("#passed_grade_error").text("");
+        $("#attended_school_error").text("");
+    }
+</script>

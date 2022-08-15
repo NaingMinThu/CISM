@@ -1,0 +1,87 @@
+﻿@model CISM_PJ.Areas.Admin.Models.RolePermissionViewModel
+@using CISM_PJ.Models;
+@{
+    ViewData["Title"] = "Role";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    List<MenuAuthorizationModel> all_aut = ViewBag.ProgramPermission;
+    PermissionTypeCodeModel perType = new PermissionTypeCodeModel();
+    bool create = true; // all_aut.Any(x => x.perms_type_code.ToLower() == perType.create && x.isGrant == true);
+    bool edit = true; //all_aut.Any(x => x.perms_type_code.ToLower() == perType.edit && x.isGrant == true);
+    bool delete = true; //all_aut.Any(x => x.perms_type_code.ToLower() == perType.delete && x.isGrant == true);
+    bool viewdetail = true; //all_aut.Any(x => x.perms_type_code.ToLower() == perType.viewdetail && x.isGrant == true);
+    bool viewlist = true; //all_aut.Any(x => x.perms_type_code.ToLower() == perType.viewlist && x.isGrant == true);
+}
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0">Role</h5>
+        </div>
+        <input type="hidden" id="hid_isAut_Create" value="@create.ToString()" />
+        <input type="hidden" id="hid_isAut_Edit" value="@edit.ToString()" />
+        <input type="hidden" id="hid_isAut_Delete" value="@delete.ToString()" />
+        <input type="hidden" id="hid_isAut_ViewDetail" value="@viewdetail.ToString()" />
+        <input type="hidden" id="hid_menuID" value="@ViewBag.menuID.ToString()" />
+        <form id="myform" autocomplete="off">
+            <div class="container-fluid" style="width: 100%;">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="form-group row">
+                            <input type="hidden" id="roleId" />
+                            <input type="hidden" id="state" />
+
+                            <div class="col-sm-12 row my-1 p-0">
+                                <div class="col-sm-6 row mx-0">
+                                    <label class="col-form-label col-sm-4">Name</label>
+                                    <div class="col-sm-6 px-0">
+                                        <input type="text" class="form-control" id="roleName" name="roleName" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 row my-1 p-0">
+                                <div class="col-sm-6 row mx-0">
+                                    <label class="col-form-label col-sm-4">Description</label>
+                                    <div class="col-sm-6 px-0">
+                                        <textarea class="form-control" id="description" name="description" rows="3" maxlength="300" autocomplete="off"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 row my-1 px-4">
+                                <p><h6><b><i>Detail Permission</i></b></h6></p>
+                            </div>
+                            <div class="col-sm-12 row my-1 p-0" id="divMenuList">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="form-group row mb-0">
+                    <div class="col-md-10">
+                        @*<button id="btnSave" value="Create" class="btn btn-primary">Create</button>*@
+                        @*<button id="btnCancel" value="Create" class="btn btn-secondary">Cancel</button>*@
+                        <button type="submit" class="btn btn-primary" id="btnSave">
+                            <i class="fa fa-save"></i> Save
+                        </button>
+                        <button type="submit" class="btn btn-secondary" id="btnCancel">
+                            <i class="fa fa-sign-out"></i> Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+@section Scripts {
+    <link rel="stylesheet" href="~/Content/themes/base/jquery-ui.css" />
+    <link rel="stylesheet" href="~/Content/jquery.timepicker.css" />
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.validate-additional-methods.min.js"></script>
+    <script src="~/Scripts/jqueryui/jquery-ui.js"></script>
+    <script src="~/Scripts/jquery.timepicker.js"></script>
+    <script src="~/Scripts/moment.js"></script>s
+    <script src="~/JavaScriptFiles/RolePermission.js"></script>
+}

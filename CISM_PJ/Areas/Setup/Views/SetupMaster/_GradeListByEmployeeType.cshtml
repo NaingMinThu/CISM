@@ -1,0 +1,264 @@
+﻿
+    <div class="modal fade" id="dialogSubjectAcademic" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false" aria-hidden="true">
+        <div class="modal-dialog w-60 h-100" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel">Grade by Employee Type</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="col-sm-12">
+                        <div class="form-group row mb-1">
+                            <input type="hidden" id="state" />
+                            <input type="hidden" id="index"/>
+                            <label class="col-form-label col-sm-2 px-3">Employee Type</label>
+                            <div class="col-sm-2">
+                                @*<input type="text" class="form-control" id="grade_name" name="grade_name" />*@
+                                <select id="emp_type_Id" name="emp_type_Id" class="custom-select"></select>
+                            </div>
+                            <div class="input-group col-sm-2 pl-0 d-block">
+                            </div>
+                        </div>
+                    </div>
+
+                    @*<div class="col-sm-12">
+                        <div class="form-group row mb-1">
+                            <label class="col-form-label col-sm-2 px-3"><b>Grades List</b></label>
+                            <br />
+                        </div>
+                    </div>*@
+
+                    <div class="col-sm-12">
+                        <div class="form-group row mb-1">
+                            <label class="col-form-label col-sm-2 px-3">Grade</label>
+                            <div class="col-sm-2">
+                                <select id="emp_grade_id" name="emp_grade_id" class="custom-select"></select>
+                            </div>
+                            <div class="input-group col-sm-2 pl-0 d-block">
+                                &nbsp;&nbsp;
+                                <button type="button" class="btn btn-primary" id="btnAdd">
+                                    <i class="fa fa-plus"></i>Add
+                                </button>
+                                <button type="button" class="btn btn-danger" id="btnClear">
+                                    <i class="fa fa-close"></i>Clear
+                                </button>
+                            </div>
+                            <label class="col-form-label col-sm-2">Description</label>
+                            <div class="col-sm-2 px-0">
+                                <input type="text" class="form-control" id="description" name="description" readonly/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br />
+                    @*<div class="col-sm-12">
+                        <div class="form-group row mb-1">
+                            <div class="col-sm-2 px-0"></div>
+                            <div class="col-sm-3">
+                                <input type="button" id="btnAdd" class="btn btn-primary" value="Add" />
+                                <input type="button" id="btnClear" class="btn btn-danger" value="Clear" />
+                            </div>
+                        </div>
+                    </div>*@
+
+                    <div class="table-responsive mt-2 pre-scrollable" id="div_data">
+                        <table id="SubjectTable" class="table table-bordered table-hover w-100">
+                            <thead>
+                                <tr>
+                                    <th style="width:10%">Sr/No</th>
+                                    <th style="width:60%">Subject</th>
+                                    <th style="width:30%"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="SubjectDataBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    @*<input type="button" id="btnSave" class="btn btn-primary" data-dismiss="modal" value="Save" />
+                    <input type="button" id="btnCancel" class="btn btn-dropbox" data-dismiss="modal" value="Cancel" />*@
+                    <button type="button" class="btn btn-primary" id="btnSave" data-dismiss="modal">
+                        <i class="fa fa-save"></i> Save
+                    </button>
+
+                    <button type="button" class="btn btn-secondary" id="btnCancel" data-dismiss="modal">
+                        <i class="fa fa-sign-out"></i>Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+</div>
+<script type="text/javascript">
+    GetEmployeeType("");
+    GetEmployeeGrade("");
+    function GetEmployeeType(selected) {
+        var actionUrl = '/SetupMaster/GetEmployeeType';
+        $.getJSON(actionUrl, (response) => {
+            if (response !== null) {
+                var $select = $('#emp_type_Id');
+                $select.find('option').remove();
+                $select.append(`<option value="">-- Please Select --</option>`);
+                for (let i = 0; i < response.length; i++) {
+                    $select.append(`<option value="${response[i].emp_type_Id}">
+                                     ${response[i].emp_type}</option>`);
+                }
+                if (selected !== "") {
+                    $select.val(selected);
+                }
+            }
+        });
+    }
+
+    $('#emp_grade_id').change(function () {
+        console.log(GradesList);
+        if (GradesList.length > 0) {
+            var subjInfo = GradesList.filter(x => x.emp_grade_id == $(this).val());
+            console.log(subjInfo);
+            $('#description').val(subjInfo[0].description);
+        }
+    });
+
+    function GetEmployeeGrade(selected) {
+        var actionUrl = '/SetupMaster/GetEmployeeGrade';
+        $.getJSON(actionUrl, (response) => {
+            if (response !== null) {
+                GradesList = response;
+                var $select = $('#emp_grade_id');
+                $select.find('option').remove();
+                $select.append(`<option value="">-- Please Select --</option>`);
+                for (let i = 0; i < response.length; i++) {
+                    $select.append(`<option value="${response[i].emp_grade_id}">
+                                     ${response[i].emp_grade_name}</option>`);
+                }
+                if (selected !== "") {
+                    $select.val(selected);
+                }
+            }
+        });
+    }
+
+    function BindJson_Subject(obj) {
+        obj.index = $("#index").val();
+        obj.emp_type_Id = $("#emp_type_Id").val();
+        obj.emp_grade_id = $("#emp_grade_id").val();
+        obj.emp_grade_name = $("#emp_grade_id option:selected").text();
+        obj.description = $('#description').val();
+        obj.isDelete = false;
+        //obj.grade_name = $("#grade_name").val();
+        //obj.description = $("#description").val();
+        //obj.year = $("#year").val();
+        return obj;
+    }
+
+    $("#btnAdd").click(function () {
+        var sub_index = $("#index").val();
+    
+        if (sub_index != null && sub_index != "") {
+            var ext_list = GradesByEmpType.filter(x => x.emp_grade_id == $("#emp_grade_id").val() && x.index != sub_index);
+            console.log("ext_list ==>" + ext_list);
+            if (ext_list.length > 0) {
+                toastr.error("This Grade already added!", "Subject Data"),
+                    setTimeout(function () { }, 1e4);
+            }
+            else {
+                $.each(GradesByEmpType, function (index, obj) {
+                    if (obj.index == sub_index) {
+                        BindJson_Subject(obj);
+                        return false;
+                    }
+                });
+            }
+        }
+        else {
+            var exit_list = GradesByEmpType.filter(x => x.emp_grade_id == $("#emp_grade_id").val());
+            if (exit_list.length > 0) {
+                toastr.error("This Grade already added!", "Subject Data"),
+                    setTimeout(function () { }, 1e4);
+            }
+            else {
+                if ($("#emp_grade_id").val() != "") {
+                    var data_info = BindJson_Subject({});
+                    GradesByEmpType.push(data_info);
+                }
+            }
+        }
+        console.log(GradesByEmpType);
+        showTable();
+        clearSubject();
+    });
+
+    $("#btnClear").click(function () {
+        clearSubject();
+    });
+    $("#btnCancel").click(function () {
+        window.location.reload();
+    });
+    
+    function EditData(con_index) {
+        $.each(GradesByEmpType, function (index, obj) {
+            if (obj.index == con_index) {
+                BindControls(obj);
+                $("#btnAdd").val("Update");
+                return false;
+            }
+        });
+    }
+
+    function DeleteData(con_index) {
+        $.each(GradesByEmpType, function (index, obj) {
+            if (obj.index == con_index) {
+                obj.index = 0;
+                obj.isDelete = true;
+                return false;
+            }
+        });
+        showTable();
+        clearSubject();
+    }
+
+    function BindControls(obj) {
+        $("#index").val(obj.index);
+        $("#emp_grade_id").val(obj.emp_grade_id);
+        $("#description").val(obj.description);        
+    }
+
+    function showTable() {
+        $("#SubjectDataBody").empty();
+        GradesByEmpType = GradesByEmpType.filter(x=>x.isDelete != true);
+        for (var i = 0; i < GradesByEmpType.length; i++) {
+            ////Re order index after delelting or inserting
+            GradesByEmpType[i]["index"] = i + 1;
+            var tr = "<tr>";
+            var td1 = "<td>" + GradesByEmpType[i]["index"] + "</td>";
+            var td2 = "<td>" + GradesByEmpType[i]["emp_grade_name"] + "</td>";
+            var td3 = "<td>" +
+                "<button type='button'" +
+                "onclick=EditData('" + GradesByEmpType[i]["index"] + "'); " +
+                'style="color: white; " class="btn btn-primary btn-sm"><span class="fa fa-edit"></span>&nbsp;Edit' +
+                "</button>";
+
+            var td4 =
+                "<button type='button'" +
+                "onclick=DeleteData('" + GradesByEmpType[i]["index"] + "'); " +
+                'style="color: white; " class="btn btn-danger btn-sm"><span class="fa fa-edit"></span>&nbsp;Delete' +
+                "</button>"
+            "</td></tr > ";
+
+            $("#SubjectDataBody").append(tr + td1 + td2 + td3 + td4);
+
+            console.log(GradesByEmpType);
+        }
+    }
+
+    function clearSubject() {
+        $("#index").val("");
+        $("#emp_grade_id").val("");
+        $('#description').val("");
+        $("#btnAdd").val("Add");
+    }
+</script>
+
+

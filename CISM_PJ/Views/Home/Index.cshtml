@@ -1,0 +1,119 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<style>
+    .small-box {
+        margin-bottom: 5px;
+        text-align: right;
+    }
+
+        .small-box > .inner {
+            padding: 20px;
+            /*padding-bottom: 5px;*/
+            text-align: right;
+            
+        }
+
+    .footer {
+        background-color: rgba(0,0,0,0.2);
+    }
+
+        .footer > span {
+            padding: 0px 20px;
+        }
+</style>
+
+<!--<div class="jumbotron">
+    <h1>CISM</h1>
+    <p class="lead"></p>-->
+@*<p><a href="http://" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>*@
+<!--</div>-->
+@*<div>@Html.EJS().Schedule("schedule").Render()</div>*@
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Dashboard</h1>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Small boxes (Stat box) -->
+            <div class="row">
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-info">
+                        @*<div class="icon"><i class="fa fa-group"></i></div>*@
+                        <div class="inner">
+                            <h3>@ViewBag.TotalStudents</h3>
+
+                            <h4>Total Students</h4>
+                        </div>
+                        @*<div class="icon">
+                                <i class="fa fa-users"></i>
+                            </div>*@
+                        @*<div class="footer">
+                                <span>IN THIS SYSTEM</span>
+                            </div>*@
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3>0</h3>
+
+                            <h4>Total Teachers</h4>
+                        </div>
+                        @*<div class="footer">
+                                <span>IN THIS SYSTEM</span>
+                            </div>*@
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                            <h3>0</h3>
+
+                            <h4>Total Parents</h4>
+                        </div>
+                        @*<div class="footer">
+                                <span>IN THIS SYSTEM</span>
+                            </div>*@
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h3>0</h3>
+
+                            <h4>Attend Students</h4>
+                        </div>
+                        @*<div class="footer">
+                                <span>IN THIS SYSTEM</span>
+                            </div>*@
+                    </div>
+                </div>
+                <!-- ./col -->
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>

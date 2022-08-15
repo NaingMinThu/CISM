@@ -1,0 +1,206 @@
+﻿@using CISM_PJ.Models;
+@{
+    ViewBag.Title = "Employee Listing";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    List<MenuAuthorizationModel> all_aut = ViewBag.ProgramPermission;
+    PermissionTypeCodeModel perType = new PermissionTypeCodeModel();
+    bool create = all_aut.Any(x => x.perms_type_code.ToLower() == perType.create && x.isGrant == true);
+    bool edit = all_aut.Any(x => x.perms_type_code.ToLower() == perType.edit && x.isGrant == true);
+    bool delete = all_aut.Any(x => x.perms_type_code.ToLower() == perType.delete && x.isGrant == true);
+    bool viewdetail = all_aut.Any(x => x.perms_type_code.ToLower() == perType.viewdetail && x.isGrant == true);
+    bool viewlist = all_aut.Any(x => x.perms_type_code.ToLower() == perType.viewlist && x.isGrant == true);
+
+}
+<div class="card">
+    <div class="card-header">
+        <h5 class="mb-0">Employee Listing</h5>
+    </div>
+    <div class="card-body">
+        <input type="hidden" id="hid_isAut_Create" value="@create.ToString()" />
+        <input type="hidden" id="hid_isAut_Edit" value="@edit.ToString()" />
+        <input type="hidden" id="hid_isAut_Delete" value="@delete.ToString()" />
+        <input type="hidden" id="hid_isAut_ViewDetail" value="@viewdetail.ToString()" />
+        <input type="hidden" id="hid_menuID" value="@ViewBag.menuID.ToString()" />
+        <input type="hidden" id="hid_Date" />
+
+        @if (create)
+        {
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <a href="@Url.Action("EmployeeEntry", "Employee", new { Area = "EmployeeInfo", MenuID = ViewBag.menuID })" class="btn btn-primary"><i class="fa fa-plus"></i>&nbsp;New</a>
+            </div>
+        }
+        <hr />
+        @if (viewlist)
+        {
+            <div class="table-responsive">
+                <table id="myTable" class="table table-bordered table-sm w-100">
+                    <thead>
+                        <tr>
+                            <th style="width: 5%">Sr</th>
+                            <th style="width: 10%">Photo</th>
+                            <th style="width: 10%">Reg.No</th>
+                            <th style="width: 12%">Name</th>
+                            <th style="width: 15%">D.O.B</th>
+                            <th style="width: 0%"></th>
+                            <th style="width: 10%">Type</th>
+                            <th style="width: 16%">Address</th>
+                            <th style="width: 13%">Contact Numbers</th>
+                            <th style="width: 13%"></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="modal fade" id="dialogDelete" tabindex="-3" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog w-30 mt-5" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5 class="text-black">Are you sure you want to delete this?</h5>
+                <input type="hidden" class="form-control" id="txtID" name="txtID" />
+            </div>
+            <div class="modal-footer">
+                <input type="button" id="btnDeletePopup" class="btn btn-primary" value="Confirm" />
+                <input type="button" class="btn btn-secondary" data-dismiss="modal" value="Cancel" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        shownData_Table();
+    });
+    var sr_no = 0;
+    function shownData_Table() {
+        var actionurl = '/EmployeeInfo/Employee/GetEmployeeListAsPage';
+        var tablecustomer = $('#myTable').DataTable({
+            responsive: true,
+            processing: true, // for show progress bar
+            serverSide: true, // for process server side
+            filter: true, // this is for disable filter (search box)
+            orderMulti: false, // for disable multiple column at once
+            pageLength: 10,
+            searching: true,
+            order: [[2, 'desc']],
+            ajax: {
+                url: actionurl,
+                type: 'POST',
+                datatype: 'json'
+            },
+            columnDefs: [
+                {
+                    targets: [2, 3, 4, 6, 8],
+                    searchable: true,
+                },
+                {
+                    "aTargets": [9],
+                    searchable: false,
+                    orderable: false,
+                    "mRender": function (data, type, full) {
+
+                        var isEdit = $("#hid_isAut_Edit").val() == "True" ? 1 : 0;
+                        var isDetail = $("#hid_isAut_ViewDetail").val() == "True" ? 1 : 0;
+                        var isDelete = $("#hid_isAut_Delete").val() == "True" ? 1 : 0;
+
+                        edit = '<a href="/EmployeeInfo/Employee/EmployeeEntry?id=' + data + '&MenuID=' + $("#hid_menuID").val() + '" class="btn btn-primary btn-sm"><span class="fa fa-edit"></span>&nbsp;Edit</a>';
+                        del = '<a class="btn btn-danger btn-sm" data-id="' + data + '" id="btnDelete" name="btnDeleteLink" data-toggle="modal" data-target="#dialogDelete"><span class="fa fa-trash"></span>&nbsp;Delete</a>'
+                        return ((isEdit || isDetail) ? edit : "") + (isDelete ? del : "");
+                    }
+                },
+                {
+                    "aTargets": [0],
+                    "mRender": function (data, type, full) {
+                        sr_no = sr_no + 1;
+                        return sr_no;
+                    }
+                },
+                {
+                    "aTargets": [1],
+                    searchable: false,
+                    orderable: false,
+                    "mRender": function (data, type, full) {
+                        return "";
+                    }
+                },
+                {
+                    "aTargets": [4],
+                    visible: false,
+                    "mRender": function (data, type, full) {
+                        console.log(data);
+                        $("#hid_Date").val(data);
+                        return data;
+                    }
+                },
+                {
+                    "aTargets": [5],
+                    searchable: false,
+                    "mRender": function (data, type, full) {
+                        return $("#hid_Date").val();
+                    }
+                }
+            ],
+            columns: [
+                { data: 'sr', name: 'sr', title: 'Sr', autoWidth: true },
+                { data: 'sr', name: 'sr', title: 'Photo', autoWidth: true },
+                { data: 'staff_no', name: 'staff_no', title: 'Reg.No', autoWidth: true },
+                { data: 'name', name: 'name', title: 'Name', autoWidth: true },
+                { data: 'sdob', name: 'sdob', title: 'D.O.B', autoWidth: true },
+                { data: 'dob', name: 'dob', title: 'D.O.B', autoWidth: true },
+                { data: 'emp_type', name: 'emp_type', title: 'Type', autoWidth: true },
+                { data: 'address', name: 'address', title: 'Address', autoWidth: false },
+                { data: 'contract_no', name: 'contract_no', title: 'Contact Numbers', autoWidth: true },
+                { data: 'employee_id', name: 'employee_id', title: '', autoWidth: true },
+            ],
+        });
+    }
+
+    $("#myTable").on("click", "#btnDelete", function () {
+        let code = $(this).attr("data-id");
+        $("#txtID").val(code);
+    });
+
+    $("#btnDeletePopup").on("click", function (e) {
+        let employee_id = $("#txtID").val();
+        e.preventDefault();
+        Delete(employee_id);
+    });
+
+
+    function Delete(employee_id) {
+        $.ajax({
+            url: "/EmployeeInfo/Employee/DeleteEmployee",
+            type: "POST",
+            data: { employee_id: employee_id },
+            async: !0,
+            dataType: "json",
+            success: function (d) {
+                if (d.errorcode === -1) {
+                    toastr.error(d.message);
+                    setTimeout(function () { location.reload(); }, 2500), e.preventDefault();
+                }
+                else if (d.errorcode === 1) {
+                    toastr.error(d.message);
+                    setTimeout(function () { location.reload(); }, 2500), e.preventDefault();
+                }
+                else {
+                    toastr.error(d.message);
+                    setTimeout(function () { location.reload(); }, 2500), e.preventDefault();
+                }
+                window.location.reload();
+            }, error: function () { }
+        });
+    }
+</script>
+
